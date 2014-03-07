@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public class FactDTO {
 
+	private int id;
+	
 	private Double area;
 
 	private String currency;
@@ -72,5 +74,13 @@ public class FactDTO {
 
 	public void setTimezone(String timezone) {
 		this.timezone = timezone;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

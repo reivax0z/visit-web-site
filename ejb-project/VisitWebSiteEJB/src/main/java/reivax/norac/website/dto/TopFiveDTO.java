@@ -2,7 +2,8 @@ package reivax.norac.website.dto;
 
 public class TopFiveDTO {
 
-
+	private int id;
+	
 	private String description;
 
 	private String inbrief;
@@ -31,5 +32,13 @@ public class TopFiveDTO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

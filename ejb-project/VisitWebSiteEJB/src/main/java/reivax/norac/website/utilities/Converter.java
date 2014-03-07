@@ -1,7 +1,15 @@
 package reivax.norac.website.utilities;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import com.google.common.collect.Lists;
 
 import reivax.norac.website.dto.AboutDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
@@ -16,7 +24,12 @@ import reivax.norac.website.entities.Fact;
 import reivax.norac.website.entities.Topfive;
 import reivax.norac.website.entities.Video;
 
+@LocalBean
+@Stateless
 public class Converter {
+	
+	@PersistenceContext
+    EntityManager em;
 
 	public static List<CountriesVisitedDTO> getCountriesDTOFromEntities(List<Country> entities){
 		List<CountriesVisitedDTO> toReturn = new ArrayList<CountriesVisitedDTO>();
@@ -106,5 +119,93 @@ public class Converter {
 		toReturn.setDescription(entity.getDescription());
 		toReturn.setLink(entity.getLink());
 		return toReturn;
+	}
+	
+	public City getCityFromDTO(CitiesVisitedDTO dto){
+		City toReturn = new City();
+		
+		toReturn.setVideos(getVideoFromDTO(dto.getVideos()));
+		List<AboutDTO> abouts = new ArrayList<AboutDTO>();
+		abouts.add(dto.getAbout());
+		toReturn.setAbouts(getAboutFromDTO(abouts));
+		List<FactDTO> facts = new ArrayList<FactDTO>();
+		facts.add(dto.getFact());
+		toReturn.setFacts(getFactFromDTO(facts));
+		toReturn.setTopfives(getTopfiveFromDTO(dto.getTopFives()));
+		// Get back from DB
+		Country country = new Country();
+		if(dto.getCountry().getId() != 0)
+			country = em.find(Country.class, dto.getCountry().getId());
+		toReturn.setCountry(country);
+		
+		return toReturn;
+	}
+	
+	public List<Video> getVideoFromDTO(List<VideoDTO> dtos){
+		ArrayList<Video> videos = new ArrayList<Video>();
+		for(VideoDTO dto : dtos){
+			// Get back from DB
+			Video toReturn = new Video();
+			if(dto.getId() != 0)
+				toReturn = em.find(Video.class, dto.getId());
+			// Possible modifications
+			toReturn.setDescription(dto.getDescription());
+			toReturn.setLink(dto.getLink());
+			toReturn.setName(dto.getName());
+			videos.add(toReturn);
+		}
+		return videos;
+	}
+	
+	public List<Topfive> getTopfiveFromDTO(List<TopFiveDTO> dtos){
+		ArrayList<Topfive> topfives = new ArrayList<Topfive>();
+		for(TopFiveDTO dto : dtos){
+			// Get back from DB
+			Topfive toReturn = new Topfive();
+			if(dto.getId() != 0)
+				toReturn = em.find(Topfive.class, dto.getId());
+			// Possible modifications
+			toReturn.setDescription(dto.getDescription());
+			toReturn.setName(dto.getName());
+			toReturn.setInbrief(dto.getInbrief());
+			topfives.add(toReturn);
+		}
+		return topfives;
+	}
+	
+	public List<Fact> getFactFromDTO(List<FactDTO> dtos){
+		ArrayList<Fact> facts = new ArrayList<Fact>();
+		for(FactDTO dto : dtos){
+			// Get back from DB
+			Fact toReturn = new Fact();
+			if(dto.getId() != 0)
+				toReturn = em.find(Fact.class, dto.getId());
+			// Possible modifications
+			toReturn.setName(dto.getName());
+			toReturn.setArea(BigDecimal.valueOf(dto.getArea()));
+			toReturn.setCurrency(dto.getCurrency());
+			toReturn.setEstablished(dto.getEstablished());
+			toReturn.setLanguages(dto.getLanguages());
+			toReturn.setPopulation(dto.getPopulation());
+			toReturn.setTimezone(dto.getTimezone());
+			facts.add(toReturn);
+		}
+		return facts;
+	}
+	
+	public List<About> getAboutFromDTO(List<AboutDTO> dtos){
+		ArrayList<About> abouts = new ArrayList<About>();
+		for(AboutDTO dto : dtos){
+			// Get back from DB
+			About toReturn = new About();
+			if(dto.getId() != 0)
+				toReturn = em.find(About.class, dto.getId());
+			// Possible modifications
+			toReturn.setName(dto.getName());
+			toReturn.setDidyouknow(dto.getDidYouKnow());
+			toReturn.setInfo(dto.getInfo());
+			abouts.add(toReturn);
+		}
+		return abouts;
 	}
 }

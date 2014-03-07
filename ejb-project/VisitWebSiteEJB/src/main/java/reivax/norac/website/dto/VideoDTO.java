@@ -2,6 +2,8 @@ package reivax.norac.website.dto;
 
 public class VideoDTO {
 
+	private int id;
+	
 	private String description;
 
 	private String link;
@@ -30,5 +32,13 @@ public class VideoDTO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

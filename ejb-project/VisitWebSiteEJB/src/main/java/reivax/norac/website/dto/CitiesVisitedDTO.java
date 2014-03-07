@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CitiesVisitedDTO {
 
+	private int id;
 	private String name;
 	private CountriesVisitedDTO country;
 	
@@ -46,5 +47,11 @@ public class CitiesVisitedDTO {
 	}
 	public void setFact(FactDTO fact) {
 		this.fact = fact;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }
