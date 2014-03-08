@@ -1,4 +1,4 @@
-package reivax.norac.website.service;
+package main.java.reivax.norac.website.actions;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,23 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
+import reivax.norac.website.service.WebSiteEJB;
 
 /**
- * Servlet implementation class CityServlet
+ * Servlet implementation class AddNewCityForm
  */
-@WebServlet(name = "CityDetails", urlPatterns = { "/CityDetails" })
-public class CityServlet extends HttpServlet {
+@WebServlet(name="/AddNewCityForm", urlPatterns={"/AddNewCityFormAction"})
+public class AddNewCityForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@EJB
-	WebSiteEJB cityEJB;
+	@EJB 
+	WebSiteEJB countriesEJB;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CityServlet() {
+    public AddNewCityForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,26 +44,14 @@ public class CityServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processData(request, response);
 	}
-
 	
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Get back the city name from the request
-		String cityName = request.getParameter("city");
+		// Get back all the countries from DB
+		List<CountriesVisitedDTO> countries = countriesEJB.getAllCountriesVisited();
 		
-		// Get back the city details from the DB
-		List<CitiesVisitedDTO> cities = cityEJB.getAllCitiesDetails();
-		
-		for(CitiesVisitedDTO c : cities){
-			if(c.getName().equals(cityName)){
-
-				// Forward the info to the appropriate JSP
-				request.setAttribute("city", c);
-				request.getRequestDispatcher("DisplayOneCityReal.jsp").forward(request, response);
-			}
-		}
-		
-		// Else, error...
-		response.getWriter().println("Nothing in DB...");
-		
+		// Forward the info to the appropriate JSP
+		request.setAttribute("countries", countries);
+		request.getRequestDispatcher("jsp/AddNewCity.jsp").forward(request, response);
 	}
+
 }

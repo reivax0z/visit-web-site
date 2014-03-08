@@ -36,24 +36,26 @@ CitiesVisitedDTO city = (CitiesVisitedDTO) request.getAttribute("city");
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#"><%=city.getName() %></a>
+              <a class="navbar-brand" href="#">Visit with Me</a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="CountryList">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li class="active"><a href="#"><%=city.getName() %></a></li>
+                <li><a href="Home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=city.getCountry().getName() %> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                   <%
                   for(CitiesVisitedDTO c : city.getCountry().getCities()){
                   %>
-                    <li><a href="CityDetails?city=<%= c.getName() %>"><%=c.getName() %></a></li>
+                    <li><a href="CityDetailsAction?city=<%= c.getName() %>"><%=c.getName() %></a></li>
                   <%
                   }
                   %>
                   </ul>
                 </li>
+                <li><a href="#about">Modify</a></li>
               </ul>
             </div>
           </div>
@@ -152,7 +154,7 @@ CitiesVisitedDTO city = (CitiesVisitedDTO) request.getAttribute("city");
       if(currIteration%2 == 0){ 
       %>
         <div class="col-md-7">
-          <h2 class="featurette-heading">Must-Do n&deg;1: <span class="text-muted"><%= top.getName() %></span></h2>
+          <h2 class="featurette-heading">Must-Do n&deg;<%=currIteration %>: <span class="text-muted"><%= top.getName() %></span></h2>
           <p class="lead"><%= top.getInbrief() %></p>
 		  <p class="lead"><%= top.getDescription() %></p>
         </div>
@@ -166,7 +168,7 @@ CitiesVisitedDTO city = (CitiesVisitedDTO) request.getAttribute("city");
           <img class="featurette-image img-responsive" src="data:image/png;base64," data-src="holder.js/500x500/auto" alt="Generic placeholder image">
         </div>
         <div class="col-md-7">
-          <h2 class="featurette-heading">Must-Do n&deg;1: <span class="text-muted"><%= top.getName() %></span></h2>
+          <h2 class="featurette-heading">Must-Do n&deg;<%=currIteration %>: <span class="text-muted"><%= top.getName() %></span></h2>
           <p class="lead"><%= top.getInbrief() %></p>
 		  <p class="lead"><%= top.getDescription() %></p>
         </div>

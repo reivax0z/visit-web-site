@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>VisitWebSiteWAR</groupId>
+  <artifactId>VisitWebSiteWAR</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>VisitWebSiteWAR</name>
+  <description>Presentation Layer project</description>
+  
+  <repositories>
+	<!-- My own repo -->
+<!--     <repository> -->
+<!--       <id>VisitWebSiteEJB</id> -->
+<!--       <name>Repository hosting my artifacts</name> -->
+<!--       <url>http://xavier.w.caron.free.fr/maven/repo</url> -->
+<!--     </repository> -->
+	<!-- Java JEE Repo -->
+	<repository>
+		<id>java.net2</id>
+		<name>Repository hosting the jee6 artifacts</name>
+		<url>http://download.java.net/maven/2</url>
+	</repository>
+  </repositories>
+  
+  <dependencies>
+    <dependency>
+      <groupId>VisitWebSiteEJB</groupId>
+      <artifactId>VisitWebSiteEJB</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+	<dependency>
+		<groupId>javax</groupId>
+		<artifactId>javaee-web-api</artifactId>
+		<version>6.0</version>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.struts</groupId>
+		<artifactId>struts2-core</artifactId>
+		<version>2.3.1.2</version>
+	</dependency>
+  </dependencies>
+	
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+<!--       <plugin> -->
+<!--         <artifactId>maven-war-plugin</artifactId> -->
+<!--         <version>2.3</version> -->
+<!--         <configuration> -->
+<!--           <warSourceDirectory>src</warSourceDirectory> -->
+<!--           <failOnMissingWebXml>false</failOnMissingWebXml> -->
+<!--         </configuration> -->
+<!--       </plugin> -->
+    </plugins>
+  </build>
+</project>

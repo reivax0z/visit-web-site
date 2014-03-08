@@ -8,13 +8,14 @@
 <%
 // RETRIEVE THE MAIN OBJECT
 List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAttribute("countries");
+Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Visit with Us</title>
+<title>Visit with Me</title>
 
 
     <link href="./bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,13 +31,16 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Visit with Us</a>
+          <a class="navbar-brand" href="#">Visit with Me</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About Me</a></li>
+            <%if(isLogged){ %>
+            <li><a href="AddNewCountryFormAction">Add a Country</a></li>
+            <li><a href="AddNewCityFormAction">Add a City</a></li>
+            <%} %>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -63,7 +67,7 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
               <%
               for(CitiesVisitedDTO city : country.getCities()){
               %>
-              <p><a class="btn btn-default" href="CityDetails?city=<%= city.getName() %>"><%=city.getName() %></a></p>
+              <p><a class="btn btn-default" href="CityDetailsAction?city=<%= city.getName() %>"><%=city.getName() %></a></p>
               <%
               }
               %>
@@ -84,7 +88,7 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
               <%
               for(CitiesVisitedDTO city : country.getCities()){
               %>
-              <li class="active"><a href="CityDetails?city=<%= city.getName() %>"><%=city.getName() %></a></li>
+              <li class="active"><a href="CityDetailsAction?city=<%= city.getName() %>"><%=city.getName() %></a></li>
               <%
               }
             }

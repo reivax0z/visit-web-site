@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+ 
+	<package name="home" namespace="/Home" extends="struts-default">
+		<action name="Login">
+			<result>Login.jsp</result>
+		</action>
+		<action name="LoginIn" class="reivax.norac.website.service.SigninServlet">
+			<result name="SUCCESS">DisplayCountries.jsp</result>
+		</action>
+		<action name="Homepage" class="reivax.norac.website.service.CountriesServlet">
+			<result name="SUCCESS">DisplayCountries.jsp</result>
+		</action>
+		<action name="CityDetails" class="reivax.norac.website.service.CityServlet">
+			<result name="SUCCESS">DisplayOneCityReal.jsp</result>
+		</action>
+	</package>
+ 
+</struts>
