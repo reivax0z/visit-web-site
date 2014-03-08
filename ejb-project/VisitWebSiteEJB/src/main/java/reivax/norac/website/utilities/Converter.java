@@ -9,8 +9,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.google.common.collect.Lists;
-
 import reivax.norac.website.dto.AboutDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
@@ -28,7 +26,7 @@ import reivax.norac.website.entities.Video;
 @Stateless
 public class Converter {
 	
-	@PersistenceContext
+	@PersistenceContext(name="VisitWebSiteEJB")
     EntityManager em;
 
 	public static List<CountriesVisitedDTO> getCountriesDTOFromEntities(List<Country> entities){

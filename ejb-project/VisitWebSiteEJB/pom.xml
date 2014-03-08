@@ -7,10 +7,10 @@
   <name>VisitWebSiteEJB</name>
   <description>Back end layer project</description>
   <build>
-    <sourceDirectory>ejbModule</sourceDirectory>
+    <sourceDirectory>src</sourceDirectory>
     <resources>
       <resource>
-        <directory>ejbModule</directory>
+        <directory>src</directory>
         <excludes>
           <exclude>**/*.java</exclude>
         </excludes>

@@ -23,7 +23,7 @@ import reivax.norac.website.utilities.Converter;
 @LocalBean
 public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal {
 
-	@PersistenceContext
+	@PersistenceContext(name="VisitWebSiteEJB")
     EntityManager em;
 	
     /**
@@ -47,5 +47,13 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal {
     	Query q = em.createNamedQuery("Country.findAll");
     	List<Country> cities = (List<Country>) q.getResultList();
     	return Converter.getCountriesDTOFromEntities(cities);
+    }
+    
+    public void addCountry(CountriesVisitedDTO countryDTO){
+    	Country entity = new Country();
+    	entity.setInfo(countryDTO.getInfo());
+    	entity.setName(countryDTO.getName());
+    	em.persist(entity);
+    	em.flush();
     }
 }

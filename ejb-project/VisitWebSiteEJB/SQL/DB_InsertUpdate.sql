@@ -149,3 +149,4 @@ INSERT INTO VIDEOS (CITY_ID, NAME, LINK, DESCRIPTION)
     'Australians are known be to heavy beer drinkers.
 	But they also make great ads about it!')
 SELECT * FROM COUNTRY
+delete from COUNTRY c where c.ID = 11
