@@ -35,7 +35,7 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="CountryListAction">Home</a></li>
+            <li><a href="Home">Home</a></li>
             <li><a href="#about">About Me</a></li>
             <li class="active"><a href="#">Add a Country</a></li>
             <li><a href="AddNewCityFormAction">Add a City</a></li>

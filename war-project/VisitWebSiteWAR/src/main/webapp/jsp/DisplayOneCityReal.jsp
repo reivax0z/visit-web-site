@@ -8,6 +8,7 @@
 <%
 // RETRIEVE THE MAIN OBJECT
 CitiesVisitedDTO city = (CitiesVisitedDTO) request.getAttribute("city");
+Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -55,7 +56,11 @@ CitiesVisitedDTO city = (CitiesVisitedDTO) request.getAttribute("city");
                   %>
                   </ul>
                 </li>
+                <%if(isLogged){ %>
+	            <li><a href="AddNewCountryFormAction">Add a Country</a></li>
+	            <li><a href="AddNewCityFormAction">Add a City</a></li>
                 <li><a href="#about">Modify</a></li>
+	            <%} %>
               </ul>
             </div>
           </div>
