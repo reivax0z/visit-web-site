@@ -27,6 +27,7 @@
       <groupId>VisitWebSiteEJB</groupId>
       <artifactId>VisitWebSiteEJB</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <type>ejb</type>
     </dependency>
 	<dependency>
 		<groupId>javax</groupId>

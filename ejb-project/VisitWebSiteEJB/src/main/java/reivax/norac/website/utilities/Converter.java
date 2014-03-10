@@ -21,7 +21,7 @@ import reivax.norac.website.model.*;
 @Stateless
 public class Converter {
 	
-	@PersistenceContext(unitName="VisitWebSiteEJB")
+	@PersistenceContext(unitName="VisitWebSiteManager")
     EntityManager em;
 
 	public static List<CountriesVisitedDTO> getCountriesDTOFromEntities(List<Country> entities){
