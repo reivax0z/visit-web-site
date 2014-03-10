@@ -1,4 +1,4 @@
-package reivax.norac.website.entities;
+package reivax.norac.website.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the CITY database table.
+ * The persistent class for the city database table.
  * 
  */
 @Entity
@@ -15,22 +15,22 @@ public class City implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
 
 	//bi-directional many-to-one association to About
-	@OneToMany(mappedBy="city")
-	private List<About> abouts;
+	@ManyToOne
+	private About about;
 
 	//bi-directional many-to-one association to Country
 	@ManyToOne
 	private Country country;
 
 	//bi-directional many-to-one association to Fact
-	@OneToMany(mappedBy="city")
-	private List<Fact> facts;
+	@ManyToOne
+	private Fact fact;
 
 	//bi-directional many-to-one association to Topfive
 	@OneToMany(mappedBy="city")
@@ -59,26 +59,12 @@ public class City implements Serializable {
 		this.name = name;
 	}
 
-	public List<About> getAbouts() {
-		return this.abouts;
+	public About getAbout() {
+		return this.about;
 	}
 
-	public void setAbouts(List<About> abouts) {
-		this.abouts = abouts;
-	}
-
-	public About addAbout(About about) {
-		getAbouts().add(about);
-		about.setCity(this);
-
-		return about;
-	}
-
-	public About removeAbout(About about) {
-		getAbouts().remove(about);
-		about.setCity(null);
-
-		return about;
+	public void setAbout(About about) {
+		this.about = about;
 	}
 
 	public Country getCountry() {
@@ -89,26 +75,12 @@ public class City implements Serializable {
 		this.country = country;
 	}
 
-	public List<Fact> getFacts() {
-		return this.facts;
+	public Fact getFact() {
+		return this.fact;
 	}
 
-	public void setFacts(List<Fact> facts) {
-		this.facts = facts;
-	}
-
-	public Fact addFact(Fact fact) {
-		getFacts().add(fact);
-		fact.setCity(this);
-
-		return fact;
-	}
-
-	public Fact removeFact(Fact fact) {
-		getFacts().remove(fact);
-		fact.setCity(null);
-
-		return fact;
+	public void setFact(Fact fact) {
+		this.fact = fact;
 	}
 
 	public List<Topfive> getTopfives() {

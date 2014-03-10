@@ -1,21 +1,23 @@
-package reivax.norac.website.entities;
+package reivax.norac.website.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 /**
- * The persistent class for the FACTS database table.
+ * The persistent class for the facts database table.
  * 
  */
 @Entity
-@Table(name="FACTS")
+@Table(name="facts")
 @NamedQuery(name="Fact.findAll", query="SELECT f FROM Fact f")
 public class Fact implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private BigDecimal area;
@@ -33,8 +35,8 @@ public class Fact implements Serializable {
 	private String timezone;
 
 	//bi-directional many-to-one association to City
-	@ManyToOne
-	private City city;
+	@OneToMany(mappedBy="fact")
+	private List<City> cities;
 
 	public Fact() {
 	}
@@ -103,12 +105,26 @@ public class Fact implements Serializable {
 		this.timezone = timezone;
 	}
 
-	public City getCity() {
-		return this.city;
+	public List<City> getCities() {
+		return this.cities;
 	}
 
-	public void setCity(City city) {
-		this.city = city;
+	public void setCities(List<City> cities) {
+		this.cities = cities;
+	}
+
+	public City addCity(City city) {
+		getCities().add(city);
+		city.setFact(this);
+
+		return city;
+	}
+
+	public City removeCity(City city) {
+		getCities().remove(city);
+		city.setFact(null);
+
+		return city;
 	}
 
 }

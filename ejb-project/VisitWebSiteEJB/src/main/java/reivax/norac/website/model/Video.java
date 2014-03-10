@@ -1,24 +1,26 @@
-package reivax.norac.website.entities;
+package reivax.norac.website.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
 
 
 /**
- * The persistent class for the TOPFIVE database table.
+ * The persistent class for the videos database table.
  * 
  */
 @Entity
-@NamedQuery(name="Topfive.findAll", query="SELECT t FROM Topfive t")
-public class Topfive implements Serializable {
+@Table(name="videos")
+@NamedQuery(name="Video.findAll", query="SELECT v FROM Video v")
+public class Video implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private String description;
 
-	private String inbrief;
+	private String link;
 
 	private String name;
 
@@ -26,7 +28,7 @@ public class Topfive implements Serializable {
 	@ManyToOne
 	private City city;
 
-	public Topfive() {
+	public Video() {
 	}
 
 	public int getId() {
@@ -45,12 +47,12 @@ public class Topfive implements Serializable {
 		this.description = description;
 	}
 
-	public String getInbrief() {
-		return this.inbrief;
+	public String getLink() {
+		return this.link;
 	}
 
-	public void setInbrief(String inbrief) {
-		this.inbrief = inbrief;
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 	public String getName() {

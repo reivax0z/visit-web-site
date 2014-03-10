@@ -15,12 +15,7 @@ import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.dto.FactDTO;
 import reivax.norac.website.dto.TopFiveDTO;
 import reivax.norac.website.dto.VideoDTO;
-import reivax.norac.website.entities.About;
-import reivax.norac.website.entities.City;
-import reivax.norac.website.entities.Country;
-import reivax.norac.website.entities.Fact;
-import reivax.norac.website.entities.Topfive;
-import reivax.norac.website.entities.Video;
+import reivax.norac.website.model.*;
 
 @LocalBean
 @Stateless
@@ -62,8 +57,7 @@ public class Converter {
 
 		toReturn.setName(entity.getName());
 		
-		if(!entity.getAbouts().isEmpty())
-			toReturn.setAbout(getAboutDTOFromEntity(entity.getAbouts().get(0)));
+		toReturn.setAbout(getAboutDTOFromEntity(entity.getAbout()));
 		
 		List<VideoDTO> videos = new ArrayList<VideoDTO>();
 		for(Video video : entity.getVideos()){
@@ -77,8 +71,7 @@ public class Converter {
 		}
 		toReturn.setTopFives(topFives);
 		
-		if(!entity.getFacts().isEmpty())
-			toReturn.setFact(getFactDTOFromEntity(entity.getFacts().get(0)));
+		toReturn.setFact(getFactDTOFromEntity(entity.getFact()));
 		
 		return toReturn;
 	}
@@ -123,12 +116,8 @@ public class Converter {
 		City toReturn = new City();
 		
 		toReturn.setVideos(getVideoFromDTO(dto.getVideos()));
-		List<AboutDTO> abouts = new ArrayList<AboutDTO>();
-		abouts.add(dto.getAbout());
-		toReturn.setAbouts(getAboutFromDTO(abouts));
-		List<FactDTO> facts = new ArrayList<FactDTO>();
-		facts.add(dto.getFact());
-		toReturn.setFacts(getFactFromDTO(facts));
+		toReturn.setAbout(getAboutFromDTO(dto.getAbout()));
+		toReturn.setFact(getFactFromDTO(dto.getFact()));
 		toReturn.setTopfives(getTopfiveFromDTO(dto.getTopFives()));
 		// Get back from DB
 		Country country = new Country();
@@ -171,39 +160,31 @@ public class Converter {
 		return topfives;
 	}
 	
-	public List<Fact> getFactFromDTO(List<FactDTO> dtos){
-		ArrayList<Fact> facts = new ArrayList<Fact>();
-		for(FactDTO dto : dtos){
-			// Get back from DB
-			Fact toReturn = new Fact();
-			if(dto.getId() != 0)
-				toReturn = em.find(Fact.class, dto.getId());
-			// Possible modifications
-			toReturn.setName(dto.getName());
-			toReturn.setArea(BigDecimal.valueOf(dto.getArea()));
-			toReturn.setCurrency(dto.getCurrency());
-			toReturn.setEstablished(dto.getEstablished());
-			toReturn.setLanguages(dto.getLanguages());
-			toReturn.setPopulation(dto.getPopulation());
-			toReturn.setTimezone(dto.getTimezone());
-			facts.add(toReturn);
-		}
-		return facts;
+	public Fact getFactFromDTO(FactDTO dto){
+		// Get back from DB
+		Fact toReturn = new Fact();
+		if(dto.getId() != 0)
+			toReturn = em.find(Fact.class, dto.getId());
+		// Possible modifications
+		toReturn.setName(dto.getName());
+		toReturn.setArea(BigDecimal.valueOf(dto.getArea()));
+		toReturn.setCurrency(dto.getCurrency());
+		toReturn.setEstablished(dto.getEstablished());
+		toReturn.setLanguages(dto.getLanguages());
+		toReturn.setPopulation(dto.getPopulation());
+		toReturn.setTimezone(dto.getTimezone());
+		return toReturn;
 	}
 	
-	public List<About> getAboutFromDTO(List<AboutDTO> dtos){
-		ArrayList<About> abouts = new ArrayList<About>();
-		for(AboutDTO dto : dtos){
-			// Get back from DB
-			About toReturn = new About();
-			if(dto.getId() != 0)
-				toReturn = em.find(About.class, dto.getId());
-			// Possible modifications
-			toReturn.setName(dto.getName());
-			toReturn.setDidyouknow(dto.getDidYouKnow());
-			toReturn.setInfo(dto.getInfo());
-			abouts.add(toReturn);
-		}
-		return abouts;
+	public About getAboutFromDTO(AboutDTO dto){
+		// Get back from DB
+		About toReturn = new About();
+		if(dto.getId() != 0)
+			toReturn = em.find(About.class, dto.getId());
+		// Possible modifications
+		toReturn.setName(dto.getName());
+		toReturn.setDidyouknow(dto.getDidYouKnow());
+		toReturn.setInfo(dto.getInfo());
+		return toReturn;
 	}
 }

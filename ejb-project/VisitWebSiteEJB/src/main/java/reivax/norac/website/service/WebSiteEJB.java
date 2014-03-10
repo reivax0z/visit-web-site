@@ -5,15 +5,13 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.enterprise.context.Conversation;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
-import reivax.norac.website.entities.City;
-import reivax.norac.website.entities.Country;
+import reivax.norac.website.model.Country;
 import reivax.norac.website.utilities.Converter;
 
 /**
