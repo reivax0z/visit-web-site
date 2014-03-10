@@ -23,7 +23,7 @@ import reivax.norac.website.utilities.Converter;
 @LocalBean
 public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal {
 
-	@PersistenceContext(name="VisitWebSiteEJB")
+	@PersistenceContext(unitName="VisitWebSiteEJB")
     EntityManager em;
 	
     /**

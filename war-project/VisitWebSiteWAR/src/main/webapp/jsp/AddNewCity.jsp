@@ -89,12 +89,15 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
 			  	<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Desc">
 			  </div>
 			  <%} %>
+			  <button id="addvideo1">Add Video</button>
 			  <%for(int i=1; i<=2; i++){ %>
-			  <div class="form-group">
+			  <div class="form-group" style="display:none" id="video<%=i%>">
 			    <label for="exampleInputPassword1">Video nb <%=i %></label>
 			    <input type="text" name="video_name_<%=i %>" class="form-control" id="exampleInputPassword1" placeholder="Name">
 			  	<input type="text" name="video_desc_<%=i %>" class="form-control" id="exampleInputPassword1" placeholder="Desc">
 			  	<input type="url" name="video_url_<%=i %>" class="form-control" id="exampleInputPassword1" placeholder="URL">
+			  	<button id="remove1">Remove Video</button>
+			  	<button id="addvideo2">Add Another Video</button>
 			  </div>
 			  <%} %>
 			  <%for(int i=1; i<=4; i++){ %>
@@ -127,6 +130,19 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
     <script src="./bootstrap-3.0.0/assets/js/jquery.js"></script>
     <script src="./bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
     <script src="./bootstrap-3.0.0/assets/js/holder.js"></script>
-			
+
+	<script>
+	$( "#addvideo1" ).click(function() {
+	  $( "#video1" ).show( "slow" );
+	});
+// 		function showdiv(boxid) {
+// 			document.getElementById(boxid).style.display = "none";
+// 		}
+
+// 		function hidediv(boxid) {
+// 			document.getElementById(boxid).style.display = "block";
+// 		}
+	</script>
+
 </body>
 </html>

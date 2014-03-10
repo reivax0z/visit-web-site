@@ -26,7 +26,7 @@ import reivax.norac.website.entities.Video;
 @Stateless
 public class Converter {
 	
-	@PersistenceContext(name="VisitWebSiteEJB")
+	@PersistenceContext(unitName="VisitWebSiteEJB")
     EntityManager em;
 
 	public static List<CountriesVisitedDTO> getCountriesDTOFromEntities(List<Country> entities){

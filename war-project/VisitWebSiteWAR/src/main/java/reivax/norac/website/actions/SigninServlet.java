@@ -1,4 +1,4 @@
-package main.java.reivax.norac.website.actions;
+package reivax.norac.website.actions;
 
 import java.io.IOException;
 
