@@ -9,8 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
+import reivax.norac.website.model.Article;
 import reivax.norac.website.model.Country;
 import reivax.norac.website.utilities.Converter;
 
@@ -19,7 +21,7 @@ import reivax.norac.website.utilities.Converter;
  */
 @Stateless
 @LocalBean
-public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal {
+public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesInterface {
 
 	@PersistenceContext(unitName="VisitWebSiteManager")
     EntityManager em;
@@ -28,12 +30,11 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal {
      * Default constructor. 
      */
     public WebSiteEJB() {
-        // TODO Auto-generated constructor stub
     }
 
-    
-    public List<CitiesVisitedDTO> getAllCitiesDetails(){
-    	List<CountriesVisitedDTO> countries = getAllCountriesVisited();
+    @Override
+    public List<CitiesVisitedDTO> getAllCitiesFromDb(){
+    	List<CountriesVisitedDTO> countries = getAllCountriesFromDb();
     	List<CitiesVisitedDTO> cities = new ArrayList<CitiesVisitedDTO>();
     	for(CountriesVisitedDTO country : countries){
     		cities.addAll(country.getCities());
@@ -41,17 +42,32 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal {
     	return cities;
     }
     
-    public List<CountriesVisitedDTO> getAllCountriesVisited(){
+    @Override
+    public List<CountriesVisitedDTO> getAllCountriesFromDb(){
     	Query q = em.createNamedQuery("Country.findAll");
     	List<Country> cities = (List<Country>) q.getResultList();
     	return Converter.getCountriesDTOFromEntities(cities);
     }
     
-    public void addCountry(CountriesVisitedDTO countryDTO){
+    @Override
+    public void addCountryToDb(CountriesVisitedDTO countryDTO){
     	Country entity = new Country();
     	entity.setInfo(countryDTO.getInfo());
     	entity.setName(countryDTO.getName());
     	em.persist(entity);
     	em.flush();
     }
+    
+    @Override
+    public <T> T getFromDb(Class<T> t, Integer id){
+    	return em.find(t, id);
+    }
+
+
+	@Override
+	public List<ArticleDTO> getAllArticlesFromDb() {
+		Query q = em.createNamedQuery("Article.findAll");
+    	List<Article> articles = (List<Article>) q.getResultList();
+    	return Converter.getArticlesDTOFromEntities(articles);
+	}
 }

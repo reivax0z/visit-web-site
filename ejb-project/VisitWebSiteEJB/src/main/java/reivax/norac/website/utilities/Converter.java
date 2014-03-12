@@ -4,25 +4,31 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import reivax.norac.website.dto.AboutDTO;
+import reivax.norac.website.dto.ArticleDTO;
+import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.dto.FactDTO;
 import reivax.norac.website.dto.TopFiveDTO;
 import reivax.norac.website.dto.VideoDTO;
 import reivax.norac.website.model.*;
+import reivax.norac.website.service.WebSiteEJB;
 
 @LocalBean
 @Stateless
 public class Converter {
 	
-	@PersistenceContext(unitName="VisitWebSiteManager")
-    EntityManager em;
+	@EJB 
+	WebSiteEJB countriesEJB;
+	
+	/*
+	 * Entities --> DTO
+	 */
 
 	public static List<CountriesVisitedDTO> getCountriesDTOFromEntities(List<Country> entities){
 		List<CountriesVisitedDTO> toReturn = new ArrayList<CountriesVisitedDTO>();
@@ -112,6 +118,50 @@ public class Converter {
 		return toReturn;
 	}
 	
+	
+	public static List<ArticleDTO> getArticlesDTOFromEntities(List<Article> entities){
+		List<ArticleDTO> toReturn = new ArrayList<ArticleDTO>();
+		for(Article article : entities){
+			toReturn.add(getArticleDTOFromEntity(article));
+		}
+		return toReturn;
+	}
+	
+	public static ArticleDTO getArticleDTOFromEntity(Article entity){
+		ArticleDTO toReturn = new ArticleDTO();
+		toReturn.setDate(entity.getDate());
+		toReturn.setId(entity.getId());
+		toReturn.setTitle(entity.getTitle());
+		toReturn.setIntro(entity.getIntro());
+		toReturn.setConclusion(entity.getConclusion());
+		toReturn.setArticleParts(getArticlesPartDTOFromEntities(entity.getArticleParts()));
+		
+		return toReturn;
+	}
+	
+	public static List<ArticlePartDTO> getArticlesPartDTOFromEntities(List<ArticlePart> entities){
+		List<ArticlePartDTO> toReturn = new ArrayList<ArticlePartDTO>();
+		for(ArticlePart part : entities){
+			toReturn.add(getArticlePartDTOFromEntity(part));
+		}
+		return toReturn;
+	}
+	
+	public static ArticlePartDTO getArticlePartDTOFromEntity(ArticlePart entity){
+		ArticlePartDTO toReturn = new ArticlePartDTO();
+
+		toReturn.setId(entity.getId());
+		toReturn.setTitle(entity.getTitle());
+		toReturn.setBody(entity.getBody());
+		
+		return toReturn;
+	}
+	
+	
+	/*
+	 * DTO --> Entities
+	 */
+	
 	public City getCityFromDTO(CitiesVisitedDTO dto){
 		City toReturn = new City();
 		
@@ -122,7 +172,7 @@ public class Converter {
 		// Get back from DB
 		Country country = new Country();
 		if(dto.getCountry().getId() != 0)
-			country = em.find(Country.class, dto.getCountry().getId());
+			country = countriesEJB.getFromDb(Country.class, dto.getCountry().getId());
 		toReturn.setCountry(country);
 		
 		return toReturn;
@@ -134,7 +184,7 @@ public class Converter {
 			// Get back from DB
 			Video toReturn = new Video();
 			if(dto.getId() != 0)
-				toReturn = em.find(Video.class, dto.getId());
+				toReturn = countriesEJB.getFromDb(Video.class, dto.getId());
 			// Possible modifications
 			toReturn.setDescription(dto.getDescription());
 			toReturn.setLink(dto.getLink());
@@ -150,7 +200,7 @@ public class Converter {
 			// Get back from DB
 			Topfive toReturn = new Topfive();
 			if(dto.getId() != 0)
-				toReturn = em.find(Topfive.class, dto.getId());
+				toReturn = countriesEJB.getFromDb(Topfive.class, dto.getId());
 			// Possible modifications
 			toReturn.setDescription(dto.getDescription());
 			toReturn.setName(dto.getName());
@@ -164,7 +214,7 @@ public class Converter {
 		// Get back from DB
 		Fact toReturn = new Fact();
 		if(dto.getId() != 0)
-			toReturn = em.find(Fact.class, dto.getId());
+			toReturn = countriesEJB.getFromDb(Fact.class, dto.getId());
 		// Possible modifications
 		toReturn.setName(dto.getName());
 		toReturn.setArea(BigDecimal.valueOf(dto.getArea()));
@@ -180,7 +230,7 @@ public class Converter {
 		// Get back from DB
 		About toReturn = new About();
 		if(dto.getId() != 0)
-			toReturn = em.find(About.class, dto.getId());
+			toReturn = countriesEJB.getFromDb(About.class, dto.getId());
 		// Possible modifications
 		toReturn.setName(dto.getName());
 		toReturn.setDidyouknow(dto.getDidYouKnow());

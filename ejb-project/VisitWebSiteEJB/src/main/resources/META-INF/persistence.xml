@@ -14,6 +14,8 @@
 		<class>reivax.norac.website.model.Fact</class>
 		<class>reivax.norac.website.model.Topfive</class>
 		<class>reivax.norac.website.model.Video</class>
+		<class>reivax.norac.website.model.Article</class>
+		<class>reivax.norac.website.model.ArticlePart</class>
 <!-- 		<properties> -->
 <!-- 	      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver" /> -->
 <!-- 	      <property name="javax.persistence.jdbc.url" -->

@@ -7,7 +7,7 @@
 
 <%
 // RETRIEVE THE MAIN OBJECT
-List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAttribute("countries");
+List<ArticleDTO> articles = (List<ArticleDTO>) request.getAttribute("blogArticles");
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 %>
 
@@ -35,12 +35,13 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="Blog">Travels Blog</a></li>
+            <li><a href="Home">Home</a></li>
+            <li class="active"><a href="Blog">My Blog</a></li>
             <li><a href="AboutMe">About Me</a></li>
             <%if(isLogged){ %>
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
             <li><a href="AddNewCityFormAction">Add a City</a></li>
+            <li><a href="#">Add a Blog Article</a></li>
             <%} %>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -55,26 +56,18 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-            <h1>Travel with me!</h1>
-            <p>As I have come to travel to already multiple countries, I intend to show here what I've
-            liked / disliked about those places.</p>
-            <p>All the pictures and documents found on this website are my own property.</p>
-            <p>I hope you'll like travelling with me!</p>
+            <h1>Travels Blog</h1>
+            <p>This section is dedicated to give you my feedback about my experiences overseas.</p>
+            <p>I'll try to keep it updated as much as I can.</p>
           </div>
           <div class="row">
           <%
-          for(CountriesVisitedDTO country : countries){
+          for(ArticleDTO article : articles){
           %>
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2><%=country.getName() %></h2>
-              <p><%=country.getInfo() %></p>
-              <%
-              for(CitiesVisitedDTO city : country.getCities()){
-              %>
-              <p><a class="btn btn-default" href="CityDetailsAction?city=<%= city.getName() %>"><%=city.getName() %></a></p>
-              <%
-              }
-              %>
+            <div class="col-6 col-sm-12 col-lg-4">
+              <h2><%=article.getDate() %>: <%=article.getTitle() %></h2>
+              <p><%=article.getIntro() %></p>
+              <p><a class="btn btn-default" href="BlogArticleAction?date=<%=article.getDate() %>">Get More Details</a></p>
             </div><!--/span-->
           <%
           }
@@ -84,18 +77,13 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="well sidebar-nav">
-            <ul class="nav">
-            <%
-            for(CountriesVisitedDTO country : countries){
-            %>
-              <li><%=country.getName() %></li>
+            <ul class="nav">All articles
               <%
-              for(CitiesVisitedDTO city : country.getCities()){
+              for(ArticleDTO article : articles){
               %>
-              <li class="active"><a href="CityDetailsAction?city=<%= city.getName() %>"><%=city.getName() %></a></li>
+              <li class="active"><a href="BlogQrticleAction?date=<%= article.getDate() %>"><%=article.getDate() %></a></li>
               <%
               }
-            }
             %>
             </ul>
           </div><!--/.well -->

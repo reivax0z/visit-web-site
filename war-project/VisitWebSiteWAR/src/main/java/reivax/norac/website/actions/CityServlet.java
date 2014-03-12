@@ -52,7 +52,7 @@ public class CityServlet extends HttpServlet {
 		String cityName = request.getParameter("city");
 		
 		// Get back the city details from the DB
-		List<CitiesVisitedDTO> cities = cityEJB.getAllCitiesDetails();
+		List<CitiesVisitedDTO> cities = cityEJB.getAllCitiesFromDb();
 		
 		for(CitiesVisitedDTO c : cities){
 			if(c.getName().equals(cityName)){

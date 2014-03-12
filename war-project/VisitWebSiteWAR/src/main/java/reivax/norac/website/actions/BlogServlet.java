@@ -1,6 +1,7 @@
 package reivax.norac.website.actions;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -9,24 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
 
 /**
- * Servlet implementation class AddCountryServlet
+ * Servlet implementation class BlogServlet
  */
-@WebServlet(name="/AddCountry", urlPatterns={"/AddCountryAction"})
-public class AddCountryServlet extends HttpServlet {
+@WebServlet(name="/BlogList", urlPatterns={"/Blog"})
+public class BlogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-
 	@EJB 
-	WebSiteEJB countriesEJB;
-       
+	WebSiteEJB articlesEJB;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddCountryServlet() {
+    public BlogServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,26 +36,23 @@ public class AddCountryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		processData(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String info = request.getParameter("info");
+		processData(request, response);
+	}
+	
+	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Get back all the articles from DB
+		List<ArticleDTO> blogArticles = articlesEJB.getAllArticlesFromDb();
 		
-		if(name != null && info != null){
-		
-			CountriesVisitedDTO dto = new CountriesVisitedDTO();
-			dto.setInfo(info);
-			dto.setName(name);
-
-			countriesEJB.addCountryToDb(dto);
-		}
-		
-		request.getRequestDispatcher("Home").forward(request, response);
+		// Forward the info to the appropriate JSP
+		request.setAttribute("blogArticles", blogArticles);
+		request.getRequestDispatcher("jsp/Blog.jsp").forward(request, response);
 	}
 
 }

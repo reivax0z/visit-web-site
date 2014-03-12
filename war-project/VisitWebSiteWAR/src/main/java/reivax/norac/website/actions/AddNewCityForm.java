@@ -47,7 +47,7 @@ public class AddNewCityForm extends HttpServlet {
 	
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get back all the countries from DB
-		List<CountriesVisitedDTO> countries = countriesEJB.getAllCountriesVisited();
+		List<CountriesVisitedDTO> countries = countriesEJB.getAllCountriesFromDb();
 		
 		// Forward the info to the appropriate JSP
 		request.setAttribute("countries", countries);
