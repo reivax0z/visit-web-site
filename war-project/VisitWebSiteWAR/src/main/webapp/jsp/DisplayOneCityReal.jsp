@@ -8,6 +8,7 @@
 <%
 // RETRIEVE THE MAIN OBJECT
 CitiesVisitedDTO city = (CitiesVisitedDTO) request.getAttribute("city");
+List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAttribute("countries");
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 %>
 
@@ -20,28 +21,32 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/carousel/carousel.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	
+	<script type="text/javascript">
+		// Global variable for Google Maps API
+		var position = new google.maps.LatLng(-33.870501, 151.210824);
+	</script>
 
 </head>
-<body>
+<body onload="initializeMapPosition(position, 5)">
 
-	<!-- NAVBAR -->
-
-	<div class="navbar-wrapper">
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
-
-        <div class="navbar navbar-inverse navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Visit with Me</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><%=city.getName() %></a></li>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Visit with Me</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#"><%=city.getName() %></a></li>
                 <li><a href="Home">Home</a></li>
                 <li><a href="#about">About Me</a></li>
                 <li class="dropdown">
@@ -62,85 +67,65 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
                 <li><a href="#about">Modify</a></li>
 	            <%} %>
               </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- /END NAVBAR -->
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
 
-	
-	<!-- CAROUSEL -->
-	
-	<section id="id_carousel">
-    <div id="myCarousel" class="carousel slide">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active">
-          <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Info</h1>
-              <p><%= city.getAbout().getInfo() %></p>
-              <p><a class="btn btn-large btn-primary" href="#id_pictures">See Gallery of <%= city.getName() %></a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Second slide" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Did You Know?</h1>
-              <p><%= city.getAbout().getDidYouKnow() %></p>
-              <p><a class="btn btn-large btn-primary" href="#id_videos">See Videos of <%= city.getName() %></a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div><!-- /.carousel -->
-	</section>
+    <div class="container">
 
-    <!-- /END CAROUSEL -->
-    
-
-    <div class="container marketing">
-    
-    
-    <!-- TOP CONTENT -->
-
-	<section id="id_intro">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          
+          <section id="id_top">
+          <div class="row">
+          <div class="jumbotron well">
+          
+          <!-- TOP CONTENT -->
       <!-- Three columns of text below the carousel -->
       <div class="row" style="text-align:center">
-        <div class="col-lg-6">
-          <img class="img-circle" src="data:image/png;base64," data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2><%= city.getName() %>, by the numbers</h2>
+            <h1><%= city.getName() %></h1>
+        <div class="col-xs-6 col-sm-6">
+          <h2>By the numbers</h2>
 		  <p>Established in <%= city.getFact().getEstablished() %></p>
 		  <p>Area of <%= city.getFact().getArea() %> km&sup2;</p>
 		  <p>Population of <%= city.getFact().getPopulation() %></p>
-          <p><a class="btn btn-default" href="#id_pictures">Check Out Photos of <%= city.getName() %></a></p>
         </div><!-- /.col-lg-4 -->
 
-        <div class="col-lg-6">
-          <img class="img-circle" src="data:image/png;base64," data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2><%= city.getName() %> Facts</h2>
-		  <p>Local Currency: <%= city.getFact().getCurrency() %></p>
+        <div class="col-xs-6 col-sm-6">
+          <h2>By the facts</h2>
+		  <p>Currency: <%= city.getFact().getCurrency() %></p>
 		  <p>Timezone: <%= city.getFact().getTimezone() %></p>
 		  <p>Languages: <%= city.getFact().getLanguages() %></p>
-          <p><a class="btn btn-default" href="#id_videos">Check Out Videos of <%= city.getName() %></a></p>
         </div><!-- /.col-lg-4 -->
 
 	  </div>
 	  </section>
 	  
 	  <!-- /END TOP CONTENT -->
+	  
+	  
+    <div class="marketing">
+    
+
+	<section id="id_intro">
+          <div class="row">
+          	<div class="col-xs-6 col-sm-6">
+            <h2>Info</h2>
+              <p><%= city.getAbout().getInfo() %></p>
+              <p><a class="btn btn-large btn-primary" href="#id_pictures">See Gallery of <%= city.getName() %></a></p>
+            </div>
+            
+          	<div class="col-xs-6 col-sm-6">
+            <h2>Did You Know?</h2>
+              <p><%= city.getAbout().getDidYouKnow() %></p>
+              <p><a class="btn btn-large btn-primary" href="#id_videos">See Videos of <%= city.getName() %></a></p>
+          	</div>
+          </div>
+      </section>
+
 
 	
 	  <!-- FEATURETTES -->
@@ -148,6 +133,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
       <hr class="featurette-divider">
 
 	  <section id="id_top_5">
+	  
+	  <div class="page-header">
+      	<h1>Top 5</h1>
+	  </div>
 	  
 	  <% 
 	  int currIteration = 1;
@@ -259,27 +248,41 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	  <%
 	  }
 	  %>
-
-      <hr class="featurette-divider">
-      
 	  </section>
 	  
 	  <!-- /END VIDEO GALLERY -->
+	  
+	  </div><!--/span-->
+	  </div>
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="well sidebar-nav">
+          	<h3><%=city.getName()%> overview</h3>
+            <div id="map_position" style="height: 200px;"></div>
+            <hr>
+            <h3>Check also:</h3>
+            <ul class="nav">
+            <%
+            for(CountriesVisitedDTO country : countries){
+            %>
+              <li><%=country.getName() %></li>
+              <%
+              for(CitiesVisitedDTO cityC : country.getCities()){
+              %>
+              <li class="active"><a href="CityDetailsAction?city=<%= cityC.getName() %>"><%=cityC.getName() %></a></li>
+              <%
+              }
+            }
+            %>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
 
       <!-- FOOTER -->
       
-      <footer>
-        <p class="pull-right"><a href="CountryList">Home</a> &middot; <a href="#">Back to top</a></p>
-        <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
+      <jsp:include page="includes/footer.html"></jsp:include>
       
       <!-- /END FOOTER -->
-
-    </div><!-- /.container -->
-
-    <script src="./bootstrap-3.0.0/assets/js/jquery.js"></script>
-    <script src="./bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
-    <script src="./bootstrap-3.0.0/assets/js/holder.js"></script>
-
 </body>
 </html>

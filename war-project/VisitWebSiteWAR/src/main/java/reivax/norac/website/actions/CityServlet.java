@@ -54,6 +54,12 @@ public class CityServlet extends HttpServlet {
 		// Get back the city details from the DB
 		List<CitiesVisitedDTO> cities = cityEJB.getAllCitiesFromDb();
 		
+		// Get back all the countries from DB
+		List<CountriesVisitedDTO> countries = cityEJB.getAllCountriesFromDb();
+
+		// Forward the info to the appropriate JSP
+		request.setAttribute("countries", countries);
+		
 		for(CitiesVisitedDTO c : cities){
 			if(c.getName().equals(cityName)){
 
