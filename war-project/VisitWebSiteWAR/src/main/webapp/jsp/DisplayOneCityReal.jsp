@@ -32,7 +32,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	</script>
 
 </head>
-<body onload="initializeMapPosition(position, 5)">
+<body onload="initializeMapPosition(position, 12)">
 
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
@@ -47,6 +47,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
                 <li><a href="Home">Home</a></li>
+            	<li><a href="Blog">Travel Blog</a></li>
                 <li><a href="AboutMe">About Me</a></li>
             	<li class="active"><a href="#"><%=city.getName() %></a></li>
                 <li class="dropdown">
