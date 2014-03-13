@@ -18,8 +18,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 <title><%=city.getName() %></title>
 
 
-    <link href="./bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
-    <link href="./bootstrap-3.0.0/examples/carousel/carousel.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/examples/carousel/carousel.css" rel="stylesheet">
 
 </head>
 <body>

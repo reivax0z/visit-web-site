@@ -12,8 +12,8 @@
 <title>Visit with Me</title>
 
 
-    <link href="./bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
 
 </head>
 <body>

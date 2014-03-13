@@ -16,8 +16,8 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-    <link href="./bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
 
 	<title>Add a new Country</title>
 </head>

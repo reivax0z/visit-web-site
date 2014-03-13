@@ -12,10 +12,10 @@
     <title>Signin Form</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./bootstrap-3.0.0/examples/signin/signin.css" rel="stylesheet">
+    <link href="/jsp/bootstrap-3.0.0/examples/signin/signin.css" rel="stylesheet">
   </head>
 
   <body>
