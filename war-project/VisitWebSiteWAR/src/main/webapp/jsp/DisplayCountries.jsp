@@ -20,9 +20,16 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+	<script type="text/javascript">
+		// Global variable for Google Maps API
+		var position = new google.maps.LatLng(10.820698, 5.957393);
+	</script>
 
 </head>
-<body>
+<body onload="initializeMapCountries(position, 2)">
 	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -36,7 +43,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="Blog">Travels Blog</a></li>
+            <li><a href="Blog">Travel Blog</a></li>
             <li><a href="AboutMe">About Me</a></li>
             <%if(isLogged){ %>
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
@@ -55,7 +62,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-            <h1>Travel with me!</h1>
+            <h1>Visit with me!</h1>
             <p>As I have come to travel to already multiple countries, I intend to show here what I've
             liked / disliked about those places.</p>
             <p>All the pictures and documents found on this website are my own property.</p>
@@ -80,6 +87,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           }
           %>
           </div><!--/row-->
+          <div class="row" id="map_countries" style="height:500px;"></div>
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">

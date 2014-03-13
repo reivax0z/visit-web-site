@@ -14,9 +14,16 @@
 
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
+	
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	
+	<script type="text/javascript">
+		// Global variable for Google Maps API
+		var position = new google.maps.LatLng(-37.820698, 144.957393);
+	</script>
 
 </head>
-<body>
+<body onload="initializeMapPosition(position, 3)">
 	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -25,12 +32,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Visit with Me</a>
+          <a class="navbar-brand" href="Home">Visit with Me</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="Home">Home</a></li>
-            <li><a href="Blog">My Blog</a></li>
+            <li><a href="Blog">Travel Blog</a></li>
             <li class="active"><a href="#">About Me</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -56,7 +63,11 @@
               <p>This website uses Glassfish Server 4, with EJB for the back end DB management, 
               JSP for the front end. Plans to use Hibernate and Struts are underway.
               The website also uses Maven for compiling and dependencies.
-              The CSS design and responsiveness is based on Bootstrap framework.</p>
+              The CSS design and responsiveness is based on Bootstrap framework.
+              The integration is done unsing Jenkins.
+              The deployment / hosting is on Cloudbees.com. 
+              I've also used the Google Maps API, following a workshop provided by Google 
+              in my university.</p>
             </div><!--/span-->
             <div class="col-6 col-sm-12 col-lg-6">
               <h2>About me</h2>
@@ -65,7 +76,7 @@
               Challenging in terms of scalability, quick delivery and worldwide use, 
               those experiences allowed me to get more confidence on the project delivery 
               cycle and its management.</p>
-              <p>You can find my resume online here:
+              <p>You can find my detailed online resume here:
               <a href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">My Resume</a></p>
             </div><!--/span-->
           </div><!--/row-->
@@ -73,18 +84,13 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="well sidebar-nav">
-            <ul class="nav">My interests
-              <li>Software Engineering</li>
-              <li>Tennis</li>
-              <li>Travels of course</li>
-              <li>Landscape photography</li>
-              <li>Sports in general</li>
-              <li>Guitar</li>
-            </ul>
+            <h3>Where am I now?</h3>
+            <div id="map_position" style="height: 200px;"></div>
           </div><!--/.well -->
         </div><!--/span-->
       </div><!--/row-->
 
      <jsp:include page="includes/footer.html"></jsp:include>
+    
   </body>
 </html>
