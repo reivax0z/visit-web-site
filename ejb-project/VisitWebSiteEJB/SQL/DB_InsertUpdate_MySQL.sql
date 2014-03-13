@@ -159,8 +159,8 @@ CREATE TABLE ARTICLE (
         ID INTEGER NOT NULL AUTO_INCREMENT,
         DATE VARCHAR(50) NOT NULL,
         TITLE VARCHAR(50),
-        INTRO VARCHAR(500),
-        CONCLUSION VARCHAR(500),
+        INTRO TEXT,
+        CONCLUSION TEXT,
 		PRIMARY KEY (ID)
     );
 CREATE UNIQUE INDEX ARTICLE_NAME_IDX ON ARTICLE(DATE);
@@ -168,7 +168,7 @@ CREATE TABLE ARTICLE_PART (
         ID INTEGER NOT NULL AUTO_INCREMENT,
         ARTICLE_ID INTEGER NOT NULL,
         TITLE VARCHAR(50),
-        BODY VARCHAR(500),
+        BODY TEXT,
 		PRIMARY KEY (ID)
     );
 ALTER TABLE ARTICLE_PART ADD CONSTRAINT ARTICLE_PART_FOREIGNKEY_ARTICLE_ID FOREIGN KEY (ARTICLE_ID)
@@ -178,16 +178,45 @@ CREATE UNIQUE INDEX ARTICLE_PART_TITLE_IDX ON ARTICLE_PART(TITLE);
 INSERT INTO ARTICLE (DATE, TITLE, INTRO, CONCLUSION)
     VALUES ( 
     '2014-03-12', 
-    'Title of Article', 
-    'Intro blablabla',
-    'Conclusion blablabla');
+    '1 mois en Australie', 
+    'Nous sommes donc le 13 Mars 2014, et cela fait depuis hier 1 mois que je suis arrivé en Australie !',
+    'A très vite pour la suite des aventures de Xavier downunder ;)'
+    );
 INSERT INTO ARTICLE_PART (ARTICLE_ID, TITLE, BODY)
     VALUES (
 	(SELECT ID FROM ARTICLE WHERE DATE = '2014-03-12'), 
-	'Title of part1',
-	'Content of part1. Blablablablabla');
+	'Arrivée en Australie',
+	'Tout a commencé par un séjour de 4 jours sur Sydney, histoire de faire un peu vacances. Je suis resté en auberge de jeunesse et retrouvé quelques Australiens rencontrés presque 1 an auparavant à Paris. Bref, un beau temps, la ville, les potes, les plages, le décalage horaire, la fatigue... Autant dire que les 4 jours sont passés très vites !');
 	INSERT INTO ARTICLE_PART (ARTICLE_ID, TITLE, BODY)
     VALUES (
 	(SELECT ID FROM ARTICLE WHERE DATE = '2014-03-12'), 
-	'Title of part2',
-	'Content of part2. Blablablablabla');
+	'Arrivée sur Melbourne',
+	'Et me voilà dans le premier avion de la journée en partance pour Melbourne. Il est 4h du matin quand je quitte l''auberge de jeunesse... Et me voilà quelques heures plus tard à Melbourne. Histoire d''être bien accueilli, il pleut des trombes d''eau ! J''arrive à trouver la maison en colocation que je devais visiter. Autant dire que je suis choqué par l''état de la maison : très sale, peu accueillant, pourriture de partout. Et pourtant, le jeune étudiant Chinois qui loue l''endroit (pour sa tante) parrait très gentil. Il me dit que les autres locataires (tous Australiens) vont bientôt arriver. Alors suite à cette gentillesse et la fatigue, je signe le bail...
+');
+	INSERT INTO ARTICLE_PART (ARTICLE_ID, TITLE, BODY)
+    VALUES (
+	(SELECT ID FROM ARTICLE WHERE DATE = '2014-03-12'), 
+	'Installation',
+	'Quelle erreur ! Mais heureusement, je me retrouve avec 3 autres super colocataires dans ce pétrin. 3 d''entre nous décident d''aller chez une association de locataires de Melbourne pour voir si l''on peut se sortir de cette situation. Et oui ! La maison n''étant pas enregirstée auprès des autorités, on peut quitter les lieux ! Quel soulagement ! J''aide le colocataire Australien à mettre ses affaires en dépôt, et on se retrouve tous les 2 à la case départ : en auberge de jeunesse, sans logement, et avec la rentrée approchant... Mais en même temps, on devient super potes ! On profite aussi de l''auberge pour rencontrer des gens sympa et visiter la ville.
+
+Quelques jours plus tard et quelques visites plus loin, me voici dans mon vrai chez moi ! Une town house, ou appartement sur 2 étages. On se répartit un étage avec 2 autres colocataires. C''est propre, et surtout, assez proche de l''université : banlieue de Brunswick, seulement 4km au nord de l''université. Bref, parfait !
+');
+
+	INSERT INTO ARTICLE_PART (ARTICLE_ID, TITLE, BODY)
+    VALUES (
+	(SELECT ID FROM ARTICLE WHERE DATE = '2014-03-12'), 
+	'L''université',
+	'Puis l''université commence. Superbe campus, batiments magnifiques, des gens entousiastes, des gros événements (grosses entreprises venant promouvoir leurs bénéfices, sports en tous genre, toutes les cuisines du monde directement sur le campus, ...). Le rêve d''un master d''un an en Australie commence ! Et c''est dans la 32ème meilleure université du monde, 15ème en Informatique et Ingénierie, et 1ère en Australie, rien que ça...');
+	
+		INSERT INTO ARTICLE_PART (ARTICLE_ID, TITLE, BODY)
+    VALUES (
+	(SELECT ID FROM ARTICLE WHERE DATE = '2014-03-12'), 
+	'Premières remarques',
+	'Les premières semaines s''enchaines, et je n''ai pas beaucoup de temps libre : je me déplace en vélo, recontre des gens via les cours et le tennis, je recherche des boulots, je visite la ville et les environs, je sors avec quelques bons amis que je me suis faits, et commence à faire les groupes pour les différents projets que nous avons dans les différents cours...
+
+Le temps de Melbourne est bien ce que l''on entend : très variable ! La température peut passer de 33°C à 20°C en quelques heures, d''un superbe soleil à une pluie battante en quelques minutes... Bref, il faut savoir s''adapter et toujours avoir un Kway avec nous !'
+	);
+	
+	
+	drop table ARTICLE_PART;
+	drop table ARTICLE;

@@ -46,9 +46,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#"><%=city.getName() %></a></li>
                 <li><a href="Home">Home</a></li>
-                <li><a href="#about">About Me</a></li>
+                <li><a href="AboutMe">About Me</a></li>
+            	<li class="active"><a href="#"><%=city.getName() %></a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=city.getCountry().getName() %> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -79,12 +79,12 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           
+          <!-- TOP CONTENT -->
+          
           <section id="id_top">
           <div class="row">
-          <div class="jumbotron well">
-          
-          <!-- TOP CONTENT -->
-      <!-- Three columns of text below the carousel -->
+          <div class="jumbotron">
+
       <div class="row" style="text-align:center">
             <h1><%= city.getName() %></h1>
         <div class="col-xs-6 col-sm-6">
@@ -236,13 +236,17 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 		for(VideoDTO v : city.getVideos()){
 		%>
 	  <div class="row">
+	  <div class="col-md-9 col-sm-12">
 	    <div class="media">
 		   <iframe class="pull-left" width="560" height="315" src="https:<%= v.getLink() %>" frameborder="0" allowfullscreen></iframe>
-		  <div class="media-body">
+	  	</div>
+	  </div>
+	  <div class="col-md-3 col-sm-12">
+		<div class="media-body">
 			<h4 class="media-heading"><%=v.getName() %></h4>
 			<p><%=v.getDescription() %></p>
-		  </div>
-		</div>
+		 </div>
+	  </div>
 	  </div>
 	  <hr />
 	  <%
@@ -260,7 +264,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           	<h3><%=city.getName()%> overview</h3>
             <div id="map_position" style="height: 200px;"></div>
             <hr>
-            <h3>Check also:</h3>
+            <h3>Check also</h3>
             <ul class="nav">
             <%
             for(CountriesVisitedDTO country : countries){

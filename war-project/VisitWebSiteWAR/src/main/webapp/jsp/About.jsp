@@ -62,10 +62,10 @@
               <h2>Technologies used</h2>
               <p>This website uses Glassfish Server 4, with EJB for the back end DB management, 
               JSP for the front end. Plans to use Hibernate and Struts are underway.
-              The website also uses Maven for compiling and dependencies.
-              The CSS design and responsiveness is based on Bootstrap framework.
-              The integration is done unsing Jenkins.
-              The deployment / hosting is on Cloudbees.com. 
+              The website also uses Maven for compiling and dependencies.</p>
+              <p>The integration is done unsing Jenkins.
+              The deployment / hosting is on Cloudbees.com.</p>
+              <p>The CSS design and responsiveness is based on Bootstrap framework.
               I've also used the Google Maps API, following a workshop provided by Google 
               in my university.</p>
             </div><!--/span-->

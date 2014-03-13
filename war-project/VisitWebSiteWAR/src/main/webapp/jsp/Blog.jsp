@@ -36,7 +36,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="Home">Home</a></li>
-            <li class="active"><a href="Blog">My Blog</a></li>
+            <li class="active"><a href="Blog">Travel Blog</a></li>
             <li><a href="AboutMe">About Me</a></li>
             <%if(isLogged){ %>
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
@@ -67,7 +67,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <div class="col-6 col-sm-12 col-lg-4">
               <h2><%=article.getDate() %>: <%=article.getTitle() %></h2>
               <p><%=article.getIntro() %></p>
-              <p><a class="btn btn-default" href="BlogArticleAction?date=<%=article.getDate() %>">Get More Details</a></p>
+              <p><a class="btn btn-default" href="ArticleDetailsAction?date=<%=article.getDate() %>">Read the full article</a></p>
             </div><!--/span-->
           <%
           }
@@ -81,7 +81,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               <%
               for(ArticleDTO article : articles){
               %>
-              <li class="active"><a href="BlogQrticleAction?date=<%= article.getDate() %>"><%=article.getDate() %></a></li>
+              <li class="active"><a href="ArticleDetailsAction?date=<%= article.getDate() %>"><%=article.getDate() %></a></li>
               <%
               }
             %>
