@@ -7,6 +7,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import reivax.norac.website.dto.ArticleDTO;
@@ -23,7 +24,7 @@ import reivax.norac.website.utilities.Converter;
 @LocalBean
 public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesInterface {
 
-	@PersistenceContext(unitName="VisitWebSiteManager")
+	@PersistenceUnit
     EntityManager em;
 	
     /**
