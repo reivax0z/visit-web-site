@@ -79,6 +79,16 @@
               <p>You can find my detailed online resume here:
               <a href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">My Resume</a></p>
             </div><!--/span-->
+          </div>
+          <div class="row">
+            <div class="col-6 col-sm-12 col-lg-6">
+              <h2>Other Developments</h2>
+              <p>I am also currently developing 2 Android apps to help travellers, especially 
+              when they are overseas.</p>
+              <p>Those projects take some time to develop, not necessary because of 
+              their complexity, but more because of the small amount of time I can 
+              work on them.</p>
+            </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->
 
@@ -86,6 +96,18 @@
           <div class="well sidebar-nav">
             <h3>Where am I now?</h3>
             <div id="map_position" style="height: 200px;"></div>
+            <hr>
+            <h3>My passions / Interests?</h3>
+            <ul>
+            <li>Tennis</li>
+            <li>Travels</li>
+            <li>Landscape Photography</li>
+            <li>Guitar</li>
+            <li>Software Engineering</li>
+            <li>Big Data</li>
+            <li>Technology</li>
+            <li>Management</li>
+            </ul>
           </div><!--/.well -->
         </div><!--/span-->
       </div><!--/row-->
