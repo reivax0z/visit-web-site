@@ -48,6 +48,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <%if(isLogged){ %>
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
             <li><a href="AddNewCityFormAction">Add a City</a></li>
+            <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
+            <%} else{ %>
+            <li><a href="LoginFormAction">Log-In</a></li>
             <%} %>
           </ul>
         </div><!-- /.nav-collapse -->

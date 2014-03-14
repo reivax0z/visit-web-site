@@ -61,10 +61,12 @@
             <div class="col-6 col-sm-12 col-lg-6">
               <h2>Technologies used</h2>
               <p>This website uses Glassfish Server 4, with EJB for the back end DB management, 
-              JSP for the front end. Plans to use Hibernate and Struts are underway.
-              The website also uses Maven for compiling and dependencies.</p>
-              <p>The integration is done unsing Jenkins.
-              The deployment / hosting is on Cloudbees.com.</p>
+              JSP for the front end. Plans to use Hibernate (currently JPA + EnttityManager) 
+              and Struts are underway.
+              </p>
+              <p>The website also uses Maven for compiling and dependencies, the 
+              integration is done unsing Jenkins and the versioning is done via Git.
+              The deployment / hosting is on Cloudbees.com</p>
               <p>The CSS design and responsiveness is based on Bootstrap framework.
               I've also used the Google Maps API, following a workshop provided by Google 
               in my university.</p>
@@ -82,7 +84,7 @@
           </div>
           <div class="row">
             <div class="col-6 col-sm-12 col-lg-6">
-              <h2>Other Developments</h2>
+              <h2>Other Projects</h2>
               <p>I am also currently developing 2 Android apps to help travellers, especially 
               when they are overseas.</p>
               <p>Those projects take some time to develop, not necessary because of 
