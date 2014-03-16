@@ -24,8 +24,10 @@ function showContent(id){
 }
 function removeContent(id){
 	var i = parseInt(id);
-	var doc = document.getElementById('content'+i);
-	doc.style.display = 'none';
+	// hide + clear content
+	document.getElementById('content'+i).style.display = 'none';
+	document.getElementById('content_part_'+i).value = "";
+	document.getElementById('title_part_'+i).value = "";
 	button[i] = false;
 
 	nbButtons--;

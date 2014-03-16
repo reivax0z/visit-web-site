@@ -57,9 +57,9 @@
             <li><a href="AboutMe">About Me</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Add an Article</a></li>
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
             <li><a href="AddNewCityFormAction">Add a City</a></li>
+            <li class="active"><a href="#">Add a Blog Article</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -89,8 +89,8 @@
 			  <%for(int i=0; i<10; i++){ %>
 			  <div class="form-group" id="content<%=i %>" style="display:none">
 			    <label for="content_<%=i%>">Content nb <%=i+1 %></label>
-			    <input type="text" name="title_part_<%=i%>" class="form-control" id="exampleInputEmail1" placeholder="Title">
- 				<textarea name="content_part_<%=i%>" class="form-control" rows="5" placeholder="Content"></textarea>
+			    <input type="text" name="title_part_<%=i%>" class="form-control" id="title_part_<%=i%>" placeholder="Title">
+ 				<textarea name="content_part_<%=i%>" class="form-control" rows="5" placeholder="Content" id="content_part_<%=i%>"></textarea>
  				<button type="button" class="btn btn-default" onclick="removeContent('<%=i%>')">Remove Content</button>
 			  </div>
 			  <%} %>

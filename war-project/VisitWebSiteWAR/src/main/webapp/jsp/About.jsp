@@ -6,6 +6,7 @@
 
 <%
 // RETRIEVE THE MAIN OBJECT
+Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -42,6 +43,13 @@
             <li><a href="Home">Home</a></li>
             <li><a href="Blog">Travel Blog</a></li>
             <li class="active"><a href="#">About Me</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <%if(isLogged){ %>
+            <li><a href="AddNewCountryFormAction">Add a Country</a></li>
+            <li><a href="AddNewCityFormAction">Add a City</a></li>
+            <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
+            <%} %>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->

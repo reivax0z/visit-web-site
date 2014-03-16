@@ -36,9 +36,13 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="Home">Home</a></li>
-            <li><a href="#about">About Me</a></li>
+            <li><a href="Blog">Travel Blog</a></li>
+            <li><a href="AboutMe">About Me</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">Add a Country</a></li>
             <li><a href="AddNewCityFormAction">Add a City</a></li>
+            <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -55,16 +59,22 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
             <p>Easily add a new entry by completing the following fields.</p>
           </div>
           <div class="row">
+          	
+          <div class="col-lg-12">
 
 			<form role="form" action="AddCountry" method="post">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Country Details</label>
 			    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Country name">
-			  	<input type="text" name="info" class="form-control" id="exampleInputEmail1" placeholder="Info">
+			  	<textarea name="info" class="form-control" rows="5" placeholder="Info"></textarea>
+			  	<input type="text" name="latitude" class="form-control" id="exampleInputEmail1" placeholder="Latitude">
+			  	<input type="text" name="longitude" class="form-control" id="exampleInputEmail1" placeholder="Longitude">
 			  </div>
-			  <button type="submit" class="btn btn-default">Submit</button>
+			  <hr>
+			  <button type="submit" class="btn btn-primary" style="float: right;">Submit New Country</button>
 			</form>
 			
+			</div>
 			</div>
 			</div>
 			
@@ -87,20 +97,7 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
 			</div>
 			
 			
-      <!-- FOOTER -->
-      
-      <footer>
-        <p class="pull-right"><a href="CountryList">Home</a> &middot; <a href="#">Back to top</a></p>
-        <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-      
-      <!-- /END FOOTER -->
-
-    </div><!-- /.container -->
-
-    <script src="./bootstrap-3.0.0/assets/js/jquery.js"></script>
-    <script src="./bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
-    <script src="./bootstrap-3.0.0/assets/js/holder.js"></script>
+     <jsp:include page="includes/footer.html"></jsp:include>
 			
 </body>
 </html>

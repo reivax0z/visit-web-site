@@ -38,10 +38,12 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <li><a href="Home">Home</a></li>
             <li class="active"><a href="Blog">Travel Blog</a></li>
             <li><a href="AboutMe">About Me</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <%if(isLogged){ %>
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
             <li><a href="AddNewCityFormAction">Add a City</a></li>
-            <li><a href="#">Add a Blog Article</a></li>
+            <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
             <%} %>
           </ul>
         </div><!-- /.nav-collapse -->

@@ -18,6 +18,17 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
 
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
+    
+    	<script type="text/javascript">
+	var nbButtons = 0;
+	var maxVideos = 2;
+	var button = new Array();
+	button[0] = false;
+	button[1] = false;
+	</script>
+
+
+    <script src="/jsp/bootstrap-3.0.0/js/cityhelper.js"></script>
 
 	<title>Add a new City</title>
 </head>
@@ -36,9 +47,13 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="Home">Home</a></li>
-            <li><a href="#about">About Me</a></li>
+            <li><a href="Blog">Travel Blog</a></li>
+            <li><a href="AboutMe">About Me</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
-            <li class="active"><a href="#contact">Add a City</a></li>
+            <li class="active"><a href="#">Add a City</a></li>
+            <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -55,12 +70,15 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
             <p>Easily add a new entry by completing the following fields.</p>
           </div>
           <div class="row">
+          	
+          <div class="col-lg-12">
 
 			<form role="form" enctype="multipart/form-data">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">City Name</label>
 			    <input type="text" name="city_name" class="form-control" id="exampleInputEmail1" placeholder="City name">
-<!-- 			  	<input type="text" name="country" class="form-control" id="exampleInputEmail1" placeholder="Country ref"> -->
+		  		<input type="text" name="city_lat" class="form-control" id="exampleInputEmail1" placeholder="Latitude">
+		  		<input type="text" name="city_long" class="form-control" id="exampleInputEmail1" placeholder="Longitude">
 		  		<select class="form-control" name="country">
 		  			<%for(CountriesVisitedDTO country : countries){ %>
 					<option value="<%=country.getName()%>"><%=country.getName() %></option>
@@ -69,8 +87,8 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">About</label>
-			    <input type="text" name="did_you_know" class="form-control" id="exampleInputPassword1" placeholder="Did you know">
-			  	<input type="text" name="info" class="form-control" id="exampleInputPassword1" placeholder="Info">
+			    <textarea name="did_you_know" class="form-control" rows="5" placeholder="Did you know?"></textarea>
+			  	<textarea name="info" class="form-control" rows="5" placeholder="Info"></textarea>
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">Facts</label>
@@ -84,65 +102,30 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
 			  <%for(int i=1; i<=5; i++){ %>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">Top Five nb <%=i %></label>
-			    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name">
-			  	<input type="text" class="form-control" id="exampleInputPassword1" placeholder="In brief">
-			  	<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Desc">
+			    <input name="top_name_<%=i %>" type="text" class="form-control" id="exampleInputPassword1" placeholder="Name">
+			  	<input name="top_brief_<%=i %>" type="text" class="form-control" id="exampleInputPassword1" placeholder="In brief">
+			  	<textarea name="top_info_<%=i %>" class="form-control" rows="5" placeholder="Description"></textarea>
 			  </div>
 			  <%} %>
-			  <button id="addvideo1">Add Video</button>
-			  <%for(int i=1; i<=2; i++){ %>
-			  <div class="form-group" style="display:none" id="video<%=i%>">
-			    <label for="exampleInputPassword1">Video nb <%=i %></label>
-			    <input type="text" name="video_name_<%=i %>" class="form-control" id="exampleInputPassword1" placeholder="Name">
-			  	<input type="text" name="video_desc_<%=i %>" class="form-control" id="exampleInputPassword1" placeholder="Desc">
-			  	<input type="url" name="video_url_<%=i %>" class="form-control" id="exampleInputPassword1" placeholder="URL">
-			  	<button id="remove1">Remove Video</button>
-			  	<button id="addvideo2">Add Another Video</button>
+			  <%for(int i=0; i<2; i++){ %>
+			  <div class="form-group" style="display:none" id="video<%=i %>">
+			    <label for="exampleInputPassword1">Video nb <%=i+1 %></label>
+			    <input type="text" name="video_name_<%=i %>" class="form-control" id="video_name_<%=i %>" placeholder="Name">
+			  	<textarea name="video_desc_<%=i %>" class="form-control" rows="5" id="video_desc_<%=i %>" placeholder="Description"></textarea>
+			  	<input type="url" name="video_url_<%=i %>" class="form-control" id="video_url_<%=i %>" placeholder="URL">
+			  	<button type="button" class="btn btn-default" onclick="removeVideo('<%=i%>')">Remove Video Link</button>
 			  </div>
 			  <%} %>
-			  <%for(int i=1; i<=4; i++){ %>
-			  <div class="form-group">
-			    <label for="exampleInputFile">Image Upload nb <%=i %></label>
-			    <input type="file" name="image_<%=i %>" id="exampleInputFile">
-			    <input type="text" name="image_name_<%=i %>" class="form-control" id="exampleInputPassword1" placeholder="Name">
-			    <p class="help-block">Example block-level help text here.</p>
-			  </div>
-			  <%} %>
-			  <button type="submit" class="btn btn-default">Submit</button>
+	  	 	  <button type="button" class="btn btn-default" id="buttonAddInit" onclick="addVideo()">Add Video Link (2 remaining)</button>
+			  <hr>
+			  <button type="submit" class="btn btn-primary" style="float: right;">Submit New City</button>
 			</form>
 			
 			</div>
 			</div>
 			</div>
+			</div>
 			
-			
-      <!-- FOOTER -->
-      
-      <footer>
-        <p class="pull-right"><a href="CountryList">Home</a> &middot; <a href="#">Back to top</a></p>
-        <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-      
-      <!-- /END FOOTER -->
-
-    </div><!-- /.container -->
-
-    <script src="./bootstrap-3.0.0/assets/js/jquery.js"></script>
-    <script src="./bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
-    <script src="./bootstrap-3.0.0/assets/js/holder.js"></script>
-
-	<script>
-	$( "#addvideo1" ).click(function() {
-	  $( "#video1" ).show( "slow" );
-	});
-// 		function showdiv(boxid) {
-// 			document.getElementById(boxid).style.display = "none";
-// 		}
-
-// 		function hidediv(boxid) {
-// 			document.getElementById(boxid).style.display = "block";
-// 		}
-	</script>
-
+     <jsp:include page="includes/footer.html"></jsp:include>
 </body>
 </html>

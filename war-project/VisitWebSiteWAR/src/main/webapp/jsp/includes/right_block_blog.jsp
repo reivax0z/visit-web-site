@@ -19,12 +19,12 @@
               for(Map.Entry<String, Map<String, List<ArticleDTO>>> entry : map.entrySet()){
               %>
               <li><%=entry.getKey()%></li>
-              <ul class="nav">
+              <ul>
               <%
               for(Map.Entry<String, List<ArticleDTO>> entrySub : entry.getValue().entrySet()){ 
               %>
 	              <li><%=allMonths[Integer.parseInt(entrySub.getKey())]%></li>
-	              <ul class="nav">
+	              <ul>
 	              <%
 	              for(int i=entrySub.getValue().size()-1; i>=0; i--){
 	            	  ArticleDTO a = entrySub.getValue().get(i);
