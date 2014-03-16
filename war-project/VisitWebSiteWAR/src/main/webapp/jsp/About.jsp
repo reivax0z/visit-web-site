@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
+
+<%@ page import="reivax.norac.website.util.*" %>
+
 <%
 // RETRIEVE THE MAIN OBJECT
 %>
@@ -59,19 +62,6 @@
           </div>
           <div class="row">
             <div class="col-6 col-sm-12 col-lg-6">
-              <h2>Technologies used</h2>
-              <p>This website uses Glassfish Server 4, with EJB for the back end DB management, 
-              JSP for the front end. Plans to use Hibernate (currently JPA + EnttityManager) 
-              and Struts are underway.
-              </p>
-              <p>The website also uses Maven for compiling and dependencies, the 
-              integration is done unsing Jenkins and the versioning is done via Git.
-              The deployment / hosting is on Cloudbees.com</p>
-              <p>The CSS design and responsiveness is based on Bootstrap framework.
-              I've also used the Google Maps API, following a workshop provided by Google 
-              in my university.</p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-12 col-lg-6">
               <h2>About me</h2>
               <p>Almost 3 years of experience as a software engineering consultant, 
               implementing and maintaining solutions for banking and airline industries. 
@@ -81,35 +71,53 @@
               <p>You can find my detailed online resume here:
               <a href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">My Resume</a></p>
             </div><!--/span-->
+            <div class="col-6 col-sm-12 col-lg-6">
+              <h2>My passions / Interests?</h2>
+              <p>Long story short: sports, travels & technology.</p>
+              <ul>
+              <li>Tennis</li>
+              <li>Travels</li>
+              <li>Landscape Photography</li>
+              <li>Guitar</li>
+              <li>Software Engineering</li>
+              <li>Big Data</li>
+              <li>Technology</li>
+              <li>Management</li>
+              </ul>
+            </div>
           </div>
           <div class="row">
+          	<div class="col-6 col-sm-12 col-lg-6">
+              <h2>Technologies used</h2>
+              <p>This website uses Glassfish Server 4, with EJB for the back end DB management, 
+              JSP for the front end. Plans to use Hibernate (currently JPA + EntityManager) 
+              and Struts are underway.
+              </p>
+              <p>The website also uses Maven for compiling and dependencies, the 
+              integration is done using Jenkins and the versioning is done via Git.
+              The deployment / hosting is on Cloudbees.com</p>
+              <p>The CSS design and responsiveness is based on Bootstrap framework.
+              I've also used the Google Maps API, following a workshop provided by Google 
+              in my university.</p>
+            </div><!--/span-->
             <div class="col-6 col-sm-12 col-lg-6">
               <h2>Other Projects</h2>
               <p>I am also currently developing 2 Android apps to help travellers, especially 
               when they are overseas.</p>
               <p>Those projects take some time to develop, not necessary because of 
               their complexity, but more because of the small amount of time I can 
-              work on them.</p>
+              spend on them.</p>
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="well sidebar-nav">
+          <div class="well sidebar-nav" style="text-align:center;">
+          	<h3>Xavier CARON</h3>        	
+  			<img alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" class="img-responsive img-circle">
+ 			<hr> 
             <h3>Where am I now?</h3>
             <div id="map_position" style="height: 200px;"></div>
-            <hr>
-            <h3>My passions / Interests?</h3>
-            <ul>
-            <li>Tennis</li>
-            <li>Travels</li>
-            <li>Landscape Photography</li>
-            <li>Guitar</li>
-            <li>Software Engineering</li>
-            <li>Big Data</li>
-            <li>Technology</li>
-            <li>Management</li>
-            </ul>
           </div><!--/.well -->
         </div><!--/span-->
       </div><!--/row-->

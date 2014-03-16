@@ -27,7 +27,7 @@ public class Article implements Serializable {
 	private String title;
 
 	//bi-directional many-to-one association to ArticlePart
-	@OneToMany(mappedBy="article")
+	@OneToMany(mappedBy="article", cascade = CascadeType.PERSIST)
 	private List<ArticlePart> articleParts;
 
 	public Article() {

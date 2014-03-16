@@ -1,9 +1,12 @@
+<%@page import="org.apache.commons.net.ftp.FTPFile"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
+<%@ page import="org.apache.commons.net.ftp.*" %>
 <%@ page import="reivax.norac.website.dto.*" %>
+<%@ page import="reivax.norac.website.util.*" %>
 
 <%
 // RETRIEVE THE MAIN OBJECT
@@ -62,10 +65,12 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
                   %>
                   </ul>
                 </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
                 <%if(isLogged){ %>
 	            <li><a href="AddNewCountryFormAction">Add a Country</a></li>
 	            <li><a href="AddNewCityFormAction">Add a City</a></li>
-                <li><a href="#about">Modify</a></li>
+            	<li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
 	            <%} %>
               </ul>
         </div><!-- /.nav-collapse -->
@@ -107,31 +112,24 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	  
 	  <!-- /END TOP CONTENT -->
 	  
-	  
-    <div class="marketing">
-    
-
 	<section id="id_intro">
           <div class="row">
           	<div class="col-xs-6 col-sm-6">
             <h2>Info</h2>
               <p><%= city.getAbout().getInfo() %></p>
-              <p><a class="btn btn-large btn-primary" href="#id_pictures">See Gallery of <%= city.getName() %></a></p>
+              <p><a class="btn btn-large btn-primary" href="#id_pictures">Check Photos of <%= city.getName() %></a></p>
             </div>
             
           	<div class="col-xs-6 col-sm-6">
             <h2>Did You Know?</h2>
               <p><%= city.getAbout().getDidYouKnow() %></p>
-              <p><a class="btn btn-large btn-primary" href="#id_videos">See Videos of <%= city.getName() %></a></p>
+              <p><a class="btn btn-large btn-primary" href="#id_videos">Watch Videos of <%= city.getName() %></a></p>
           	</div>
           </div>
       </section>
 
 
-	
 	  <!-- FEATURETTES -->
-
-      <hr class="featurette-divider">
 
 	  <section id="id_top_5">
 	  
@@ -191,35 +189,32 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	  <div class="page-header">
 		<h1>Picture Gallery</h1>
 	  </div>
+	  <div class="row">
+	  
 		<%
-		String folder = "./img/" + city.getCountry().getName().toLowerCase() + "/" + city.getName().toLowerCase(); // Expl:"../img/australia/sydney/"
-		File dir = new File(folder);
-		File[] files = dir.listFiles(new FilenameFilter() {
-		    public boolean accept(File directory, String fileName) {
-		    	fileName = fileName.toLowerCase();
-		        return fileName.endsWith(".jpg")
-		        		|| fileName.endsWith(".png")
-		        		|| fileName.endsWith(".jpeg");
-		    }
-		});
+		String folder = Commons.FTP_PATH_TO_IMG + "/" + city.getCountry().getName().toLowerCase() + "/" + city.getName().toLowerCase() + "/";
+		String webLink = Commons.SITE_ADDRESS + folder;
+		FTPFile[] files = CommonsUtils.getFilesFromFTPServer(folder);
 		if(files != null){
-		for(File f : files){
+		for(FTPFile f : files){
+			if(f.isFile()){
  		%>
 		<div class="col-sm-6 col-md-4">
 		  <div class="thumbnail">
-            <img class="img-rounded" src="<%= f.getAbsolutePath() %>" data-src="holder.js/300x300" alt="<%= f.getName() %>">
+            <img class="img-rounded" src="<%= webLink + f.getName() %>" alt="<%= f.getName() %>">
             <div class="caption">
-		 	  <h3><%= f.getName() %></h3>
+		 	  <h3><%= CommonsUtils.getNameWithoutExtension(f.getName()) %></h3>
 		    </div>
 		  </div>
-        </div>/.col-lg-3
+        </div>
         <%
-		} } else{
+		}} } else{
 			%>
 			<h3>No images yet...</h3>
 			<%
 		}
 		%>
+		</div>
 
       <hr class="featurette-divider">
       
@@ -258,7 +253,6 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	  <!-- /END VIDEO GALLERY -->
 	  
 	  </div><!--/span-->
-	  </div>
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="well sidebar-nav">

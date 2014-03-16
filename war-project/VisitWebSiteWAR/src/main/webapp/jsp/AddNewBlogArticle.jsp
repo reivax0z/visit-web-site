@@ -18,6 +18,24 @@
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
 
+	<script type="text/javascript">
+	var nbButtons = 0;
+	var maxArticles = 10;
+	var button = new Array();
+	button[0] = false;
+	button[1] = false;
+	button[2] = false;
+	button[3] = false;
+	button[4] = false;
+	button[5] = false;
+	button[6] = false;
+	button[7] = false;
+	button[8] = false;
+	button[9] = false;
+	</script>
+
+    <script src="/jsp/bootstrap-3.0.0/js/bloghelper.js"></script>
+
 	<title>Add a new Blog Article</title>
 </head>
 <body>
@@ -35,7 +53,10 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="Home">Home</a></li>
+            <li><a href="Blog">Travel Blog</a></li>
             <li><a href="AboutMe">About Me</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">Add an Article</a></li>
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
             <li><a href="AddNewCityFormAction">Add a City</a></li>
@@ -55,73 +76,29 @@
             <p>Easily add a new entry by completing the following fields.</p>
           </div>
           <div class="row">
+          	
+          <div class="col-lg-12">
 
-			<form role="form" action="AddArticle" method="post">
+			<form role="form" action="AddArticleAction" method="post">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Article Details</label>
 			    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Title">
 			  	<textarea name="intro" class="form-control" rows="2" placeholder="Introduction"></textarea>
  				<textarea name="conclusion" class="form-control" rows="2" placeholder="Conclusion"></textarea>
 			  </div>
-			  <script type="text/javascript">
-			  var nbButtons = 0;
-			  var maxArticles = 10;
-			  var button = new Array();
-			  button[0] = false;
-			  button[1] = false;
-			  button[2] = false;
-			  button[3] = false;
-			  button[4] = false;
-			  button[5] = false;
-			  button[6] = false;
-			  button[7] = false;
-			  button[8] = false;
-			  button[9] = false;
-			  
-			  function addContent(){
-				  for (var i = 0; i < button.length; i++) {
-					    if(button[i] == false){
-					    	showContent(i);
-					    	button[i] = true;
-					    	break;
-					    }
-					}
-			  }
-			  function showContent(id){
-				  var doc = document.getElementById('content'+id);
-				  doc.style.display = 'block';
-
-				  nbButtons++;
-				  if(nbButtons == maxArticles){
-				  	document.getElementById('buttonAddInit').style.display = 'none';
-				  }
-				  var nbRemain = maxArticles-nbButtons;
-				  document.getElementById('buttonAddInit').innerHTML = 'Add Content ('+nbRemain+' remaining)';
-			  }
-			  function removeContent(id){
-				  var i = parseInt(id);
-				  var doc = document.getElementById('content'+i);
-				  doc.style.display = 'none';
-				  button[i] = false;
-				  
-				  nbButtons--;
-				  var nbRemain = maxArticles-nbButtons;
-				  document.getElementById('buttonAddInit').innerHTML = 'Add Content ('+nbRemain+' remaining)';
-				  document.getElementById('buttonAddInit').style.display = 'block';
-			  }
-			  </script>
 			  <%for(int i=0; i<10; i++){ %>
 			  <div class="form-group" id="content<%=i %>" style="display:none">
 			    <label for="content_<%=i%>">Content nb <%=i+1 %></label>
 			    <input type="text" name="title_part_<%=i%>" class="form-control" id="exampleInputEmail1" placeholder="Title">
  				<textarea name="content_part_<%=i%>" class="form-control" rows="5" placeholder="Content"></textarea>
- 				<button type="button" onclick="removeContent('<%=i%>')">Remove Content</button>
+ 				<button type="button" class="btn btn-default" onclick="removeContent('<%=i%>')">Remove Content</button>
 			  </div>
 			  <%} %>
-			  <button type="button" id="buttonAddInit" onclick="addContent()">Add Content (10 remaining)</button>
+			  <button type="button" class="btn btn-default" id="buttonAddInit" onclick="addContent()">Add Content (10 remaining)</button>
 			  <hr>
-			  <button type="submit" class="btn btn-default">Submit New Article</button>
+			  <button type="submit" class="btn btn-primary" style="float: right;">Submit New Article</button>
 			</form>
+			</div>
 			
 			</div>
 			</div>

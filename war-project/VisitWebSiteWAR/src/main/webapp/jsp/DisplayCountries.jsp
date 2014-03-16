@@ -45,6 +45,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <li class="active"><a href="#">Home</a></li>
             <li><a href="Blog">Travel Blog</a></li>
             <li><a href="AboutMe">About Me</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <%if(isLogged){ %>
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
             <li><a href="AddNewCityFormAction">Add a City</a></li>
@@ -90,7 +92,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           }
           %>
           </div><!--/row-->
-          <div class="row" id="map_countries" style="height:500px;"></div>
+          <div class="row">
+            <div class="col-lg-12" id="map_countries" style="height:500px;"></div>
+          </div>
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">

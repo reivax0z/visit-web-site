@@ -7,7 +7,6 @@
 
 <%
 // RETRIEVE THE MAIN OBJECT
-List<ArticleDTO> articles = (List<ArticleDTO>) request.getAttribute("blogArticles");
 ArticleDTO article = (ArticleDTO) request.getAttribute("article");
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 %>
@@ -64,33 +63,24 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <%
           for(ArticlePartDTO part : article.getArticleParts()){
           %>
-          <div class="row">
+          <div class="row"  style="text-align:justify;">
+            <div class="col-lg-12">
           	<h2><%=part.getTitle() %></h2>
           	<p><%=part.getBody() %></p>
+          	</div>
           </div><!--/row-->
           <%
           }
           %>
-          <div class="row">
+          <div class="row" style="text-align:justify;">
+            <div class="col-lg-12">
           	<h2>Conclusion</h2>
           	<p><%=article.getConclusion() %></p>
+          	</div>
           </div>
         </div><!--/span-->
-
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="well sidebar-nav">
-            <ul class="nav">All articles
-              <%
-              for(ArticleDTO art : articles){
-              %>
-              <li class="active"><a href="BlogQrticleAction?date=<%= art.getDate() %>"><%=art.getDate() %></a></li>
-              <%
-              }
-            %>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-      </div><!--/row-->
+        
+       <jsp:include page="includes/right_block_blog.jsp"></jsp:include>
 
      <jsp:include page="includes/footer.html"></jsp:include>
   </body>

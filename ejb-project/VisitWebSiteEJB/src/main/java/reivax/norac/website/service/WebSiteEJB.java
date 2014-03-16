@@ -10,9 +10,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import reivax.norac.website.dto.ArticleDTO;
+import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.model.Article;
+import reivax.norac.website.model.ArticlePart;
 import reivax.norac.website.model.Country;
 import reivax.norac.website.utilities.Converter;
 
@@ -54,6 +56,31 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
     	Country entity = new Country();
     	entity.setInfo(countryDTO.getInfo());
     	entity.setName(countryDTO.getName());
+    	em.persist(entity);
+    	em.flush();
+    }
+    
+    @Override
+    public void addArticleToDb(ArticleDTO articleDTO){
+    	// Delegate this into the Converter class
+    	Article entity = new Article();
+    	entity.setDate(articleDTO.getDate());
+    	entity.setIntro(articleDTO.getIntro());
+    	entity.setConclusion(articleDTO.getConclusion());
+    	entity.setTitle(articleDTO.getTitle());
+    	
+    	ArrayList<ArticlePart> parts = new ArrayList<ArticlePart>();
+    	for(ArticlePartDTO p : articleDTO.getArticleParts()){
+    		ArticlePart part = new ArticlePart();
+    		part.setBody(p.getBody());
+    		part.setTitle(p.getTitle());
+    		parts.add(part);
+    	}
+    	entity.setArticleParts(parts);
+    	for(ArticlePart p : entity.getArticleParts()){
+    		p.setArticle(entity);
+    	}
+    	
     	em.persist(entity);
     	em.flush();
     }
