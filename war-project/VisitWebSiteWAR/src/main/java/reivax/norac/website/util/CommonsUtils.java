@@ -12,6 +12,7 @@ public class CommonsUtils {
 		FTPClient ftp = new FTPClient();
 		try {
 			ftp.connect(Commons.FTP_SERVER, 21);
+			ftp.enterLocalPassiveMode();
 			ftp.login(Commons.FTP_SERVER_USER, Commons.FTP_SERVER_PASS);
 			int reply = ftp.getReplyCode();
 
