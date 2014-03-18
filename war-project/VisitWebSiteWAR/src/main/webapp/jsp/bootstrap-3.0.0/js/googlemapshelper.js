@@ -22,7 +22,7 @@ function initializeMapCountries(positions, zoomVal) {
 	// Init the map
 	var myOptions = {
 			zoom: zoomVal,
-			center: position[0],
+			center: positions[0],
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 

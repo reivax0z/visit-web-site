@@ -119,7 +119,7 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
 	public List<ArticleDTO> getAllArticlesFromDb() {
 
     	Session session = HibernateUtil.getSessionFactory().openSession();
-    	List<Article> articles = session.getNamedQuery("Country.findAll").list();
+    	List<Article> articles = session.getNamedQuery("Article.findAll").list();
     	
 //		Query q = em.createNamedQuery("Article.findAll");
 //    	List<Article> articles = (List<Article>) q.getResultList();
