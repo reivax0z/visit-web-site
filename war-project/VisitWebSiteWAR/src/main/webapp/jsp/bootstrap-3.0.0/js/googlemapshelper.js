@@ -29,12 +29,9 @@ function initializeMapCountries(positions, zoomVal) {
 	map = new google.maps.Map(document.getElementById('map_countries'), myOptions);
 	
 	// delegate it with a parameter containing all the positions
-	for (var i = 0; i < positions; i++) {
+	for (var i = 0; i < positions.length; i++) {
 		addLocation(positions[i]);
 	}
-//	addLocation(new google.maps.LatLng(46.688486, 2.422229));// France
-//	addLocation(new google.maps.LatLng(43.010873, 12.551638));// Italy
-//	addLocation(new google.maps.LatLng(-25.136856, 133.281323));// Australia
 }
 
 function addLocation(pos){

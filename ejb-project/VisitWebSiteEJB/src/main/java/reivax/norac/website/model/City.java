@@ -6,8 +6,12 @@ import java.math.BigDecimal;
 import javax.persistence.*;
 
 import java.util.List;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 
 /**
@@ -51,10 +55,12 @@ public class City implements Serializable {
 
 	//bi-directional many-to-one association to Topfive
 	@OneToMany(mappedBy="city")
+	@Cascade({CascadeType.SAVE_UPDATE})
 	private List<Topfive> topfives;
 
 	//bi-directional many-to-one association to Video
 	@OneToMany(mappedBy="city")
+	@Cascade({CascadeType.SAVE_UPDATE})
 	private List<Video> videos;
 
 	public City() {

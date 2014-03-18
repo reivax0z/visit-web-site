@@ -1,9 +1,19 @@
 package reivax.norac.website.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 
 /**
@@ -28,7 +38,8 @@ public class Article implements Serializable {
 	private String title;
 
 	//bi-directional many-to-one association to ArticlePart
-	@OneToMany(mappedBy="article", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="article")
+	@Cascade({CascadeType.SAVE_UPDATE})
 	private List<ArticlePart> articleParts;
 
 	public Article() {
