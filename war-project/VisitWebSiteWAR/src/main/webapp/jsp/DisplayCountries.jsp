@@ -26,14 +26,17 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	<script type="text/javascript">
 		// Global variable for Google Maps API
 		var positions = new Array();
-		<%int j=0;%>
-		for(var i=0; i<<%=countries.size()%>; i++){
-			var lat = <%=countries.get(j).getLatitude()%>;
-			var lon = <%=countries.get(j).getLongitude()%>;
-			positions.push(new google.maps.LatLng(lat, lon));
-			<%j++;%>
-		}
+		
 	</script>
+	
+	<%
+		for(CountriesVisitedDTO c: countries){
+			double lat = c.getLatitude();
+			double lon = c.getLongitude();%>
+			<script type="text/javascript">positions.push(new google.maps.LatLng(<%=lat%>, <%=lon%>));</script>
+		<%
+		}
+	%>
 
 </head>
 <body onload="initializeMapCountries(positions, 2)">

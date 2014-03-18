@@ -40,8 +40,10 @@ public class Converter {
 		CountriesVisitedDTO toReturn = new CountriesVisitedDTO();
 		toReturn.setInfo(entity.getInfo());
 		toReturn.setName(entity.getName());
-		toReturn.setCities(getCitiesDTOFromEntities(entity.getCities()));
+		toReturn.setLatitude(entity.getLatitude().doubleValue());
+		toReturn.setLongitude(entity.getLongitude().doubleValue());
 		
+		toReturn.setCities(getCitiesDTOFromEntities(entity.getCities()));
 		for(CitiesVisitedDTO city : toReturn.getCities()){
 			city.setCountry(toReturn);
 		}
