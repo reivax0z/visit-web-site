@@ -10,9 +10,11 @@ public class CommonsUtils {
 	public static FTPFile[] getFilesFromFTPServer(String directory){
 		FTPClient f = new FTPClient();
 		try {
-			f.connect(Commons.FTP_SERVER);
+			f.connect(Commons.FTP_SERVER, 21);
 			f.login(Commons.FTP_SERVER_USER, Commons.FTP_SERVER_PASS);
 			FTPFile[] files = f.listFiles(directory);
+			System.out.println(files); //Temp for debug
+			f.disconnect();
 			return files;
 		} catch (Exception e) {
 			e.printStackTrace();

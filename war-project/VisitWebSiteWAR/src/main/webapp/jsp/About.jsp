@@ -64,22 +64,23 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           </p>
           <div class="jumbotron">
             <h1>Why this website?</h1>
-            <p>To comunicate my passion for travels.</p>
+            <p>To communicate my passion for travels.</p>
             <p>At the same time, I use this website to keep up-to-date with software 
             engineering technologies.</p>
           </div>
           <div class="row">
-            <div class="col-6 col-sm-12 col-lg-6">
+            <div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">
               <h2>About me</h2>
               <p>Almost 3 years of experience as a software engineering consultant, 
-              implementing and maintaining solutions for banking and airline industries. 
+              implementing and maintaining solutions for banking and airline industries.</p>
+              <p> 
               Challenging in terms of scalability, quick delivery and worldwide use, 
-              those experiences allowed me to get more confidence on the project delivery 
+              those experiences allowed me to gain more confidence on the project delivery 
               cycle and its management.</p>
               <p>You can find my detailed online resume here:
               <a href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">My Resume</a></p>
             </div><!--/span-->
-            <div class="col-6 col-sm-12 col-lg-6">
+            <div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">
               <h2>My passions / Interests?</h2>
               <p>Long story short: sports, travels & technology.</p>
               <ul>
@@ -95,7 +96,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             </div>
           </div>
           <div class="row">
-          	<div class="col-6 col-sm-12 col-lg-6">
+          	<div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">
               <h2>Technologies used</h2>
               <p>This website uses Glassfish Server, with EJB for the back end DB management, 
               JSP for the front end. It uses Hibernate as the DB framework and plans to use 
@@ -108,11 +109,11 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               I've also used the Google Maps API, following a workshop provided by Google 
               in my university.</p>
             </div><!--/span-->
-            <div class="col-6 col-sm-12 col-lg-6">
+            <div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">
               <h2>Other Projects</h2>
               <p>I am also currently developing 2 Android apps to help travellers, especially 
               when they are overseas.</p>
-              <p>Those projects take some time to develop, not necessary because of 
+              <p>Those projects take some time to develop, not necessarily because of 
               their complexity, but more because of the small amount of time I can 
               spend on them.</p>
             </div><!--/span-->

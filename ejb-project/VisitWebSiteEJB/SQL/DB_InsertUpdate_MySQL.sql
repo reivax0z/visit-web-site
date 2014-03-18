@@ -103,7 +103,7 @@ INSERT INTO TOPFIVE (CITY_ID, NAME, INBRIEF, DESCRIPTION)
     VALUES ((SELECT ID FROM CITY WHERE NAME = 'Sydney'), 
     'Taronga Zoo', 
     'Situated at the top of a hill, you''ll have a great point of view on Sydney!',
-    'You''ll discover girafs, dolphins, koalas, kangaroos, ...but also some very dangerous predators!');
+    'You''ll discover giraffes, dolphins, koalas, kangaroos, ...but also some very dangerous predators!');
 INSERT INTO VIDEOS (CITY_ID, NAME, LINK, DESCRIPTION)
     VALUES ((SELECT ID FROM CITY WHERE NAME = 'Sydney'), 
     'NYE Fireworks', 
