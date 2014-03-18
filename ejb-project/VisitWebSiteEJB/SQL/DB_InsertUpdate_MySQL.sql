@@ -1,19 +1,26 @@
 DROP TABLE TOPFIVE;
 DROP TABLE VIDEOS;
 DROP TABLE CITY;
-DROP TABLE FACTS;
-DROP TABLE ABOUT;
 DROP TABLE COUNTRY;
+
+
 CREATE TABLE COUNTRY (
         ID INTEGER NOT NULL AUTO_INCREMENT,
         NAME VARCHAR(50),
         INFO VARCHAR(500),
+        LATITUDE DECIMAL(10,7),
+        LONGITUDE DECIMAL(10, 7),
 		PRIMARY KEY (ID)
     );
 CREATE UNIQUE INDEX COUNTRY_NAME_IDX ON COUNTRY(NAME);
-CREATE TABLE FACTS (
+CREATE TABLE CITY (
         ID INTEGER NOT NULL AUTO_INCREMENT,
+        COUNTRY_ID INTEGER NOT NULL,
         NAME VARCHAR(50),
+        LATITUDE DECIMAL(10,7),
+        LONGITUDE DECIMAL(10, 7),
+        INFO VARCHAR(500),
+        DIDYOUKNOW VARCHAR(500),
         ESTABLISHED VARCHAR(50),
         AREA NUMERIC(10),
         TIMEZONE VARCHAR(50),
@@ -22,29 +29,8 @@ CREATE TABLE FACTS (
         LANGUAGES VARCHAR(100),
 		PRIMARY KEY (ID)
     );
-CREATE UNIQUE INDEX FACTS_NAME_IDX ON FACTS(NAME);
-CREATE TABLE ABOUT (
-        ID INTEGER NOT NULL AUTO_INCREMENT,
-        NAME VARCHAR(50),
-        INFO VARCHAR(500),
-        DIDYOUKNOW VARCHAR(500),
-		PRIMARY KEY (ID)
-    );
-CREATE UNIQUE INDEX ABOUT_NAME_IDX ON ABOUT(NAME);
-CREATE TABLE CITY (
-        ID INTEGER NOT NULL AUTO_INCREMENT,
-        COUNTRY_ID INTEGER NOT NULL,
-        NAME VARCHAR(50),
-        FACT_ID INTEGER NOT NULL,
-        ABOUT_ID INTEGER NOT NULL,
-		PRIMARY KEY (ID)
-    );
 ALTER TABLE CITY ADD CONSTRAINT CITY_FOREIGNKEY_COUNTRY_ID FOREIGN KEY (COUNTRY_ID)
     REFERENCES COUNTRY (ID);
-ALTER TABLE CITY ADD CONSTRAINT CITY_FOREIGNKEY_FACT_ID FOREIGN KEY (FACT_ID)
-    REFERENCES FACTS (ID);
-ALTER TABLE CITY ADD CONSTRAINT CITY_FOREIGNKEY_ABOUT_ID FOREIGN KEY (ABOUT_ID)
-    REFERENCES ABOUT (ID);
 CREATE UNIQUE INDEX CITY_NAME_IDX ON CITY(NAME);
 CREATE TABLE TOPFIVE (
         ID INTEGER NOT NULL AUTO_INCREMENT,
@@ -68,31 +54,29 @@ CREATE TABLE VIDEOS (
 ALTER TABLE VIDEOS ADD CONSTRAINT VIDEOS_FOREIGNKEY_COUNTRY_ID FOREIGN KEY (CITY_ID)
     REFERENCES CITY (ID);
 CREATE UNIQUE INDEX VIDEOS_NAME_IDX ON VIDEOS(NAME);
-INSERT INTO COUNTRY (NAME, INFO) VALUES ('Australia', 'A continent and a country, as big as Europe and with only 22 million inhabitants!');
-INSERT INTO COUNTRY (NAME, INFO) VALUES ('France', 'The country of baguette, red wine, romance... and some other normal stuff too');
-INSERT INTO COUNTRY (NAME, INFO) VALUES ('Italy', 'A country known for its cuisine, culture and love for coffee');
-INSERT INTO FACTS (NAME, ESTABLISHED, AREA, TIMEZONE, CURRENCY, POPULATION, LANGUAGES)
-    VALUES(
-	'Sydney', 
+
+
+INSERT INTO COUNTRY (NAME, LATITUDE, LONGITUDE, INFO) VALUES ('Australia', -25.136856, 133.281323, 'A continent and a country, as big as Europe and with only 22 million inhabitants!');
+INSERT INTO COUNTRY (NAME, LATITUDE, LONGITUDE, INFO) VALUES ('France', 46.688486, 2.422229, 'The country of baguette, red wine, romance... and some other normal stuff too');
+INSERT INTO COUNTRY (NAME, LATITUDE, LONGITUDE, INFO) VALUES ('Italy', 43.010873, 12.551638, 'A country known for its cuisine, culture and love for coffee');
+INSERT INTO CITY (COUNTRY_ID, NAME, LATITUDE, LONGITUDE, INFO, DIDYOUKNOW,
+        ESTABLISHED, AREA, TIMEZONE, CURRENCY, POPULATION, LANGUAGES)
+    VALUES (
+	(SELECT ID FROM COUNTRY WHERE NAME = 'Australia'), 
+	'Sydney',
+	-33.870501, 
+	151.210824,
+	'Sydney is the state capital of New South Wales and the most populous city in Australia. It is on Australia''s south-east coast, on the Tasman Sea.
+	Inhabitants of Sydney are called Sydneysiders, comprising a cosmopolitan and international population.
+	The site of the first British colony in Australia, Sydney was established in 1788 at Sydney Cove by Arthur Phillip, commodore of the First Fleet, as a penal colony.', 
+    'Canberra was born from the war between Sydney and Melbourne over capital city!',
     '01/26/1788',
     121,
     'AEST (UTC+10)',
     'Australian Dollar ($ AUD)', 
     '4.6 million',
-    'English');
-INSERT INTO ABOUT (NAME, INFO, DIDYOUKNOW)
-    VALUES ( 
-    'Sydney', 
-    'Sydney is the state capital of New South Wales and the most populous city in Australia. It is on Australia''s south-east coast, on the Tasman Sea.
-	Inhabitants of Sydney are called Sydneysiders, comprising a cosmopolitan and international population.
-	The site of the first British colony in Australia, Sydney was established in 1788 at Sydney Cove by Arthur Phillip, commodore of the First Fleet, as a penal colony.', 
-    'Canberra was born from the war between Sydney and Melbourne over capital city!');
-INSERT INTO CITY (COUNTRY_ID, NAME, FACT_ID, ABOUT_ID)
-    VALUES (
-	(SELECT ID FROM COUNTRY WHERE NAME = 'Australia'), 
-	'Sydney',
-	(SELECT ID FROM FACTS WHERE NAME = 'Sydney'),
-	(SELECT ID FROM ABOUT WHERE NAME = 'Sydney'));
+    'English'
+	);
 INSERT INTO TOPFIVE (CITY_ID, NAME, INBRIEF, DESCRIPTION)
     VALUES ((SELECT ID FROM CITY WHERE NAME = 'Sydney'), 
     'The Blue Mountains', 
@@ -145,13 +129,6 @@ INSERT INTO VIDEOS (CITY_ID, NAME, LINK, DESCRIPTION)
 --    'Australians are known be to heavy beer drinkers.
 -- 	  But they also make great ads about it!');
 SELECT * FROM COUNTRY;
-SELECT c.NAME, co.NAME AS COUNTRY, f.CURRENCY, a.INFO, v.LINK, t.NAME AS TOP FROM CITY c, COUNTRY co, FACTS f, ABOUT a, VIDEOS v, TOPFIVE t
-where c.COUNTRY_ID = co.ID
-and c.NAME = f.NAME
-and c.NAME = a.NAME
-and c.ID = v.CITY_ID
-and c.ID = t.CITY_ID
-and c.NAME = 'Sydney';
 
 
 -- BLOG PART

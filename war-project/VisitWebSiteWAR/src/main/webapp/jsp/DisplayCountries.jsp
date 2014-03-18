@@ -25,11 +25,18 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 
 	<script type="text/javascript">
 		// Global variable for Google Maps API
-		var position = new google.maps.LatLng(10.820698, 5.957393);
+		var positions = new Array();
+		<%int j=0;%>
+		for(var i=0; i<<%=countries.size()%>; i++){
+			var lat = <%=countries.get(j).getLatitude()%>;
+			var lon = <%=countries.get(j).getLongitude()%>;
+			positions.push(new google.maps.LatLng(lat, lon));
+			<%j++;%>
+		}
 	</script>
 
 </head>
-<body onload="initializeMapCountries(position, 2)">
+<body onload="initializeMapCountries(positions, 2)">
 	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">

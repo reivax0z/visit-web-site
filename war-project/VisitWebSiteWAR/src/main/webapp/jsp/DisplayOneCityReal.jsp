@@ -31,7 +31,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	
 	<script type="text/javascript">
 		// Global variable for Google Maps API
-		var position = new google.maps.LatLng(-33.870501, 151.210824);
+		var position = new google.maps.LatLng(<%=city.getLatitude()%>, <%=city.getLongitude()%>);
 	</script>
 
 </head>
@@ -95,16 +95,16 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <h1><%= city.getName() %></h1>
         <div class="col-xs-6 col-sm-6">
           <h2>By the numbers</h2>
-		  <p>Established in <%= city.getFact().getEstablished() %></p>
-		  <p>Area of <%= city.getFact().getArea() %> km&sup2;</p>
-		  <p>Population of <%= city.getFact().getPopulation() %></p>
+		  <p>Established in <%= city.getEstablished() %></p>
+		  <p>Area of <%= city.getArea() %> km&sup2;</p>
+		  <p>Population of <%= city.getPopulation() %></p>
         </div><!-- /.col-lg-4 -->
 
         <div class="col-xs-6 col-sm-6">
           <h2>By the facts</h2>
-		  <p>Currency: <%= city.getFact().getCurrency() %></p>
-		  <p>Timezone: <%= city.getFact().getTimezone() %></p>
-		  <p>Languages: <%= city.getFact().getLanguages() %></p>
+		  <p>Currency: <%= city.getCurrency() %></p>
+		  <p>Timezone: <%= city.getTimezone() %></p>
+		  <p>Languages: <%= city.getLanguages() %></p>
         </div><!-- /.col-lg-4 -->
 
 	  </div>
@@ -116,13 +116,13 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <div class="row">
           	<div class="col-xs-6 col-sm-6">
             <h2>Info</h2>
-              <p><%= city.getAbout().getInfo() %></p>
+              <p><%= city.getInfo() %></p>
               <p><a class="btn btn-large btn-primary" href="#id_pictures">Check Photos of <%= city.getName() %></a></p>
             </div>
             
           	<div class="col-xs-6 col-sm-6">
             <h2>Did You Know?</h2>
-              <p><%= city.getAbout().getDidYouKnow() %></p>
+              <p><%= city.getDidYouKnow() %></p>
               <p><a class="btn btn-large btn-primary" href="#id_videos">Watch Videos of <%= city.getName() %></a></p>
           	</div>
           </div>

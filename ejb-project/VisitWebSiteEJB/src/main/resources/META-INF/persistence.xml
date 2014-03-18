@@ -2,10 +2,8 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="VisitWebSiteManager" transaction-type="JTA">
 		<jta-data-source>jdbc/mydb</jta-data-source>
-		<class>reivax.norac.website.model.About</class>
 		<class>reivax.norac.website.model.City</class>
 		<class>reivax.norac.website.model.Country</class>
-		<class>reivax.norac.website.model.Fact</class>
 		<class>reivax.norac.website.model.Topfive</class>
 		<class>reivax.norac.website.model.Video</class>
 		<class>reivax.norac.website.model.Article</class>

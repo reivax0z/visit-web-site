@@ -46,7 +46,7 @@
 		<!-- JBoss Hibernate Repo -->
 		<repository>
 			<id>JBoss repository</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+			<url>http://repository.jboss.com/maven2/</url>
 		</repository>
 	</repositories>
 
@@ -57,10 +57,46 @@
 			<version>6.0</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.29</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.5.6-Final</version>
+			<exclusions>  
+            <exclusion>  
+                <groupId>org.slf4j</groupId>  
+                <artifactId>slf4j-api</artifactId>  
+            </exclusion>  
+            <exclusion>  
+                <artifactId>slf4j-log4j12</artifactId>  
+                <groupId>org.slf4j</groupId>  
+            </exclusion>  
+        </exclusions>      
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
 	</dependencies>
 </project>

@@ -8,12 +8,10 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import reivax.norac.website.dto.AboutDTO;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
-import reivax.norac.website.dto.FactDTO;
 import reivax.norac.website.dto.TopFiveDTO;
 import reivax.norac.website.dto.VideoDTO;
 import reivax.norac.website.model.*;
@@ -63,7 +61,10 @@ public class Converter {
 
 		toReturn.setName(entity.getName());
 		
-		toReturn.setAbout(getAboutDTOFromEntity(entity.getAbout()));
+		toReturn.setDidYouKnow(entity.getDidyouknow());
+		toReturn.setInfo(entity.getInfo());
+		toReturn.setLatitude(entity.getLatitude().doubleValue());
+		toReturn.setLongitude(entity.getLongitude().doubleValue());
 		
 		List<VideoDTO> videos = new ArrayList<VideoDTO>();
 		for(Video video : entity.getVideos()){
@@ -77,21 +78,6 @@ public class Converter {
 		}
 		toReturn.setTopFives(topFives);
 		
-		toReturn.setFact(getFactDTOFromEntity(entity.getFact()));
-		
-		return toReturn;
-	}
-	
-	public static AboutDTO getAboutDTOFromEntity(About entity){
-		AboutDTO toReturn = new AboutDTO();
-		toReturn.setDidYouKnow(entity.getDidyouknow());
-		toReturn.setInfo(entity.getInfo());
-		toReturn.setName(entity.getName());
-		return toReturn;
-	}
-	
-	public static FactDTO getFactDTOFromEntity(Fact entity){
-		FactDTO toReturn = new FactDTO();
 		toReturn.setArea(entity.getArea().doubleValue());
 		toReturn.setCurrency(entity.getCurrency());
 		toReturn.setEstablished(entity.getEstablished());
@@ -99,8 +85,10 @@ public class Converter {
 		toReturn.setName(entity.getName());
 		toReturn.setPopulation(entity.getPopulation());
 		toReturn.setTimezone(entity.getTimezone());
+		
 		return toReturn;
 	}
+	
 	
 	public static TopFiveDTO getTopFiveDTOFromEntity(Topfive entity){
 		TopFiveDTO toReturn = new TopFiveDTO();
@@ -117,7 +105,6 @@ public class Converter {
 		toReturn.setLink(entity.getLink());
 		return toReturn;
 	}
-	
 	
 	public static List<ArticleDTO> getArticlesDTOFromEntities(List<Article> entities){
 		List<ArticleDTO> toReturn = new ArrayList<ArticleDTO>();
@@ -165,15 +152,30 @@ public class Converter {
 	public City getCityFromDTO(CitiesVisitedDTO dto){
 		City toReturn = new City();
 		
+		if(dto.getId() != 0)
+			toReturn = countriesEJB.getFromDb(City.class, dto.getId());
+		
 		toReturn.setVideos(getVideoFromDTO(dto.getVideos()));
-		toReturn.setAbout(getAboutFromDTO(dto.getAbout()));
-		toReturn.setFact(getFactFromDTO(dto.getFact()));
 		toReturn.setTopfives(getTopfiveFromDTO(dto.getTopFives()));
 		// Get back from DB
 		Country country = new Country();
 		if(dto.getCountry().getId() != 0)
 			country = countriesEJB.getFromDb(Country.class, dto.getCountry().getId());
 		toReturn.setCountry(country);
+		
+		// Possible modifications
+		toReturn.setName(dto.getName());
+		toReturn.setArea(BigDecimal.valueOf(dto.getArea()));
+		toReturn.setCurrency(dto.getCurrency());
+		toReturn.setEstablished(dto.getEstablished());
+		toReturn.setLanguages(dto.getLanguages());
+		toReturn.setPopulation(dto.getPopulation());
+		toReturn.setTimezone(dto.getTimezone());
+		toReturn.setLatitude(BigDecimal.valueOf(dto.getLatitude()));
+		toReturn.setLongitude(BigDecimal.valueOf(dto.getLongitude()));
+
+		toReturn.setDidyouknow(dto.getDidYouKnow());
+		toReturn.setInfo(dto.getInfo());
 		
 		return toReturn;
 	}
@@ -208,33 +210,5 @@ public class Converter {
 			topfives.add(toReturn);
 		}
 		return topfives;
-	}
-	
-	public Fact getFactFromDTO(FactDTO dto){
-		// Get back from DB
-		Fact toReturn = new Fact();
-		if(dto.getId() != 0)
-			toReturn = countriesEJB.getFromDb(Fact.class, dto.getId());
-		// Possible modifications
-		toReturn.setName(dto.getName());
-		toReturn.setArea(BigDecimal.valueOf(dto.getArea()));
-		toReturn.setCurrency(dto.getCurrency());
-		toReturn.setEstablished(dto.getEstablished());
-		toReturn.setLanguages(dto.getLanguages());
-		toReturn.setPopulation(dto.getPopulation());
-		toReturn.setTimezone(dto.getTimezone());
-		return toReturn;
-	}
-	
-	public About getAboutFromDTO(AboutDTO dto){
-		// Get back from DB
-		About toReturn = new About();
-		if(dto.getId() != 0)
-			toReturn = countriesEJB.getFromDb(About.class, dto.getId());
-		// Possible modifications
-		toReturn.setName(dto.getName());
-		toReturn.setDidyouknow(dto.getDidYouKnow());
-		toReturn.setInfo(dto.getInfo());
-		return toReturn;
 	}
 }

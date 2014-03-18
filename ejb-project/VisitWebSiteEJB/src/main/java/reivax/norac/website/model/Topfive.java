@@ -2,6 +2,7 @@ package reivax.norac.website.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.ManyToOne;
 
 
 /**

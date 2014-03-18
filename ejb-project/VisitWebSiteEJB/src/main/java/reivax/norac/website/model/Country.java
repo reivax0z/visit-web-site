@@ -1,8 +1,12 @@
 package reivax.norac.website.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
+
 import java.util.List;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -21,6 +25,10 @@ public class Country implements Serializable {
 	private String info;
 
 	private String name;
+	
+	private BigDecimal latitude;
+	
+	private BigDecimal longitude;
 
 	//bi-directional many-to-one association to City
 	@OneToMany(mappedBy="country")
@@ -73,6 +81,22 @@ public class Country implements Serializable {
 		city.setCountry(null);
 
 		return city;
+	}
+
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
 	}
 
 }

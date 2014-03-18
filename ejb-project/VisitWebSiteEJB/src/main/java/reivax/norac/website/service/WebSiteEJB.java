@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
@@ -17,6 +19,7 @@ import reivax.norac.website.model.Article;
 import reivax.norac.website.model.ArticlePart;
 import reivax.norac.website.model.Country;
 import reivax.norac.website.utilities.Converter;
+import reivax.norac.website.utilities.HibernateUtil;
 
 /**
  * Session Bean implementation class WebSiteEJB
@@ -25,8 +28,8 @@ import reivax.norac.website.utilities.Converter;
 @LocalBean
 public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesInterface {
 
-	@PersistenceContext(unitName="VisitWebSiteManager")
-    EntityManager em;
+//	@PersistenceContext(unitName="VisitWebSiteManager")
+//    EntityManager em;
 	
     /**
      * Default constructor. 
@@ -46,8 +49,11 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
     
     @Override
     public List<CountriesVisitedDTO> getAllCountriesFromDb(){
-    	Query q = em.createNamedQuery("Country.findAll");
-    	List<Country> cities = (List<Country>) q.getResultList();
+
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+    	List<Country> cities = session.getNamedQuery("Country.findAll").list();
+//    	Query q = em.createNamedQuery("Country.findAll");
+//    	List<Country> cities = (List<Country>) q.getResultList();
     	return Converter.getCountriesDTOFromEntities(cities);
     }
     
@@ -56,8 +62,15 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
     	Country entity = new Country();
     	entity.setInfo(countryDTO.getInfo());
     	entity.setName(countryDTO.getName());
-    	em.persist(entity);
-    	em.flush();
+//    	em.persist(entity);
+//    	em.flush();
+    	
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+    	 
+        session.beginTransaction();
+ 
+        session.save(entity);
+        session.getTransaction().commit();
     }
     
     @Override
@@ -81,20 +94,35 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
     		p.setArticle(entity);
     	}
     	
-    	em.persist(entity);
-    	em.flush();
+//    	em.persist(entity);
+//    	em.flush();
+    	
+
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+    	 
+        session.beginTransaction();
+ 
+        session.save(entity);
+        session.getTransaction().commit();
     }
     
     @Override
     public <T> T getFromDb(Class<T> t, Integer id){
-    	return em.find(t, id);
+
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+    	return (T) session.get(t, id);
+//    	return em.find(t, id);
     }
 
 
 	@Override
 	public List<ArticleDTO> getAllArticlesFromDb() {
-		Query q = em.createNamedQuery("Article.findAll");
-    	List<Article> articles = (List<Article>) q.getResultList();
+
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+    	List<Article> articles = session.getNamedQuery("Country.findAll").list();
+    	
+//		Query q = em.createNamedQuery("Article.findAll");
+//    	List<Article> articles = (List<Article>) q.getResultList();
     	return Converter.getArticlesDTOFromEntities(articles);
 	}
 }

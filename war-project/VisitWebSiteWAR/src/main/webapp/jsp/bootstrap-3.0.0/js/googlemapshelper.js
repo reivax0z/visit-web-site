@@ -18,20 +18,23 @@ function initializeMapPosition(position, zoomVal) {
 	addLocation(position);
 }
 
-function initializeMapCountries(position, zoomVal) {
+function initializeMapCountries(positions, zoomVal) {
 	// Init the map
 	var myOptions = {
 			zoom: zoomVal,
-			center: position,
+			center: position[0],
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
 	map = new google.maps.Map(document.getElementById('map_countries'), myOptions);
 	
 	// delegate it with a parameter containing all the positions
-	addLocation(new google.maps.LatLng(46.688486, 2.422229));// France
-	addLocation(new google.maps.LatLng(43.010873, 12.551638));// Italy
-	addLocation(new google.maps.LatLng(-25.136856, 133.281323));// Australia
+	for (var i = 0; i < positions; i++) {
+		addLocation(positions[i]);
+	}
+//	addLocation(new google.maps.LatLng(46.688486, 2.422229));// France
+//	addLocation(new google.maps.LatLng(43.010873, 12.551638));// Italy
+//	addLocation(new google.maps.LatLng(-25.136856, 133.281323));// Australia
 }
 
 function addLocation(pos){

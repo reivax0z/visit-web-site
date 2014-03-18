@@ -1,8 +1,13 @@
 package reivax.norac.website.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
+
 import java.util.List;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -20,17 +25,29 @@ public class City implements Serializable {
 
 	private String name;
 
-	//bi-directional many-to-one association to About
-	@ManyToOne
-	private About about;
+	private BigDecimal latitude;
+	
+	private BigDecimal longitude;
+	
+	private String didyouknow;
+
+	private String info;
 
 	//bi-directional many-to-one association to Country
 	@ManyToOne
 	private Country country;
 
-	//bi-directional many-to-one association to Fact
-	@ManyToOne
-	private Fact fact;
+	private BigDecimal area;
+
+	private String currency;
+
+	private String established;
+
+	private String languages;
+
+	private String population;
+
+	private String timezone;
 
 	//bi-directional many-to-one association to Topfive
 	@OneToMany(mappedBy="city")
@@ -59,28 +76,12 @@ public class City implements Serializable {
 		this.name = name;
 	}
 
-	public About getAbout() {
-		return this.about;
-	}
-
-	public void setAbout(About about) {
-		this.about = about;
-	}
-
 	public Country getCountry() {
 		return this.country;
 	}
 
 	public void setCountry(Country country) {
 		this.country = country;
-	}
-
-	public Fact getFact() {
-		return this.fact;
-	}
-
-	public void setFact(Fact fact) {
-		this.fact = fact;
 	}
 
 	public List<Topfive> getTopfives() {
@@ -125,6 +126,86 @@ public class City implements Serializable {
 		video.setCity(null);
 
 		return video;
+	}
+
+	public String getDidyouknow() {
+		return didyouknow;
+	}
+
+	public void setDidyouknow(String didyouknow) {
+		this.didyouknow = didyouknow;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public BigDecimal getArea() {
+		return area;
+	}
+
+	public void setArea(BigDecimal area) {
+		this.area = area;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	public String getEstablished() {
+		return established;
+	}
+
+	public void setEstablished(String established) {
+		this.established = established;
+	}
+
+	public String getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(String languages) {
+		this.languages = languages;
+	}
+
+	public String getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(String population) {
+		this.population = population;
+	}
+
+	public String getTimezone() {
+		return timezone;
+	}
+
+	public void setTimezone(String timezone) {
+		this.timezone = timezone;
+	}
+
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
 	}
 
 }
