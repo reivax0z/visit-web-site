@@ -97,9 +97,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <div class="row">
           	<div class="col-6 col-sm-12 col-lg-6">
               <h2>Technologies used</h2>
-              <p>This website uses Glassfish Server 4, with EJB for the back end DB management, 
-              JSP for the front end. Plans to use Hibernate (currently JPA + EntityManager) 
-              and Struts are underway.
+              <p>This website uses Glassfish Server, with EJB for the back end DB management, 
+              JSP for the front end. It uses Hibernate as the DB framework and plans to use 
+              Struts are underway.
               </p>
               <p>The website also uses Maven for compiling and dependencies, the 
               integration is done using Jenkins and the versioning is done via Git.

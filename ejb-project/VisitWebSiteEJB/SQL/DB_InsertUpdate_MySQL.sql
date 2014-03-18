@@ -200,3 +200,7 @@ Le temps de Melbourne est bien ce que l''on entend : très variable ! La températ
 	
 	select * from ARTICLE;
 	update ARTICLE SET DATE = '2014-03-15' where ID = 3;
+	
+	delete from ARTICLE_PART where ARTICLE_ID > 1;
+	delete from ARTICLE where ID > 1;
+	select * from ARTICLE_PART;

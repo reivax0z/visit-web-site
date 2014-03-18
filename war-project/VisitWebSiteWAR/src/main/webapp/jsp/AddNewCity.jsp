@@ -9,6 +9,7 @@
 <%
 // RETRIEVE THE MAIN OBJECT
 List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAttribute("countries");
+Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -50,17 +51,21 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
             <li><a href="Blog">Travel Blog</a></li>
             <li><a href="AboutMe">About Me</a></li>
           </ul>
+          <%if(isLogged){ %>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
             <li class="active"><a href="#">Add a City</a></li>
             <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
           </ul>
+          <%} %>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </div><!-- /.navbar -->
 
     <div class="container">
 
+    <%if(isLogged){ %>
+     
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
           <p class="pull-right visible-xs">
@@ -125,6 +130,8 @@ List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAtt
 			</div>
 			</div>
 			</div>
+			
+	<%} %>
 			
      <jsp:include page="includes/footer.html"></jsp:include>
 </body>
