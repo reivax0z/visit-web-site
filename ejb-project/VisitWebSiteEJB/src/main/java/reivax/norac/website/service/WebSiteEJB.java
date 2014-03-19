@@ -1,7 +1,9 @@
 package reivax.norac.website.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -75,6 +77,7 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
     
     @Override
     public void addArticleToDb(ArticleDTO articleDTO){
+    	
     	// Delegate this into the Converter class
     	Article entity = new Article();
     	entity.setDate(articleDTO.getDate());
@@ -124,5 +127,19 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
 //		Query q = em.createNamedQuery("Article.findAll");
 //    	List<Article> articles = (List<Article>) q.getResultList();
     	return Converter.getArticlesDTOFromEntities(articles);
+	}
+
+	@Override
+	public void updateArticleToDb(ArticleDTO articleDTO) {
+
+		// Remove older entry
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Article a = (Article) session.get(Article.class, articleDTO.getId());
+		session.delete(a);
+    	session.getTransaction().commit();
+    	
+    	// Add the new version
+    	addArticleToDb(articleDTO);
 	}
 }

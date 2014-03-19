@@ -7,12 +7,8 @@
 
 <%
 // RETRIEVE THE MAIN OBJECT
-ArticleDTO article = (ArticleDTO) request.getSession().getAttribute("newArticle");
-if(article == null){
-	article = (ArticleDTO) request.getAttribute("article");
-}
+List<ArticleDTO> articles = (List<ArticleDTO>) request.getAttribute("articles");
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
-Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (Boolean)request.getSession().getAttribute("isEditMode") : Boolean.FALSE;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,13 +41,13 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
             <li class="active"><a href="Blog">Travel Blog</a></li>
             <li><a href="AboutMe">About Me</a></li>
           </ul>
-          <%if(isLogged){ %>
           <ul class="nav navbar-nav navbar-right">
+            <%if(isLogged){ %>
             <li><a href="AddNewCountryFormAction">Add a Country</a></li>
             <li><a href="AddNewCityFormAction">Add a City</a></li>
             <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
+            <%} %>
           </ul>
-          <%} %>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </div><!-- /.navbar -->
@@ -63,6 +59,11 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
+          
+          <%
+          for(ArticleDTO article : articles){
+          %>
+          <div class="row">
           <div class="jumbotron">
             <h1><%=article.getTitle() %></h1>
             <h2><%=article.getDate() %></h2>
@@ -86,20 +87,11 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
           	<p><%=article.getConclusion() %></p>
           	</div>
           </div>
-          
-        <%if(isLogged){ %>
-        <hr>
-        <form action="AddNewArticleFormAction" method="post">
-        	<input type="text" name="id" value="<%=article.getId()%>" style="display:none">
-        	<button type="submit" class="btn btn-primary">Edit</button>
-        </form>
-	        <%if(isEditMode){ %>
-        	<form action="AddArticleAction" method="post">
-	        	<button type="submit" class="btn btn-primary" style="float: right;">Save Modifications</button>
-	        </form>
-	        <%} %>
-        <%} %>
-          
+          </div>
+          <hr>
+          <%
+          }
+          %>
         </div><!--/span-->
         
        <jsp:include page="includes/right_block_blog.jsp"></jsp:include>

@@ -17,6 +17,7 @@ import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
+import reivax.norac.website.util.CommonsUtils;
 import reivax.norac.website.utilities.Utils;
 
 /**
@@ -49,34 +50,18 @@ public class AddArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("title");
-		String intro = request.getParameter("intro");
-		String conclusion = request.getParameter("conclusion");
-		String date = Utils.getStringDateFromDate(new Date());
-		
-		ArrayList<ArticlePartDTO> parts = new ArrayList<ArticlePartDTO>();
-		for(int i=0; i<10; i++){
-			String titlePart = request.getParameter("title_part_"+i);
-			String contentPart = request.getParameter("content_part_"+i);
-			if(titlePart != null && !titlePart.isEmpty()){
-				ArticlePartDTO dto = new ArticlePartDTO();
-				dto.setTitle(titlePart);
-				dto.setBody(contentPart);
-				parts.add(dto);
-			}
-		}
-		
-		if(title != null && intro != null && conclusion != null){
-		
-			ArticleDTO dto = new ArticleDTO();
-			dto.setTitle(title);
-			dto.setDate(date);
-			dto.setIntro(intro);
-			dto.setConclusion(conclusion);
-			dto.setArticleParts(parts);
 
+		// Get back dto and save in DB
+		ArticleDTO dto = (ArticleDTO) request.getSession().getAttribute("newArticle");
+		
+		if(dto.getId() != 0){
+			articleEJB.updateArticleToDb(dto);
+		} else{
 			articleEJB.addArticleToDb(dto);
 		}
+		
+		// Clean session attributes
+		CommonsUtils.cleanSession(request);
 		
 		request.getRequestDispatcher("Blog").forward(request, response);
 	}

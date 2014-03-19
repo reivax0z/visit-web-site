@@ -9,6 +9,7 @@
 <%
 // RETRIEVE THE MAIN OBJECT
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
+ArticleDTO newArticle = (ArticleDTO)request.getSession().getAttribute("newArticle");
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -83,29 +84,31 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           	
           <div class="col-lg-12">
 
-			<form role="form" action="AddArticleAction" method="post">
+			<form role="form" action="AddArticlePreviewAction" method="post">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Article Details</label>
-			    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Title">
-			  	<textarea name="intro" class="form-control" rows="2" placeholder="Introduction"></textarea>
+			    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Title" value="<%=newArticle!=null?newArticle.getTitle():""%>">
+			  	<textarea name="intro" class="form-control" rows="2" placeholder="Introduction"><%=newArticle!=null?newArticle.getIntro():""%></textarea>
 			  </div>
-			  <%for(int i=0; i<10; i++){ %>
-			  <div class="form-group" id="content<%=i %>" style="display:none">
+			  <%for(int i=0; i<10; i++){ 
+			  ArticlePartDTO part = (newArticle!=null && newArticle.getArticleParts()!=null && newArticle.getArticleParts().size()>i)?newArticle.getArticleParts().get(i):null;
+			  %>
+			  <div class="form-group" id="content<%=i %>" <%if(part==null){ %>style="display:none"<%} %>>
 			    <label for="content_<%=i%>">Content nb <%=i+1 %></label>
-			    <input type="text" name="title_part_<%=i%>" class="form-control" id="title_part_<%=i%>" placeholder="Title">
- 				<textarea name="content_part_<%=i%>" class="form-control" rows="5" placeholder="Content" id="content_part_<%=i%>"></textarea>
+			    <input type="text" name="title_part_<%=i%>" class="form-control" id="title_part_<%=i%>" placeholder="Title" value="<%=part!=null?part.getTitle():""%>">
+ 				<textarea name="content_part_<%=i%>" class="form-control" rows="5" placeholder="Content" id="content_part_<%=i%>"><%=part!=null?part.getBody():""%></textarea>
  				<button type="button" class="btn btn-default" onclick="removeContent('<%=i%>')">Remove Content</button>
 			  </div>
 			  <%} %>
-			  <button type="button" class="btn btn-default" id="buttonAddInit" onclick="addContent()">Add Content (10 remaining)</button>
+			  <button type="button" class="btn btn-default" id="buttonAddInit" onclick="addContent()">Add Content (<%=(newArticle!=null && newArticle.getArticleParts()!=null)?""+(10-newArticle.getArticleParts().size()):"10" %> remaining)</button>
 			  
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Conclusion</label>
- 				<textarea name="conclusion" class="form-control" rows="2" placeholder="Conclusion"></textarea>
+ 				<textarea name="conclusion" class="form-control" rows="2" placeholder="Conclusion"><%=newArticle!=null?newArticle.getConclusion():""%></textarea>
 			  </div>			  
 			  
 			  <hr>
-			  <button type="submit" class="btn btn-primary" style="float: right;">Submit New Article</button>
+			  <button type="submit" class="btn btn-primary" style="float: right;">Preview Article</button>
 			</form>
 			</div>
 			

@@ -55,18 +55,6 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             	<li><a href="Blog">Travel Blog</a></li>
                 <li><a href="AboutMe">About Me</a></li>
             	<li class="active"><a href="#"><%=city.getName() %></a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=city.getCountry().getName() %> <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                  <%
-                  for(CitiesVisitedDTO c : city.getCountry().getCities()){
-                  %>
-                    <li><a href="CityDetailsAction?city=<%= c.getName() %>"><%=c.getName() %></a></li>
-                  <%
-                  }
-                  %>
-                  </ul>
-                </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
                 <%if(isLogged){ %>

@@ -3,13 +3,18 @@ package reivax.norac.website.actions;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
+import reivax.norac.website.model.Article;
+import reivax.norac.website.service.WebSiteEJB;
+import reivax.norac.website.util.CommonsUtils;
 
 /**
  * Servlet implementation class AddNewArticleForm
@@ -17,6 +22,10 @@ import reivax.norac.website.dto.CountriesVisitedDTO;
 @WebServlet(name="/AddNewArticleForm", urlPatterns={"/AddNewArticleFormAction"})
 public class AddNewArticleForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+
+	@EJB 
+	WebSiteEJB articlesEJB;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -41,6 +50,15 @@ public class AddNewArticleForm extends HttpServlet {
 	}
 	
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String id = request.getParameter("id");
+		if(id != null && request.getSession().getAttribute("newArticle") == null){
+			// We edit an existing article
+			Integer i = Integer.parseInt(id);
+			ArticleDTO a = CommonsUtils.getArticleById(i, articlesEJB.getAllArticlesFromDb());
+			request.getSession().setAttribute("newArticle", a);
+		}
+		
 		// Forward the info to the appropriate JSP
 		request.getRequestDispatcher("jsp/AddNewBlogArticle.jsp").forward(request, response);
 	}

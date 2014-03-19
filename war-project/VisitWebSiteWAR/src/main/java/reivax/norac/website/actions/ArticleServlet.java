@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
+import reivax.norac.website.util.CommonsUtils;
 import reivax.norac.website.utilities.Utils;
 
 /**
@@ -56,39 +57,28 @@ public class ArticleServlet extends HttpServlet {
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get back the city name from the request
 		String blogDate = request.getParameter("date");
-
+		
+		String blogYear = request.getParameter("year");
+		String blogMonth = request.getParameter("month");
 		
 		// Get back all the articles from DB
 		List<ArticleDTO> blogArticles = articlesEJB.getAllArticlesFromDb();
 		
-
-		Map<String, Map<String, List<ArticleDTO>>> map = new HashMap<String, Map<String, List<ArticleDTO>>>();
-		for(ArticleDTO a : blogArticles){
-			Date date = Utils.getDateFromStringDate(a.getDate());
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			String year = Integer.toString(c.get(Calendar.YEAR));
-			if(!map.containsKey(year)){
-				map.put(year, new HashMap<String, List<ArticleDTO>>());
-			}
-			String month = Integer.toString(c.get(Calendar.MONTH));
-			if(!map.get(year).containsKey(month)){
-				map.get(year).put(month, new ArrayList<ArticleDTO>());
-			}
-			map.get(year).get(month).add(a);
-		}
-		
-		// Forward the info to the appropriate JSP
+		Map<String, Map<String, List<ArticleDTO>>> map = CommonsUtils.getArticlesMapByYearByMonth(blogArticles);
 		request.setAttribute("blogArticlesMapByDate", map);
 		
-		
-		for(ArticleDTO a : blogArticles){
-			if(a.getDate().equals(blogDate)){
+		if(blogDate != null && !blogDate.isEmpty()){
+			for(ArticleDTO a : blogArticles){
+				if(a.getDate().equals(blogDate)){
 
-				// Forward the info to the appropriate JSP
-				request.setAttribute("article", a);
-				request.getRequestDispatcher("jsp/BlogDisplayOneArticle.jsp").forward(request, response);
+					// Forward the info to the appropriate JSP
+					request.setAttribute("article", a);
+					request.getRequestDispatcher("jsp/BlogDisplayOneArticle.jsp").forward(request, response);
+				}
 			}
+		} else{
+			request.setAttribute("articles", map.get(blogYear).get(blogMonth));
+			request.getRequestDispatcher("jsp/BlogDisplayMonthArticles.jsp").forward(request, response);
 		}
 	}
 }

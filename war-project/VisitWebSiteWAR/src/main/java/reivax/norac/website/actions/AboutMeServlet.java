@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import reivax.norac.website.dto.CountriesVisitedDTO;
+import reivax.norac.website.util.CommonsUtils;
 
 /**
  * Servlet implementation class AboutMeServlet
@@ -41,6 +42,8 @@ public class AboutMeServlet extends HttpServlet {
 	}
 	
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CommonsUtils.cleanSession(request);
+		
 		// Forward the info to the appropriate JSP
 		request.getRequestDispatcher("jsp/About.jsp").forward(request, response);
 	}

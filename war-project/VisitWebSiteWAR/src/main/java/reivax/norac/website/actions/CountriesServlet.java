@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
+import reivax.norac.website.util.CommonsUtils;
 
 /**
  * Servlet implementation class CountriesServlet
@@ -48,6 +49,8 @@ public class CountriesServlet extends HttpServlet {
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get back all the countries from DB
 		List<CountriesVisitedDTO> countries = countriesEJB.getAllCountriesFromDb();
+		
+		CommonsUtils.cleanSession(request);
 		
 		// Forward the info to the appropriate JSP
 		request.setAttribute("countries", countries);

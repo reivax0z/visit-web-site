@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.service.WebSiteEJB;
+import reivax.norac.website.util.CommonsUtils;
 import reivax.norac.website.utilities.Utils;
 
 /**
@@ -55,25 +56,11 @@ public class BlogServlet extends HttpServlet {
 		// Get back all the articles from DB
 		List<ArticleDTO> blogArticles = articlesEJB.getAllArticlesFromDb();
 
-		Map<String, Map<String, List<ArticleDTO>>> map = new HashMap<String, Map<String, List<ArticleDTO>>>();
-		for(ArticleDTO a : blogArticles){
-			Date date = Utils.getDateFromStringDate(a.getDate());
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			String year = Integer.toString(c.get(Calendar.YEAR));
-			if(!map.containsKey(year)){
-				map.put(year, new HashMap<String, List<ArticleDTO>>());
-			}
-			String month = Integer.toString(c.get(Calendar.MONTH));
-			if(!map.get(year).containsKey(month)){
-				map.get(year).put(month, new ArrayList<ArticleDTO>());
-			}
-			map.get(year).get(month).add(a);
-		}
+		CommonsUtils.cleanSession(request);
 		
 		// Forward the info to the appropriate JSP
 		request.setAttribute("blogArticles", blogArticles);
-		request.setAttribute("blogArticlesMapByDate", map);
+		request.setAttribute("blogArticlesMapByDate", CommonsUtils.getArticlesMapByYearByMonth(blogArticles));
 		request.getRequestDispatcher("jsp/Blog.jsp").forward(request, response);
 	}
 
