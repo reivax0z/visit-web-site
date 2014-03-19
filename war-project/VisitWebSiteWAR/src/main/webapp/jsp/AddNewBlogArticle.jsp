@@ -88,7 +88,6 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			    <label for="exampleInputEmail1">Article Details</label>
 			    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Title">
 			  	<textarea name="intro" class="form-control" rows="2" placeholder="Introduction"></textarea>
- 				<textarea name="conclusion" class="form-control" rows="2" placeholder="Conclusion"></textarea>
 			  </div>
 			  <%for(int i=0; i<10; i++){ %>
 			  <div class="form-group" id="content<%=i %>" style="display:none">
@@ -99,6 +98,12 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			  </div>
 			  <%} %>
 			  <button type="button" class="btn btn-default" id="buttonAddInit" onclick="addContent()">Add Content (10 remaining)</button>
+			  
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Conclusion</label>
+ 				<textarea name="conclusion" class="form-control" rows="2" placeholder="Conclusion"></textarea>
+			  </div>			  
+			  
 			  <hr>
 			  <button type="submit" class="btn btn-primary" style="float: right;">Submit New Article</button>
 			</form>

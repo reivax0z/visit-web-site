@@ -22,7 +22,6 @@ public class CommonsUtils {
 			}
 			
 			String encodedDir = new String(directory.getBytes("UTF-8"), "ISO-8859-1");
-			System.out.println("Requesting on: " + encodedDir);
 			
 			// get files
 			FTPFile[] files = ftp.listFiles(encodedDir);
