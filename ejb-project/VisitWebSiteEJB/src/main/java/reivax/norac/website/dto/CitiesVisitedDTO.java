@@ -6,7 +6,7 @@ public class CitiesVisitedDTO {
 
 	private int id;
 	private String name;
-	private CountriesVisitedDTO country;
+	private int countryID;
 	
 	private Double latitude;
 	private Double longitude;
@@ -30,11 +30,11 @@ public class CitiesVisitedDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public CountriesVisitedDTO getCountry() {
-		return country;
+	public int getCountryID() {
+		return countryID;
 	}
-	public void setCountry(CountriesVisitedDTO country) {
-		this.country = country;
+	public void setCountryID(int countryID) {
+		this.countryID = countryID;
 	}
 	public List<TopFiveDTO> getTopFives() {
 		return topFives;

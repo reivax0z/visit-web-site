@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,6 +20,7 @@ import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.model.Article;
 import reivax.norac.website.model.ArticlePart;
+import reivax.norac.website.model.City;
 import reivax.norac.website.model.Country;
 import reivax.norac.website.utilities.Converter;
 import reivax.norac.website.utilities.HibernateUtil;
@@ -30,95 +32,97 @@ import reivax.norac.website.utilities.HibernateUtil;
 @LocalBean
 public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesInterface {
 
-//	@PersistenceContext(unitName="VisitWebSiteManager")
-//    EntityManager em;
-	
-    /**
-     * Default constructor. 
-     */
-    public WebSiteEJB() {
-    }
+	//	@PersistenceContext(unitName="VisitWebSiteManager")
+	//    EntityManager em;
+	@EJB
+	Converter converter;
 
-    @Override
-    public List<CitiesVisitedDTO> getAllCitiesFromDb(){
-    	List<CountriesVisitedDTO> countries = getAllCountriesFromDb();
-    	List<CitiesVisitedDTO> cities = new ArrayList<CitiesVisitedDTO>();
-    	for(CountriesVisitedDTO country : countries){
-    		cities.addAll(country.getCities());
-    	}
-    	return cities;
-    }
-    
-    @Override
-    public List<CountriesVisitedDTO> getAllCountriesFromDb(){
+	/**
+	 * Default constructor. 
+	 */
+	public WebSiteEJB() {
+	}
 
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-    	List<Country> cities = session.getNamedQuery("Country.findAll").list();
-//    	Query q = em.createNamedQuery("Country.findAll");
-//    	List<Country> cities = (List<Country>) q.getResultList();
+	@Override
+	public List<CitiesVisitedDTO> getAllCitiesFromDb(){
+		List<CountriesVisitedDTO> countries = getAllCountriesFromDb();
+		List<CitiesVisitedDTO> cities = new ArrayList<CitiesVisitedDTO>();
+		for(CountriesVisitedDTO country : countries){
+			cities.addAll(country.getCities());
+		}
+		return cities;
+	}
 
-        HibernateUtil.shutdown();
-        
-    	return Converter.getCountriesDTOFromEntities(cities);
-    }
-    
-    @Override
-    public void addCountryToDb(CountriesVisitedDTO countryDTO){
-    	Country entity = new Country();
-    	entity.setInfo(countryDTO.getInfo());
-    	entity.setName(countryDTO.getName());
-//    	em.persist(entity);
-//    	em.flush();
-    	
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-    	 
-        session.beginTransaction();
- 
-        session.save(entity);
-        session.getTransaction().commit();
+	@Override
+	public List<CountriesVisitedDTO> getAllCountriesFromDb(){
 
-        HibernateUtil.shutdown();
-    }
-    
-    @Override
-    public void addArticleToDb(ArticleDTO articleDTO){
-    	
-    	// Delegate this into the Converter class
-    	Article entity = Converter.getArticleFromDTO(articleDTO);
-    	
-//    	em.persist(entity);
-//    	em.flush();
-    	
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Country> cities = session.getNamedQuery("Country.findAll").list();
+		//    	Query q = em.createNamedQuery("Country.findAll");
+		//    	List<Country> cities = (List<Country>) q.getResultList();
 
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-    	 
-        session.beginTransaction();
- 
-        session.save(entity);
-        session.getTransaction().commit();
-        
-        HibernateUtil.shutdown();
-    }
-    
-    @Override
-    public <T> T getFromDb(Class<T> t, Integer id){
+		HibernateUtil.shutdown();
 
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-    	return (T) session.get(t, id);
-//    	return em.find(t, id);
-    }
+		return Converter.getCountriesDTOFromEntities(cities);
+	}
+
+	@Override
+	public void addCountryToDb(CountriesVisitedDTO countryDTO){
+		Country entity = new Country();
+		entity.setInfo(countryDTO.getInfo());
+		entity.setName(countryDTO.getName());
+		//    	em.persist(entity);
+		//    	em.flush();
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		session.beginTransaction();
+
+		session.save(entity);
+		session.getTransaction().commit();
+
+		HibernateUtil.shutdown();
+	}
+
+	@Override
+	public void addArticleToDb(ArticleDTO articleDTO){
+
+		// Delegate this into the Converter class
+		Article entity = Converter.getArticleFromDTO(articleDTO);
+
+		//    	em.persist(entity);
+		//    	em.flush();
+
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		session.beginTransaction();
+
+		session.save(entity);
+		session.getTransaction().commit();
+
+		HibernateUtil.shutdown();
+	}
+
+	@Override
+	public <T> T getFromDb(Class<T> t, Integer id){
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		return (T) session.get(t, id);
+		//    	return em.find(t, id);
+	}
 
 
 	@Override
 	public List<ArticleDTO> getAllArticlesFromDb() {
 
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-    	List<Article> articles = session.getNamedQuery("Article.findAll").list();
-    	
-//		Query q = em.createNamedQuery("Article.findAll");
-//    	List<Article> articles = (List<Article>) q.getResultList();
-        HibernateUtil.shutdown();
-    	return Converter.getArticlesDTOFromEntities(articles);
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Article> articles = session.getNamedQuery("Article.findAll").list();
+
+		//		Query q = em.createNamedQuery("Article.findAll");
+		//    	List<Article> articles = (List<Article>) q.getResultList();
+		HibernateUtil.shutdown();
+		return Converter.getArticlesDTOFromEntities(articles);
 	}
 
 	@Override
@@ -126,21 +130,61 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		
+
 		// Remove older entry
 		Article a = (Article) session.get(Article.class, articleDTO.getId());
 		session.delete(a);
 
-    	session.getTransaction().commit();
-        session.beginTransaction();
-    	
-    	Article entity = Converter.getArticleFromDTO(articleDTO);
-    	
-    	// Add the new version
-    	session.save(entity);
-    	
-    	session.getTransaction().commit();
+		session.getTransaction().commit();
 
-        HibernateUtil.shutdown();
+		session.beginTransaction();
+
+		Article entity = Converter.getArticleFromDTO(articleDTO);
+
+		// Add the new version
+		session.save(entity);
+
+		session.getTransaction().commit();
+
+		HibernateUtil.shutdown();
+	}
+
+	@Override
+	public void addCityToDb(CitiesVisitedDTO cityDTO) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		City entity = converter.getCityFromDTO(cityDTO);
+
+		// Add the new version
+		session.save(entity);
+
+		session.getTransaction().commit();
+
+		HibernateUtil.shutdown();
+	}
+
+	@Override
+	public void updateCityToDb(CitiesVisitedDTO cityDTO) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		// Remove older entry
+		City c = (City) session.get(City.class, cityDTO.getId());
+		session.delete(c);
+
+		session.getTransaction().commit();
+
+		session.beginTransaction();
+
+		City entity = converter.getCityFromDTO(cityDTO);
+
+		// Add the new version
+		session.save(entity);
+
+		session.getTransaction().commit();
+
+		HibernateUtil.shutdown();
 	}
 }

@@ -10,9 +10,13 @@
 
 <%
 // RETRIEVE THE MAIN OBJECT
-CitiesVisitedDTO city = (CitiesVisitedDTO) request.getAttribute("city");
 List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAttribute("countries");
+CitiesVisitedDTO city = (CitiesVisitedDTO) request.getSession().getAttribute("newCity");
+if(city == null){
+	city = (CitiesVisitedDTO) request.getAttribute("city");
+}
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
+Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (Boolean)request.getSession().getAttribute("isEditMode") : Boolean.FALSE;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -182,14 +186,21 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	  <div class="row">
 	  
 		<%
-		String folder = Commons.FTP_PATH_TO_IMG + "/" + city.getCountry().getName().toLowerCase() + "/" + city.getName().toLowerCase() + "/";
+		CountriesVisitedDTO cityCountry = null;
+		for(CountriesVisitedDTO c : countries){
+			if(city.getCountryID() == c.getId()){
+				cityCountry = c;
+				break;
+			}
+		}
+		String folder = Commons.FTP_PATH_TO_IMG + "/" + cityCountry.getName().toLowerCase() + "/" + city.getName().toLowerCase() + "/";
 		String webLink = Commons.SITE_ADDRESS + folder;
 		FTPFile[] files = CommonsUtils.getFilesFromFTPServer(folder);
 		if(files != null){
 		for(FTPFile f : files){
 			if(f.isFile()){
  		%>
-		<div class="col-sm-6 col-md-4">
+		<div class="col-sm-12 col-md-6">
 		  <div class="thumbnail">
             <img class="img-rounded" src="<%= webLink + f.getName() %>" alt="<%= f.getName() %>">
             <div class="caption">
@@ -224,7 +235,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	  <div class="row">
 	  <div class="col-md-9 col-sm-12">
 	    <div class="media">
-		   <iframe class="pull-left" width="560" height="315" src="https:<%= v.getLink() %>" frameborder="0" allowfullscreen></iframe>
+		   <iframe class="pull-left" width="560" height="315" src="<%= v.getLink() %>" frameborder="0" allowfullscreen></iframe>
 	  	</div>
 	  </div>
 	  <div class="col-md-3 col-sm-12">
@@ -241,6 +252,19 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	  </section>
 	  
 	  <!-- /END VIDEO GALLERY -->
+	  
+	  <%if(isLogged){ %>
+        <hr>
+        <form action="AddNewCityFormAction" method="post">
+        	<input type="text" name="id" value="<%=city.getId()%>" style="display:none">
+        	<button type="submit" class="btn btn-primary">Edit</button>
+        </form>
+	        <%if(isEditMode){ %>
+        	<form action="AddCityAction" method="post">
+	        	<button type="submit" class="btn btn-primary" style="float: right;">Save Modifications</button>
+	        </form>
+	        <%} %>
+        <%} %>
 	  
 	  </div><!--/span-->
 

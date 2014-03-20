@@ -45,7 +45,7 @@ public class Converter {
 		
 		toReturn.setCities(getCitiesDTOFromEntities(entity.getCities()));
 		for(CitiesVisitedDTO city : toReturn.getCities()){
-			city.setCountry(toReturn);
+			city.setCountryID(toReturn.getId());
 		}
 		return toReturn;
 	}
@@ -151,19 +151,23 @@ public class Converter {
 	 * DTO --> Entities
 	 */
 	
-	public City getCityFromDTO(CitiesVisitedDTO dto){
+	public  City getCityFromDTO(CitiesVisitedDTO dto){
 		City toReturn = new City();
 		
-		if(dto.getId() != 0)
-			toReturn = countriesEJB.getFromDb(City.class, dto.getId());
+		toReturn.setId(dto.getId());
+		
+		if(dto.getCountryID() != 0){
+			toReturn.setCountry(countriesEJB.getFromDb(Country.class, dto.getCountryID()));
+		}
 		
 		toReturn.setVideos(getVideoFromDTO(dto.getVideos()));
+		for(Video v: toReturn.getVideos()){
+			v.setCity(toReturn);
+		}
 		toReturn.setTopfives(getTopfiveFromDTO(dto.getTopFives()));
-		// Get back from DB
-		Country country = new Country();
-		if(dto.getCountry().getId() != 0)
-			country = countriesEJB.getFromDb(Country.class, dto.getCountry().getId());
-		toReturn.setCountry(country);
+		for(Topfive t : toReturn.getTopfives()){
+			t.setCity(toReturn);
+		}
 		
 		// Possible modifications
 		toReturn.setName(dto.getName());
@@ -182,13 +186,11 @@ public class Converter {
 		return toReturn;
 	}
 	
-	public List<Video> getVideoFromDTO(List<VideoDTO> dtos){
+	public static List<Video> getVideoFromDTO(List<VideoDTO> dtos){
 		ArrayList<Video> videos = new ArrayList<Video>();
 		for(VideoDTO dto : dtos){
-			// Get back from DB
 			Video toReturn = new Video();
-			if(dto.getId() != 0)
-				toReturn = countriesEJB.getFromDb(Video.class, dto.getId());
+			
 			// Possible modifications
 			toReturn.setDescription(dto.getDescription());
 			toReturn.setLink(dto.getLink());
@@ -198,13 +200,11 @@ public class Converter {
 		return videos;
 	}
 	
-	public List<Topfive> getTopfiveFromDTO(List<TopFiveDTO> dtos){
+	public static List<Topfive> getTopfiveFromDTO(List<TopFiveDTO> dtos){
 		ArrayList<Topfive> topfives = new ArrayList<Topfive>();
 		for(TopFiveDTO dto : dtos){
-			// Get back from DB
 			Topfive toReturn = new Topfive();
-			if(dto.getId() != 0)
-				toReturn = countriesEJB.getFromDb(Topfive.class, dto.getId());
+
 			// Possible modifications
 			toReturn.setDescription(dto.getDescription());
 			toReturn.setName(dto.getName());

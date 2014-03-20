@@ -15,6 +15,7 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
 import reivax.norac.website.dto.ArticleDTO;
+import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.utilities.Utils;
 
 public class CommonsUtils {
@@ -92,8 +93,17 @@ public class CommonsUtils {
 		return null;
 	}
 	
+	public static Map<String, CountriesVisitedDTO> getCountriesMapByName(List<CountriesVisitedDTO> countries){
+		Map<String, CountriesVisitedDTO> map = new HashMap<String, CountriesVisitedDTO>();
+		for(CountriesVisitedDTO c: countries){
+			map.put(c.getName(), c);
+		}
+		return map;
+	}
+	
 	public static void cleanSession(HttpServletRequest request){
 		request.getSession().removeAttribute("newArticle");
+		request.getSession().removeAttribute("newCity");
 		request.getSession().removeAttribute("isEditMode");
 	}
 }

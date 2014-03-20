@@ -15,6 +15,8 @@ public interface ServicesInterface {
 	public void addCountryToDb(CountriesVisitedDTO countryDTO);
 	public void addArticleToDb(ArticleDTO articleDTO);
 	public void updateArticleToDb(ArticleDTO articleDTO);
+	public void addCityToDb(CitiesVisitedDTO cityDTO);
+	public void updateCityToDb(CitiesVisitedDTO cityDTO);
 	
 	// Specific getters
 	public List<CountriesVisitedDTO> getAllCountriesFromDb();

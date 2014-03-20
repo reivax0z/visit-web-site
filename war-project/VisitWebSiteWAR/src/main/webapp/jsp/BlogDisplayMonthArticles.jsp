@@ -64,29 +64,31 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           for(ArticleDTO article : articles){
           %>
           <div class="row">
-          <div class="jumbotron">
-            <h1><%=article.getTitle() %></h1>
-            <h2><%=article.getDate() %></h2>
-            <p><%=article.getIntro() %></p>
-          </div>
-          <%
-          for(ArticlePartDTO part : article.getArticleParts()){
-          %>
-          <div class="row"  style="text-align:justify;">
             <div class="col-lg-12">
-          	<h2><%=part.getTitle() %></h2>
-          	<p><%=part.getBody() %></p>
-          	</div>
-          </div><!--/row-->
-          <%
-          }
-          %>
-          <div class="row" style="text-align:justify;">
-            <div class="col-lg-12">
-          	<h2>Conclusion</h2>
-          	<p><%=article.getConclusion() %></p>
-          	</div>
-          </div>
+	          <div class="jumbotron">
+	            <h1><%=article.getTitle() %></h1>
+	            <h2><%=article.getDate() %></h2>
+	            <p><%=article.getIntro() %></p>
+	          </div>
+	          <%
+	          for(ArticlePartDTO part : article.getArticleParts()){
+	          %>
+	          <div class="row"  style="text-align:justify;">
+	            <div class="col-lg-12">
+	          	<h2><%=part.getTitle() %></h2>
+	          	<p><%=part.getBody() %></p>
+	          	</div>
+	          </div><!--/row-->
+	          <%
+	          }
+	          %>
+	          <div class="row" style="text-align:justify;">
+	            <div class="col-lg-12">
+	          	<h2>Conclusion</h2>
+	          	<p><%=article.getConclusion() %></p>
+	          	</div>
+	          </div>
+           </div>
           </div>
           <hr>
           <%
