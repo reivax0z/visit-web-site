@@ -213,4 +213,29 @@ public class Converter {
 		}
 		return topfives;
 	}
+	
+	public static Article getArticleFromDTO(ArticleDTO articleDTO){
+		Article entity = new Article();
+    	entity.setDate(articleDTO.getDate());
+    	entity.setIntro(articleDTO.getIntro());
+    	entity.setConclusion(articleDTO.getConclusion());
+    	entity.setTitle(articleDTO.getTitle());
+    	
+    	ArrayList<ArticlePart> parts = new ArrayList<ArticlePart>();
+    	for(ArticlePartDTO p : articleDTO.getArticleParts()){
+    		parts.add(getArticlePartFromDTO(p));
+    	}
+    	entity.setArticleParts(parts);
+    	for(ArticlePart p : entity.getArticleParts()){
+    		p.setArticle(entity);
+    	}
+    	return entity;
+	}
+	
+	public static ArticlePart getArticlePartFromDTO(ArticlePartDTO dto){
+		ArticlePart part = new ArticlePart();
+		part.setBody(dto.getBody());
+		part.setTitle(dto.getTitle());
+		return part;
+	}
 }

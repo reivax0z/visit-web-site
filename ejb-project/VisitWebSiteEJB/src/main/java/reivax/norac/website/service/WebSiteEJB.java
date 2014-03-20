@@ -56,6 +56,9 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
     	List<Country> cities = session.getNamedQuery("Country.findAll").list();
 //    	Query q = em.createNamedQuery("Country.findAll");
 //    	List<Country> cities = (List<Country>) q.getResultList();
+
+        HibernateUtil.shutdown();
+        
     	return Converter.getCountriesDTOFromEntities(cities);
     }
     
@@ -73,29 +76,15 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
  
         session.save(entity);
         session.getTransaction().commit();
+
+        HibernateUtil.shutdown();
     }
     
     @Override
     public void addArticleToDb(ArticleDTO articleDTO){
     	
     	// Delegate this into the Converter class
-    	Article entity = new Article();
-    	entity.setDate(articleDTO.getDate());
-    	entity.setIntro(articleDTO.getIntro());
-    	entity.setConclusion(articleDTO.getConclusion());
-    	entity.setTitle(articleDTO.getTitle());
-    	
-    	ArrayList<ArticlePart> parts = new ArrayList<ArticlePart>();
-    	for(ArticlePartDTO p : articleDTO.getArticleParts()){
-    		ArticlePart part = new ArticlePart();
-    		part.setBody(p.getBody());
-    		part.setTitle(p.getTitle());
-    		parts.add(part);
-    	}
-    	entity.setArticleParts(parts);
-    	for(ArticlePart p : entity.getArticleParts()){
-    		p.setArticle(entity);
-    	}
+    	Article entity = Converter.getArticleFromDTO(articleDTO);
     	
 //    	em.persist(entity);
 //    	em.flush();
@@ -107,6 +96,8 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
  
         session.save(entity);
         session.getTransaction().commit();
+        
+        HibernateUtil.shutdown();
     }
     
     @Override
@@ -126,20 +117,30 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
     	
 //		Query q = em.createNamedQuery("Article.findAll");
 //    	List<Article> articles = (List<Article>) q.getResultList();
+        HibernateUtil.shutdown();
     	return Converter.getArticlesDTOFromEntities(articles);
 	}
 
 	@Override
 	public void updateArticleToDb(ArticleDTO articleDTO) {
 
-		// Remove older entry
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
+		
+		// Remove older entry
 		Article a = (Article) session.get(Article.class, articleDTO.getId());
 		session.delete(a);
+
     	session.getTransaction().commit();
+        session.beginTransaction();
+    	
+    	Article entity = Converter.getArticleFromDTO(articleDTO);
     	
     	// Add the new version
-    	addArticleToDb(articleDTO);
+    	session.save(entity);
+    	
+    	session.getTransaction().commit();
+
+        HibernateUtil.shutdown();
 	}
 }

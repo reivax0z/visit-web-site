@@ -39,7 +39,7 @@ public class Article implements Serializable {
 
 	//bi-directional many-to-one association to ArticlePart
 	@OneToMany(mappedBy="article")
-	@Cascade({CascadeType.SAVE_UPDATE})
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
 	private List<ArticlePart> articleParts;
 
 	public Article() {

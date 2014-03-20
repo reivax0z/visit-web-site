@@ -55,12 +55,12 @@ public class City implements Serializable {
 
 	//bi-directional many-to-one association to Topfive
 	@OneToMany(mappedBy="city")
-	@Cascade({CascadeType.SAVE_UPDATE})
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
 	private List<Topfive> topfives;
 
 	//bi-directional many-to-one association to Video
 	@OneToMany(mappedBy="city")
-	@Cascade({CascadeType.SAVE_UPDATE})
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
 	private List<Video> videos;
 
 	public City() {
