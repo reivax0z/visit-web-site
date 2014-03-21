@@ -103,7 +103,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           %>
           </div><!--/row-->
           <div class="row">
-            <div class="col-lg-12" id="map_countries" style="height:500px;"></div>
+            <div class="col-lg-12">
+              <div id="map_countries" style="height:500px;"></div>
+            </div>
           </div>
         </div><!--/span-->
 

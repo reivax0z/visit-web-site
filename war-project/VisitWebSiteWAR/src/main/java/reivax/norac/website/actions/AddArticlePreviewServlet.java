@@ -77,6 +77,7 @@ public class AddArticlePreviewServlet extends HttpServlet {
 			if(request.getSession().getAttribute("newArticle") != null){
 				ArticleDTO preDto = (ArticleDTO) request.getSession().getAttribute("newArticle");
 				dto.setId(preDto.getId());
+				dto.setDate(preDto.getDate());
 			}
 			
 			request.getSession().setAttribute("newArticle", dto);
