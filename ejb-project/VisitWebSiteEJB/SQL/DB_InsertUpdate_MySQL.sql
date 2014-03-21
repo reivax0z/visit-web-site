@@ -107,14 +107,14 @@ INSERT INTO TOPFIVE (CITY_ID, NAME, INBRIEF, DESCRIPTION)
 INSERT INTO VIDEOS (CITY_ID, NAME, LINK, DESCRIPTION)
     VALUES ((SELECT ID FROM CITY WHERE NAME = 'Sydney'), 
     'NYE Fireworks', 
-    'http://www.youtube.com/embed/d6lWArihfm0',
+    'https://www.youtube.com/embed/d6lWArihfm0',
     'Every year, for New Year''s Eve, fireworks are fired from the bay of Sydney, near the Harbour Bridge and the Opera House.
 	Australians are known to produce the best possible fireworks.
 	Have a look at this video to make up your own mind.');
 INSERT INTO VIDEOS (CITY_ID, NAME, LINK, DESCRIPTION)
     VALUES ((SELECT ID FROM CITY WHERE NAME = 'Sydney'), 
     'Sydney Ad', 
-    'http://www.youtube.com/embed/weYGChQ1g5Q',
+    'https://www.youtube.com/embed/weYGChQ1g5Q',
     'Here is the official ad made by Tourism Australia.
 	If you''re not convinced after that, well, we can''t do anything for you...');
 -- INSERT INTO VIDEOS (CITY_ID, NAME, LINK, DESCRIPTION)

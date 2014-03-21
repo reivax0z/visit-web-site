@@ -19,10 +19,20 @@ function initializeMapPosition(position, zoomVal) {
 }
 
 function initializeMapCountries(positions, zoomVal) {
+	var sumLat = 0;
+	var sumLong = 0;
+	for (var i = 0; i < positions.length; i++) {
+		sumLat+=positions[i].lat();
+		sumLong+=positions[i].lng();
+	}
+	sumLat/=positions.length;
+	sumLong/=positions.length;
+	var centerPos = new google.maps.LatLng(sumLat, sumLong);
+	
 	// Init the map
 	var myOptions = {
 			zoom: zoomVal,
-			center: positions[0],
+			center: centerPos,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 

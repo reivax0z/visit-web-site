@@ -118,7 +118,7 @@ public class AddCityPreviewServlet extends HttpServlet {
 			dto.setVideos(videos);
 
 			if(request.getSession().getAttribute("newCity") != null){
-				ArticleDTO preDto = (ArticleDTO) request.getSession().getAttribute("newCity");
+				CitiesVisitedDTO preDto = (CitiesVisitedDTO) request.getSession().getAttribute("newCity");
 				dto.setId(preDto.getId());
 			}
 

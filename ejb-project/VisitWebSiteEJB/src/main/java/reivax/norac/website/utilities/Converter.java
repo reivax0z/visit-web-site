@@ -38,15 +38,13 @@ public class Converter {
 	
 	public static CountriesVisitedDTO getCountryDTOFromEntity(Country entity){
 		CountriesVisitedDTO toReturn = new CountriesVisitedDTO();
+		toReturn.setId(entity.getId());
 		toReturn.setInfo(entity.getInfo());
 		toReturn.setName(entity.getName());
 		toReturn.setLatitude(entity.getLatitude().doubleValue());
 		toReturn.setLongitude(entity.getLongitude().doubleValue());
 		
 		toReturn.setCities(getCitiesDTOFromEntities(entity.getCities()));
-		for(CitiesVisitedDTO city : toReturn.getCities()){
-			city.setCountryID(toReturn.getId());
-		}
 		return toReturn;
 	}
 	
@@ -62,6 +60,8 @@ public class Converter {
 		CitiesVisitedDTO toReturn = new CitiesVisitedDTO();
 
 		toReturn.setName(entity.getName());
+		toReturn.setId(entity.getId());
+		toReturn.setCountryID(entity.getCountry().getId());
 		
 		toReturn.setDidYouKnow(entity.getDidyouknow());
 		toReturn.setInfo(entity.getInfo());

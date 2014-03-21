@@ -15,6 +15,7 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
 import reivax.norac.website.dto.ArticleDTO;
+import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.utilities.Utils;
 
@@ -88,6 +89,15 @@ public class CommonsUtils {
 		for(ArticleDTO article : articles){
 			if(article.getId() == i){
 				return article;
+			}
+		}
+		return null;
+	}
+	
+	public static CitiesVisitedDTO getCityById(Integer i, List<CitiesVisitedDTO> cities){
+		for(CitiesVisitedDTO city : cities){
+			if(city.getId() == i){
+				return city;
 			}
 		}
 		return null;
