@@ -9,6 +9,7 @@
 <%
 // RETRIEVE THE MAIN OBJECT
 List<CountriesVisitedDTO> countries = (List<CountriesVisitedDTO>) request.getAttribute("countries");
+CountriesVisitedDTO editCountry = (CountriesVisitedDTO) request.getSession().getAttribute("editCountry");
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 %>
     
@@ -68,13 +69,13 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           	
           <div class="col-lg-12">
 
-			<form role="form" action="AddCountry" method="post">
+			<form role="form" action="AddCountryAction" method="post">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Country Details</label>
-			    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Country name">
-			  	<textarea name="info" class="form-control" rows="5" placeholder="Info"></textarea>
-			  	<input type="text" name="latitude" class="form-control" id="exampleInputEmail1" placeholder="Latitude">
-			  	<input type="text" name="longitude" class="form-control" id="exampleInputEmail1" placeholder="Longitude">
+			    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Country name" value="<%=editCountry!=null?editCountry.getName():""%>">
+			  	<textarea name="info" class="form-control" rows="5" placeholder="Info"><%=editCountry!=null?editCountry.getInfo():""%></textarea>
+			  	<input type="text" name="latitude" class="form-control" id="exampleInputEmail1" placeholder="Latitude" value="<%=editCountry!=null?editCountry.getLatitude():""%>">
+			  	<input type="text" name="longitude" class="form-control" id="exampleInputEmail1" placeholder="Longitude" value="<%=editCountry!=null?editCountry.getLongitude():""%>">
 			  </div>
 			  <hr>
 			  <button type="submit" class="btn btn-primary" style="float: right;">Submit New Country</button>

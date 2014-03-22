@@ -103,6 +103,16 @@ public class CommonsUtils {
 		return null;
 	}
 	
+	public static CountriesVisitedDTO getCountryById(Integer i, List<CountriesVisitedDTO> countries){
+		for(CountriesVisitedDTO country : countries){
+			if(country.getId() == i){
+				return country;
+			}
+		}
+		return null;
+	}
+	
+	
 	public static Map<String, CountriesVisitedDTO> getCountriesMapByName(List<CountriesVisitedDTO> countries){
 		Map<String, CountriesVisitedDTO> map = new HashMap<String, CountriesVisitedDTO>();
 		for(CountriesVisitedDTO c: countries){
@@ -114,6 +124,7 @@ public class CommonsUtils {
 	public static void cleanSession(HttpServletRequest request){
 		request.getSession().removeAttribute("newArticle");
 		request.getSession().removeAttribute("newCity");
+		request.getSession().removeAttribute("editCountry");
 		request.getSession().removeAttribute("isEditMode");
 	}
 }

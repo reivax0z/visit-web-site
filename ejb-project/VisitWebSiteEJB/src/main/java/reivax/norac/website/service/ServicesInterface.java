@@ -13,6 +13,7 @@ public interface ServicesInterface {
 	
 	// Insert
 	public void addCountryToDb(CountriesVisitedDTO countryDTO);
+	public void updateCountryToDb(CountriesVisitedDTO countryDTO);
 	public void addArticleToDb(ArticleDTO articleDTO);
 	public void updateArticleToDb(ArticleDTO articleDTO);
 	public void addCityToDb(CitiesVisitedDTO cityDTO);

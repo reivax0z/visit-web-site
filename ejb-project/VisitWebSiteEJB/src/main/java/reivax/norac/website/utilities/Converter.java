@@ -151,6 +151,20 @@ public class Converter {
 	 * DTO --> Entities
 	 */
 	
+	public  Country getCountryFromDTO(CountriesVisitedDTO dto){
+		Country toReturn = new Country();
+		
+		toReturn.setId(dto.getId());
+		
+		// Possible modifications
+		toReturn.setName(dto.getName());
+		toReturn.setLatitude(BigDecimal.valueOf(dto.getLatitude()));
+		toReturn.setLongitude(BigDecimal.valueOf(dto.getLongitude()));
+		toReturn.setInfo(dto.getInfo());
+		
+		return toReturn;
+	}
+	
 	public  City getCityFromDTO(CitiesVisitedDTO dto){
 		City toReturn = new City();
 		

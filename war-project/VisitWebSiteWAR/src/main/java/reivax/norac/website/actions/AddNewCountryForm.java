@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
+import reivax.norac.website.util.CommonsUtils;
 
 /**
  * Servlet implementation class AddNewCityForm
@@ -48,6 +50,14 @@ public class AddNewCountryForm extends HttpServlet {
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get back all the countries from DB
 		List<CountriesVisitedDTO> countries = countriesEJB.getAllCountriesFromDb();
+		
+		String id = request.getParameter("id");
+		if(id != null && request.getSession().getAttribute("editCountry") == null){
+			// We edit an existing country
+			Integer i = Integer.parseInt(id);
+			CountriesVisitedDTO c = CommonsUtils.getCountryById(i, countries);
+			request.getSession().setAttribute("editCountry", c);
+		}
 		
 		// Forward the info to the appropriate JSP
 		request.setAttribute("countries", countries);

@@ -17,6 +17,12 @@ if(city == null){
 }
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (Boolean)request.getSession().getAttribute("isEditMode") : Boolean.FALSE;
+
+CountriesVisitedDTO cityCountry = CommonsUtils.getCountryById(city.getCountryID(), countries);
+String folder = Commons.FTP_PATH_TO_IMG + Commons.SEPARATOR + cityCountry.getName().toLowerCase() + Commons.SEPARATOR + city.getName().toLowerCase() + Commons.SEPARATOR;
+String webLink = Commons.SITE_ADDRESS + folder;
+String folderTop = folder + Commons.PATH_TOP;
+String webLinkTop = Commons.SITE_ADDRESS + folderTop;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -146,13 +152,13 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
 		  <p class="lead"><%= top.getDescription() %></p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="data:image/png;base64," data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="Generic placeholder image">
         </div>
       <%
       }else{ 
       %>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="data:image/png;base64," data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="Generic placeholder image">
         </div>
         <div class="col-md-7">
           <h2 class="featurette-heading">Must-Do n&deg;<%=currIteration %>: <span class="text-muted"><%= top.getName() %></span></h2>
@@ -186,15 +192,6 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
 	  <div class="row">
 	  
 		<%
-		CountriesVisitedDTO cityCountry = null;
-		for(CountriesVisitedDTO c : countries){
-			if(city.getCountryID() == c.getId()){
-				cityCountry = c;
-				break;
-			}
-		}
-		String folder = Commons.FTP_PATH_TO_IMG + "/" + cityCountry.getName().toLowerCase() + "/" + city.getName().toLowerCase() + "/";
-		String webLink = Commons.SITE_ADDRESS + folder;
 		FTPFile[] files = CommonsUtils.getFilesFromFTPServer(folder);
 		if(files != null){
 		for(FTPFile f : files){

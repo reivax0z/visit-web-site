@@ -183,4 +183,20 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
 
 		HibernateUtil.shutdown();
 	}
+
+	@Override
+	public void updateCountryToDb(CountriesVisitedDTO countryDTO) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		// Remove older entry
+		Country country = converter.getCountryFromDTO(countryDTO);
+		
+		session.merge(country);
+
+		session.getTransaction().commit();
+
+		HibernateUtil.shutdown();
+	}
 }

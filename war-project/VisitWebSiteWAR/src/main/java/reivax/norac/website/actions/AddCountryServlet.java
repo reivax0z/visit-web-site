@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
+import reivax.norac.website.util.CommonsUtils;
 
 /**
  * Servlet implementation class AddCountryServlet
@@ -44,15 +45,27 @@ public class AddCountryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String info = request.getParameter("info");
+		String lat = request.getParameter("latitude");
+		String lon = request.getParameter("longitude");
+
+		CountriesVisitedDTO editCountry = (CountriesVisitedDTO) request.getSession().getAttribute("editCountry");
 		
 		if(name != null && info != null){
-		
 			CountriesVisitedDTO dto = new CountriesVisitedDTO();
 			dto.setInfo(info);
 			dto.setName(name);
+			dto.setLatitude(Double.valueOf(lat));
+			dto.setLongitude(Double.valueOf(lon));
 
-			countriesEJB.addCountryToDb(dto);
+			if(editCountry != null){
+				dto.setId(editCountry.getId());
+				countriesEJB.updateCountryToDb(dto);
+			} else{
+				countriesEJB.addCountryToDb(dto);
+			}
 		}
+		
+		CommonsUtils.cleanSession(request);
 		
 		request.getRequestDispatcher("Home").forward(request, response);
 	}

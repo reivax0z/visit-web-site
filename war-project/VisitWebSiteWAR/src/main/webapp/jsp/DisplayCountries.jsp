@@ -97,6 +97,14 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               <%
               }
               %>
+			<%if(isLogged){ %>
+	        <hr>
+	        <form action="AddNewCountryFormAction" method="post">
+	        	<input type="text" name="id" value="<%=country.getId()%>" style="display:none">
+	        	<button type="submit" class="btn btn-primary">Edit</button>
+	        </form>
+	        <hr>
+	        <%} %>
             </div><!--/span-->
           <%
           }
