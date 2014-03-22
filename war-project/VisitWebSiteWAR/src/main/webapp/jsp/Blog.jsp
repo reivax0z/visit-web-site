@@ -59,7 +59,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron">
+          <div class="jumbotron shadow">
             <h1>Travel Blog</h1>
             <p>This section is dedicated to give you my feedback about my daily experiences overseas.</p>
             <p>I'll try to keep it updated as much as I can.</p>
@@ -70,11 +70,13 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         	  ArticleDTO article = articles.get(i);
           %>
             <div class="col-6 col-sm-12 col-lg-4">
+              <div class="shadow padding20">
               <h2><%=article.getTitle() %></h2>
               <h4><%=article.getDate() %></h4>
               <p><%=article.getIntro() %></p>
               <p><a class="btn btn-default" href="ArticleDetailsAction?date=<%=article.getDate() %>">Read the full article</a></p>
             </div><!--/span-->
+            </div>
           <%
           }
           %>

@@ -10,7 +10,8 @@
  %>
  
  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="well sidebar-nav">
+              <div class="shadow">
+          <div class="sidebar-nav padding20">
           <h3>All articles</h3>
             <ul class="nav">
               <%
@@ -29,16 +30,6 @@
 	              		<%=allMonths[Integer.parseInt(entrySub.getKey())]%>
               		</a>
 	              </li>
-<!-- 	              <ul> -->
-<%-- 	              <% --%>
-<!-- // 	              for(int i=entrySub.getValue().size()-1; i>=0; i--){ -->
-<!-- // 	            	  ArticleDTO a = entrySub.getValue().get(i); -->
-<%--             	  %> --%>
-<%-- 	              	<li class="active"><a href="ArticleDetailsAction?date=<%= a.getDate() %>"><%=a.getTitle()%></a></li> --%>
-<%--               	  <% --%>
-<!-- //               	  } -->
-<%--               	  %> --%>
-<!--               	  </ul> -->
               <%
               }
               %>
@@ -48,5 +39,6 @@
             %>
             </ul>
           </div><!--/.well -->
+          </div>
         </div><!--/span-->
       </div><!--/row-->

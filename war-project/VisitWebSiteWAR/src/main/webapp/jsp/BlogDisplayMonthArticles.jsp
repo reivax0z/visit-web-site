@@ -65,11 +65,13 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           %>
           <div class="row">
             <div class="col-lg-12">
-	          <div class="jumbotron">
+             <div class="shadow">
+	          <div class="jumbotron shadow">
 	            <h1><%=article.getTitle() %></h1>
 	            <h2><%=article.getDate() %></h2>
 	            <p><%=article.getIntro() %></p>
 	          </div>
+	          <div class="padding20">
 	          <%
 	          for(ArticlePartDTO part : article.getArticleParts()){
 	          %>
@@ -88,6 +90,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	          	<p><%=article.getConclusion() %></p>
 	          	</div>
 	          </div>
+	         </div>
+	         </div>
            </div>
           </div>
           <hr>

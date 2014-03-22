@@ -76,7 +76,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron">
+          <div class="jumbotron shadow">
             <h1>Visit with me!</h1>
             <p>As I have come to travel to already multiple countries, I intend to show here what I've
             liked / disliked about those places.</p>
@@ -88,8 +88,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           for(CountriesVisitedDTO country : countries){
           %>
             <div class="col-6 col-sm-6 col-lg-4">
+              <div class="shadow padding20">
               <h2><%=country.getName() %></h2>
               <p><%=country.getInfo() %></p>
+	          <hr>
               <%
               for(CitiesVisitedDTO city : country.getCities()){
               %>
@@ -105,20 +107,25 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	        </form>
 	        <hr>
 	        <%} %>
+	         </div>
             </div><!--/span-->
           <%
           }
           %>
           </div><!--/row-->
+          
           <div class="row">
             <div class="col-lg-12">
-              <div id="map_countries" style="height:500px;"></div>
+              <div class="shadow padding10">
+                <div id="map_countries" style="height:500px;"></div>
+              </div>
             </div>
           </div>
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="well sidebar-nav">
+              <div class="shadow">
+          <div class="sidebar-nav padding20">
             <ul class="nav">
             <%
             for(CountriesVisitedDTO country : countries){
@@ -134,6 +141,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             %>
             </ul>
           </div><!--/.well -->
+          </div>
         </div><!--/span-->
       </div><!--/row-->
 

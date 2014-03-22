@@ -88,8 +88,7 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
           <!-- TOP CONTENT -->
           
           <section id="id_top">
-          <div class="row">
-          <div class="jumbotron">
+          <div class="jumbotron shadow">
 
       <div class="row" style="text-align:center">
             <h1><%= city.getName() %></h1>
@@ -108,6 +107,7 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
         </div><!-- /.col-lg-4 -->
 
 	  </div>
+	  </div>
 	  </section>
 	  
 	  <!-- /END TOP CONTENT -->
@@ -115,15 +115,19 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
 	<section id="id_intro">
           <div class="row">
           	<div class="col-xs-6 col-sm-6">
+          	<div class="shadow padding20">
             <h2>Info</h2>
               <p><%= city.getInfo() %></p>
               <p><a class="btn btn-large btn-primary" href="#id_pictures">Check Photos of <%= city.getName() %></a></p>
             </div>
+            </div>
             
           	<div class="col-xs-6 col-sm-6">
+            <div class="shadow padding20">
             <h2>Did You Know?</h2>
               <p><%= city.getDidYouKnow() %></p>
               <p><a class="btn btn-large btn-primary" href="#id_videos">Watch Videos of <%= city.getName() %></a></p>
+          	</div>
           	</div>
           </div>
       </section>
@@ -142,7 +146,7 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
 	  for(TopFiveDTO top : city.getTopFives()){
 	  %>
 	  
-      <div class="row featurette">
+      <div class="row shadow">
       <% 
       if(currIteration%2 == 0){ 
       %>
@@ -170,8 +174,6 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
         %>
       </div>
 
-      <hr class="featurette-divider">
-      
       <%
       currIteration++;
       } // close for
@@ -198,7 +200,7 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
 			if(f.isFile()){
  		%>
 		<div class="col-sm-12 col-md-6">
-		  <div class="thumbnail">
+		  <div class="thumbnail shadow">
             <img class="img-rounded" src="<%= webLink + f.getName() %>" alt="<%= f.getName() %>">
             <div class="caption">
 		 	  <h3><%= CommonsUtils.getNameWithoutExtension(f.getName()) %></h3>
@@ -214,8 +216,6 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
 		%>
 		</div>
 
-      <hr class="featurette-divider">
-      
 	  </section>
 	  
       <!-- /END PICTURE GALLERY -->
@@ -229,7 +229,7 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
 		<% 
 		for(VideoDTO v : city.getVideos()){
 		%>
-	  <div class="row">
+	  <div class="row shadow padding10">
 	  <div class="col-md-9 col-sm-12">
 	    <div class="media">
 		   <iframe class="pull-left" width="560" height="315" src="<%= v.getLink() %>" frameborder="0" allowfullscreen></iframe>
@@ -266,7 +266,8 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
 	  </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="well sidebar-nav">
+              <div class="shadow">
+          <div class="sidebar-nav padding20">
           	<h3><%=city.getName()%> overview</h3>
             <div id="map_position" style="height: 200px;"></div>
             <hr>
@@ -287,6 +288,7 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
+        </div>
       </div><!--/row-->
 
       <!-- FOOTER -->

@@ -60,14 +60,16 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
 
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
+         <div class="shadow">
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron">
+          <div class="jumbotron shadow">
             <h1><%=article.getTitle() %></h1>
             <h2><%=article.getDate() %></h2>
             <p><%=article.getIntro() %></p>
           </div>
+          <div class="padding20">
           <%
           for(ArticlePartDTO part : article.getArticleParts()){
           %>
@@ -86,6 +88,7 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
           	<p><%=article.getConclusion() %></p>
           	</div>
           </div>
+          </div>
           
         <%if(isLogged){ %>
         <hr>
@@ -100,6 +103,7 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
 	        <%} %>
         <%} %>
           
+         </div>
         </div><!--/span-->
         
        <jsp:include page="includes/right_block_blog.jsp"></jsp:include>
