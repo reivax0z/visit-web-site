@@ -99,7 +99,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  
 	  <section id="id_intro">
 	      <div class="row">
-	        <div class="col-xs-6 col-sm-6">
+	        <div class="col-md-6 col-sm-12">
 	        <div class="shadow padding20" style="text-align:center">
 	          <h2>By the numbers</h2>
 			  <p>Established in <%= city.getEstablished() %></p>
@@ -108,7 +108,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	        </div><!-- /.col-lg-4 -->
 	        </div>
 	
-	        <div class="col-xs-6 col-sm-6">
+	        <div class="col-md-6 col-sm-12">
 	        <div class="shadow padding20" style="text-align:center">
 	           <h2>By the facts</h2>
 			  <p>Currency: <%= city.getCurrency() %></p>
@@ -123,7 +123,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 		  </div>
 	          
           <div class="row">
-          	<div class="col-xs-6 col-sm-6">
+          	<div class="col-md-6 col-sm-12">
           	<div class="shadow padding20">
             <h2>Info</h2>
               <p><%= city.getInfo() %></p>
@@ -131,7 +131,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
             </div>
             </div>
             
-          	<div class="col-xs-6 col-sm-6">
+          	<div class="col-md-6 col-sm-12">
             <div class="shadow padding20">
             <h2>Did You Know?</h2>
               <p><%= city.getDidYouKnow() %></p>
