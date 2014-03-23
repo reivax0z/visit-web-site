@@ -64,7 +64,7 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron shadow">
+          <div class="jumbotron shadow background-grey">
             <h1><%=article.getTitle() %></h1>
             <h2><%=article.getDate() %></h2>
             <p><%=article.getIntro() %></p>

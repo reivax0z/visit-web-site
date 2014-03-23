@@ -23,6 +23,7 @@ String folder = Commons.FTP_PATH_TO_IMG + Commons.SEPARATOR + cityCountry.getNam
 String webLink = Commons.SITE_ADDRESS + folder;
 String folderTop = folder + Commons.PATH_TOP;
 String webLinkTop = Commons.SITE_ADDRESS + folderTop;
+String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -88,7 +89,7 @@ String webLinkTop = Commons.SITE_ADDRESS + folderTop;
           <!-- TOP CONTENT -->
           
           <section id="id_top">
-          <div class="jumbotron shadow">
+          <div class="jumbotron shadow background-grey" style="background: url('<%=backgroundImg %>') no-repeat center">
 
       <div class="row" style="text-align:center">
             <h1><%= city.getName() %></h1>

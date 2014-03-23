@@ -66,7 +66,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <div class="row">
             <div class="col-lg-12">
              <div class="shadow">
-	          <div class="jumbotron shadow">
+	          <div class="jumbotron shadow background-grey">
 	            <h1><%=article.getTitle() %></h1>
 	            <h2><%=article.getDate() %></h2>
 	            <p><%=article.getIntro() %></p>

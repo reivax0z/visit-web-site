@@ -64,7 +64,7 @@ h2,h3{page-break-after:avoid}
 }
 *,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 html{font-size:62.5%;-webkit-tap-highlight-color:rgba(0,0,0,0)}
-body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.428571429;color:#333;background-color:#fff}
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.428571429;color:#333;background-color: #E0D6D6;}
 input,button,select,textarea{font-family:inherit;font-size:inherit;line-height:inherit}
 button,input,select[multiple],textarea{background-image:none}
 a{color:#428bca;text-decoration:none}
@@ -1365,6 +1365,10 @@ th.hidden-print,td.hidden-print{display:none!important}
 .shadow{
 	box-shadow: 0px 1px 5px 0px #888888;
 	margin-bottom:5px;
+	background-color: #fff;
+}
+.background-grey{
+	background-color:#eee
 }
 .padding10{
 	padding:10px;

@@ -76,7 +76,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron shadow">
+          <div class="jumbotron shadow background-grey">
             <h1>Visit with me!</h1>
             <p>As I have come to travel to already multiple countries, I intend to show here what I've
             liked / disliked about those places.</p>

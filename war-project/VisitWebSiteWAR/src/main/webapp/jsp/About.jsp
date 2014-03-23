@@ -64,7 +64,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron shadow">
+          <div class="jumbotron shadow background-grey">
             <h1>Why this website?</h1>
             <p>To communicate my passion for travels.</p>
             <p>At the same time, I use this website to keep up-to-date with software 
@@ -134,7 +134,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               <div class="shadow">
           <div class="sidebar-nav padding10" style="text-align:center;">
           	<h3>Xavier CARON</h3>        	
-  			<img alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" class="img-responsive img-circle">
+  			<img alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
  			<hr> 
             <h3>Where am I now?</h3>
             <div id="map_position" style="height: 200px;"></div>
