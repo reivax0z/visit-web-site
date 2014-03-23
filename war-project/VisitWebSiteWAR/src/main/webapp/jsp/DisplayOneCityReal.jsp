@@ -87,32 +87,41 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
           
           <!-- TOP CONTENT -->
           
-          <section id="id_top">
-          <div class="jumbotron shadow background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;">
-
-      <div class="row" style="text-align:center">
-            <h1><%= city.getName() %></h1>
-        <div class="col-xs-6 col-sm-6">
-          <h2>By the numbers</h2>
-		  <p>Established in <%= city.getEstablished() %></p>
-		  <p>Area of <%= city.getArea() %> km&sup2;</p>
-		  <p>Population of <%= city.getPopulation() %></p>
-        </div><!-- /.col-lg-4 -->
-
-        <div class="col-xs-6 col-sm-6">
-          <h2>By the facts</h2>
-		  <p>Currency: <%= city.getCurrency() %></p>
-		  <p>Timezone: <%= city.getTimezone() %></p>
-		  <p>Languages: <%= city.getLanguages() %></p>
-        </div><!-- /.col-lg-4 -->
-
-	  </div>
-	  </div>
+      <section id="id_top">
+        <div class="jumbotron shadow background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;">
+	  		<div class="row" style="text-align:center">
+            	<h1 class="padding-bottom-big"><%=city.getName() %></h1>
+	  		</div>
+	  	</div>
 	  </section>
 	  
 	  <!-- /END TOP CONTENT -->
 	  
-	<section id="id_intro">
+	  <section id="id_intro">
+	      <div class="row">
+	        <div class="col-xs-6 col-sm-6">
+	        <div class="shadow padding20" style="text-align:center">
+	          <h2>By the numbers</h2>
+			  <p>Established in <%= city.getEstablished() %></p>
+			  <p>Area of <%= city.getArea() %> km&sup2;</p>
+			  <p>Population of <%= city.getPopulation() %></p>
+	        </div><!-- /.col-lg-4 -->
+	        </div>
+	
+	        <div class="col-xs-6 col-sm-6">
+	        <div class="shadow padding20" style="text-align:center">
+	           <h2>By the facts</h2>
+			  <p>Currency: <%= city.getCurrency() %></p>
+			  <p>Timezone: <%= city.getTimezone() %></p>
+			  <p>Languages: <%= city.getLanguages() %></p>
+	        </div><!-- /.col-lg-4 -->
+	      </div>
+	      </div>
+	      
+	      <div class="page-header">
+	      	<h1>About <%=city.getName() %></h1>
+		  </div>
+	          
           <div class="row">
           	<div class="col-xs-6 col-sm-6">
           	<div class="shadow padding20">
