@@ -35,7 +35,6 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 <title>Visit with Me - <%=city.getName() %></title>
 
 
-<!--     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet"> -->
     <link href="/jsp/bootstrap-3.0.0/examples/carousel/carousel.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
@@ -89,7 +88,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
           <!-- TOP CONTENT -->
           
           <section id="id_top">
-          <div class="jumbotron shadow background-grey" style="background: url('<%=backgroundImg %>') no-repeat center">
+          <div class="jumbotron shadow background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center">
 
       <div class="row" style="text-align:center">
             <h1><%= city.getName() %></h1>
@@ -149,7 +148,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  for(TopFiveDTO top : city.getTopFives()){
 	  %>
 	  
-      <div class="row shadow">
+      <div class="row shadow padding20">
       <% 
       if(currIteration%2 == 0){ 
       %>
