@@ -62,14 +62,14 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron">
+          <div class="jumbotron shadow background-grey">
             <p>Easily add a new entry by completing the following fields.</p>
           </div>
           <div class="row">
           	
           <div class="col-lg-12">
 
-			<form role="form" action="AddCountryAction" method="post">
+			<form role="form" action="AddCountryAction" method="post" class="shadow padding20">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Country Details</label>
 			    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Country name" value="<%=editCountry!=null?editCountry.getName():""%>">
@@ -79,6 +79,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			  </div>
 			  <hr>
 			  <button type="submit" class="btn btn-primary" style="float: right;">Submit New Country</button>
+			  <br>
 			</form>
 			
 			</div>
@@ -87,7 +88,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			
 			
 			<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-	          <div class="well sidebar-nav">
+              <div class="shadow">
+          		<div class="sidebar-nav padding20">
 				<p>Countries already recorded:</p>
 	            <ul class="nav">
 	            <%
@@ -98,7 +100,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	            }
 	            %>
 	            </ul>
-	          </div><!--/.well -->
+         	 	</div><!--/.well -->
+	          </div>
        	 	</div><!--/span-->
 			
 			</div>

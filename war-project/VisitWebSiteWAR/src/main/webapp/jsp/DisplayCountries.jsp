@@ -105,7 +105,6 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	        	<input type="text" name="id" value="<%=country.getId()%>" style="display:none">
 	        	<button type="submit" class="btn btn-primary">Edit</button>
 	        </form>
-	        <hr>
 	        <%} %>
 	         </div>
             </div><!--/span-->

@@ -72,14 +72,14 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron">
+          <div class="jumbotron shadow background-grey">
             <p>Easily add a new entry by completing the following fields.</p>
           </div>
           <div class="row">
           	
           <div class="col-lg-12">
 
-			<form role="form" action="AddCityPreviewAction" method="post">
+			<form role="form" action="AddCityPreviewAction" method="post" class="shadow padding20">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">City Name</label>
 			    <input type="text" name="city_name" class="form-control" id="exampleInputEmail1" placeholder="City name" value="<%=city!=null?city.getName():"" %>">
@@ -129,6 +129,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	  	 	  <button type="button" class="btn btn-default" id="buttonAddInit" onclick="addVideo()">Add Video Link (<%=(city!=null&&city.getVideos()!=null)?""+(2-city.getVideos().size()):"2" %> remaining)</button>
 			  <hr>
 			  <button type="submit" class="btn btn-primary" style="float: right;">Preview City</button>
+			  <br>
 			</form>
 			
 			</div>

@@ -77,14 +77,14 @@ ArticleDTO newArticle = (ArticleDTO)request.getSession().getAttribute("newArticl
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron">
+          <div class="jumbotron shadow background-grey">
             <p>Easily add a new entry by completing the following fields.</p>
           </div>
           <div class="row">
           	
           <div class="col-lg-12">
 
-			<form role="form" action="AddArticlePreviewAction" method="post">
+			<form role="form" action="AddArticlePreviewAction" method="post" class="shadow padding20">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Article Details</label>
 			    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Title" value="<%=newArticle!=null?newArticle.getTitle():""%>">
@@ -109,6 +109,7 @@ ArticleDTO newArticle = (ArticleDTO)request.getSession().getAttribute("newArticl
 			  
 			  <hr>
 			  <button type="submit" class="btn btn-primary" style="float: right;">Preview Article</button>
+			  <br>
 			</form>
 			</div>
 			

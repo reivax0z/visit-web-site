@@ -35,7 +35,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 <title>Visit with Me - <%=city.getName() %></title>
 
 
-    <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
+<!--     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet"> -->
     <link href="/jsp/bootstrap-3.0.0/examples/carousel/carousel.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
@@ -142,6 +142,8 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
       	<h1>Top 5</h1>
 	  </div>
 	  
+	  <div class="col-md-12">
+	  
 	  <% 
 	  int currIteration = 1;
 	  for(TopFiveDTO top : city.getTopFives()){
@@ -179,6 +181,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
       currIteration++;
       } // close for
       %>
+      </div>
 
 	</section>
 	
@@ -227,6 +230,9 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  <div class="page-header">
 		<h1>Video Gallery</h1>
 		</div>
+		
+		<div class="col-md-12">
+	  
 		<% 
 		for(VideoDTO v : city.getVideos()){
 		%>
@@ -243,10 +249,10 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 		 </div>
 	  </div>
 	  </div>
-	  <hr />
 	  <%
 	  }
 	  %>
+	  </div>
 	  </section>
 	  
 	  <!-- /END VIDEO GALLERY -->

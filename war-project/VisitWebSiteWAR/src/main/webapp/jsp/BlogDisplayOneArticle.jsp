@@ -90,6 +90,8 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
           </div>
           </div>
           
+         </div>
+         
         <%if(isLogged){ %>
         <hr>
         <form action="AddNewArticleFormAction" method="post">
@@ -103,7 +105,6 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
 	        <%} %>
         <%} %>
           
-         </div>
         </div><!--/span-->
         
        <jsp:include page="includes/right_block_blog.jsp"></jsp:include>
