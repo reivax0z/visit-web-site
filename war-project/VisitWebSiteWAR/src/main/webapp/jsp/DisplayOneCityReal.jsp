@@ -88,7 +88,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
           <!-- TOP CONTENT -->
           
           <section id="id_top">
-          <div class="jumbotron shadow background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center">
+          <div class="jumbotron shadow background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;">
 
       <div class="row" style="text-align:center">
             <h1><%= city.getName() %></h1>
