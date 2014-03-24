@@ -151,7 +151,7 @@ public class Converter {
 	 * DTO --> Entities
 	 */
 	
-	public  Country getCountryFromDTO(CountriesVisitedDTO dto){
+	public static Country getCountryFromDTO(CountriesVisitedDTO dto){
 		Country toReturn = new Country();
 		
 		toReturn.setId(dto.getId());

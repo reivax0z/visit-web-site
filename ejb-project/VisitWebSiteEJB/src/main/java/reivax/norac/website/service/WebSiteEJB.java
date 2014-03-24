@@ -73,9 +73,7 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
 
 	@Override
 	public void addCountryToDb(CountriesVisitedDTO countryDTO){
-		Country entity = new Country();
-		entity.setInfo(countryDTO.getInfo());
-		entity.setName(countryDTO.getName());
+		Country entity = Converter.getCountryFromDTO(countryDTO);
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
