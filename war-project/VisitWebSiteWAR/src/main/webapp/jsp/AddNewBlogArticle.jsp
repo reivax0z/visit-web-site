@@ -94,6 +94,7 @@ ArticleDTO newArticle = (ArticleDTO)request.getSession().getAttribute("newArticl
 			  ArticlePartDTO part = (newArticle!=null && newArticle.getArticleParts()!=null && newArticle.getArticleParts().size()>i)?newArticle.getArticleParts().get(i):null;
 			  %>
 			  <div class="form-group" id="content<%=i %>" <%if(part==null){ %>style="display:none"<%} %>>
+        		<input type="text" name="part_id_<%=i %>" value="<%=part!=null?part.getId():0%>" style="display:none">
 			    <label for="content_<%=i%>">Content nb <%=i+1 %></label>
 			    <input type="text" name="title_part_<%=i%>" class="form-control" id="title_part_<%=i%>" placeholder="Title" value="<%=part!=null?part.getTitle():""%>">
  				<textarea name="content_part_<%=i%>" class="form-control" rows="5" placeholder="Content" id="content_part_<%=i%>"><%=part!=null?part.getBody():""%></textarea>

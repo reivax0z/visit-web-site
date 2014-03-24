@@ -97,6 +97,7 @@ public class Converter {
 		toReturn.setName(entity.getName());
 		toReturn.setDescription(entity.getDescription());
 		toReturn.setInbrief(entity.getInbrief());
+		toReturn.setId(entity.getId());
 		return toReturn;
 	}
 	
@@ -105,6 +106,7 @@ public class Converter {
 		toReturn.setName(entity.getName());
 		toReturn.setDescription(entity.getDescription());
 		toReturn.setLink(entity.getLink());
+		toReturn.setId(entity.getId());
 		return toReturn;
 	}
 	
@@ -209,6 +211,7 @@ public class Converter {
 			toReturn.setDescription(dto.getDescription());
 			toReturn.setLink(dto.getLink());
 			toReturn.setName(dto.getName());
+			toReturn.setId(dto.getId());
 			videos.add(toReturn);
 		}
 		return videos;
@@ -223,6 +226,7 @@ public class Converter {
 			toReturn.setDescription(dto.getDescription());
 			toReturn.setName(dto.getName());
 			toReturn.setInbrief(dto.getInbrief());
+			toReturn.setId(dto.getId());
 			topfives.add(toReturn);
 		}
 		return topfives;
@@ -234,6 +238,7 @@ public class Converter {
     	entity.setIntro(articleDTO.getIntro());
     	entity.setConclusion(articleDTO.getConclusion());
     	entity.setTitle(articleDTO.getTitle());
+    	entity.setId(articleDTO.getId());
     	
     	ArrayList<ArticlePart> parts = new ArrayList<ArticlePart>();
     	for(ArticlePartDTO p : articleDTO.getArticleParts()){
@@ -248,6 +253,7 @@ public class Converter {
 	
 	public static ArticlePart getArticlePartFromDTO(ArticlePartDTO dto){
 		ArticlePart part = new ArticlePart();
+		part.setId(dto.getId());
 		part.setBody(dto.getBody());
 		part.setTitle(dto.getTitle());
 		return part;

@@ -71,11 +71,13 @@ public class AddCityPreviewServlet extends HttpServlet {
 			String videoName = request.getParameter("video_name_"+i);
 			String videoDesc = request.getParameter("video_desc_"+i);
 			String videoUrl = request.getParameter("video_url_"+i);
+			String id = request.getParameter("video_id_"+i);
 			if(videoName != null && !videoName.isEmpty()){
 				VideoDTO dto = new VideoDTO();
 				dto.setName(videoName);
 				dto.setLink(videoUrl);
 				dto.setDescription(videoDesc);
+				dto.setId(Integer.parseInt(id));
 				videos.add(dto);
 			}
 		}
@@ -85,11 +87,13 @@ public class AddCityPreviewServlet extends HttpServlet {
 			String topName = request.getParameter("top_name_"+i);
 			String inBrief = request.getParameter("top_brief_"+i);
 			String topInfo = request.getParameter("top_info_"+i);
+			String id = request.getParameter("top_id_"+i);
 			if(topName != null && !topName.isEmpty()){
 				TopFiveDTO dto = new TopFiveDTO();
 				dto.setName(topName);
 				dto.setInbrief(inBrief);
 				dto.setDescription(topInfo);
+				dto.setId(Integer.parseInt(id));
 				topFive.add(dto);
 			}
 		}

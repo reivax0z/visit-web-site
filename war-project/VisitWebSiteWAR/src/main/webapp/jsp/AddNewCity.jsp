@@ -110,6 +110,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			  %>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">Top Five nb <%=i+1 %></label>
+			    <input type="text" name="top_id_<%=i %>" value="<%=top!=null?top.getId():0%>" style="display:none">
 			    <input name="top_name_<%=i %>" type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" value="<%=top!=null?top.getName():"" %>">
 			  	<input name="top_brief_<%=i %>" type="text" class="form-control" id="exampleInputPassword1" placeholder="In brief" value="<%=top!=null?top.getInbrief():"" %>">
 			  	<textarea name="top_info_<%=i %>" class="form-control" rows="5" placeholder="Description"><%=top!=null?top.getDescription():"" %></textarea>
@@ -120,6 +121,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			  %>
 			  <div class="form-group" <%if(video==null){ %>style="display:none"<%} %> id="video<%=i %>">
 			    <label for="exampleInputPassword1">Video nb <%=i+1 %></label>
+			    <input type="text" name="video_id_<%=i %>" value="<%=video!=null?video.getId():0%>" style="display:none">
 			    <input type="text" name="video_name_<%=i %>" class="form-control" id="video_name_<%=i %>" placeholder="Name" value="<%=video!=null?video.getName():"" %>">
 			  	<textarea name="video_desc_<%=i %>" class="form-control" rows="5" id="video_desc_<%=i %>" placeholder="Description"><%=video!=null?video.getDescription():"" %></textarea>
 			  	<input type="url" name="video_url_<%=i %>" class="form-control" id="video_url_<%=i %>" placeholder="URL" value="<%=video!=null?video.getLink():"" %>">

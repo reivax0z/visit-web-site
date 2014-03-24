@@ -57,10 +57,12 @@ public class AddArticlePreviewServlet extends HttpServlet {
 		for(int i=0; i<10; i++){
 			String titlePart = request.getParameter("title_part_"+i);
 			String contentPart = request.getParameter("content_part_"+i);
+			String id = request.getParameter("part_id_"+i);
 			if(titlePart != null && !titlePart.isEmpty()){
 				ArticlePartDTO dto = new ArticlePartDTO();
 				dto.setTitle(titlePart);
 				dto.setBody(contentPart);
+				dto.setId(Integer.parseInt(id));
 				parts.add(dto);
 			}
 		}
