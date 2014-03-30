@@ -21,6 +21,7 @@ import reivax.norac.website.dto.TopFiveDTO;
 import reivax.norac.website.dto.VideoDTO;
 import reivax.norac.website.service.WebSiteEJB;
 import reivax.norac.website.util.CommonsUtils;
+import reivax.norac.website.utilities.FlickrHelper;
 import reivax.norac.website.utilities.Utils;
 
 /**
@@ -129,6 +130,8 @@ public class AddCityPreviewServlet extends HttpServlet {
 			request.getSession().setAttribute("newCity", dto);
 			request.getSession().setAttribute("isEditMode", Boolean.TRUE);
 		}
+
+		request.setAttribute("photosURLs", FlickrHelper.getURLsFromFlickr());
 
 		// Forward the info to the appropriate JSP
 		request.setAttribute("countries", countries);
