@@ -114,7 +114,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               The deployment / hosting is on Cloudbees.com</p>
               <p>The CSS design and responsiveness is based on Bootstrap framework.
               I've also used the Google Maps API, following a workshop provided by Google 
-              in my university.</p>
+              in my university and the Flickr Rest API.</p>
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">

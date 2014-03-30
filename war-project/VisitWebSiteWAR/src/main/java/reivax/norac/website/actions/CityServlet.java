@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
+import reivax.norac.website.utilities.FlickrHelper;
 
 /**
  * Servlet implementation class CityServlet
@@ -59,6 +60,9 @@ public class CityServlet extends HttpServlet {
 
 		// Forward the info to the appropriate JSP
 		request.setAttribute("countries", countries);
+		
+
+		request.setAttribute("photosURLs", FlickrHelper.getURLsFromFlickr());
 		
 		for(CitiesVisitedDTO c : cities){
 			if(c.getName().equals(cityName)){

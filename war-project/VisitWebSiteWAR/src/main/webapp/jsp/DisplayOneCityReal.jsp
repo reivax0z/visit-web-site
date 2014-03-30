@@ -17,6 +17,7 @@ if(city == null){
 }
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (Boolean)request.getSession().getAttribute("isEditMode") : Boolean.FALSE;
+Map<String, Map<String, String>> photosUrls = (Map<String, Map<String, String>>) request.getAttribute("photosURLs");
 
 CountriesVisitedDTO cityCountry = CommonsUtils.getCountryById(city.getCountryID(), countries);
 String folder = Commons.FTP_PATH_TO_IMG + Commons.SEPARATOR + cityCountry.getName().toLowerCase() + Commons.SEPARATOR + city.getName().toLowerCase() + Commons.SEPARATOR;
@@ -195,44 +196,8 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	
 
       <!-- /END FEATURETTES -->
-	  
-	  
-	  <!-- PICTURE GALLERY -->
-	  
-	  <section id="id_pictures">
-	  <div class="page-header">
-		<h1>Picture Gallery</h1>
-	  </div>
-	  <div class="row">
-	  
-		<%
-		FTPFile[] files = CommonsUtils.getFilesFromFTPServer(folder);
-		if(files != null){
-		for(FTPFile f : files){
-			if(f.isFile()){
- 		%>
-		<div class="col-sm-12 col-md-6">
-		  <div class="thumbnail shadow">
-            <img class="img-rounded" src="<%= webLink + f.getName() %>" alt="<%= f.getName() %>">
-            <div class="caption">
-		 	  <h3><%= CommonsUtils.getNameWithoutExtension(f.getName()) %></h3>
-		    </div>
-		  </div>
-        </div>
-        <%
-		}} } else{
-			%>
-			<h3>No images yet...</h3>
-			<%
-		}
-		%>
-		</div>
-
-	  </section>
-	  
-      <!-- /END PICTURE GALLERY -->
-	  
-	  <!-- VIDEO GALLERY -->
+      
+       <!-- VIDEO GALLERY -->
 	  
 	  <section id="id_videos">
 	  <div class="page-header">
@@ -264,6 +229,67 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  </section>
 	  
 	  <!-- /END VIDEO GALLERY -->
+	  
+	  
+	  <!-- PICTURE GALLERY -->
+	  
+	  <section id="id_pictures">
+	  <div class="page-header">
+		<h1>Picture Gallery</h1>
+	  </div>
+	  <div class="row">
+	  
+		<%
+		Map<String, String> photosURLsAndCaptions = photosUrls.get(city.getName().toLowerCase());
+		if(photosURLsAndCaptions != null){
+			for(Map.Entry<String, String> entry: photosURLsAndCaptions.entrySet()){			
+ 		%>
+		<div class="col-sm-12 col-md-6">
+		  <div class="thumbnail shadow">
+            <img class="img-rounded" src="<%= entry.getKey() %>" alt="<%= entry.getValue() %>">
+            <div class="caption">
+		 	  <h3><%= entry.getValue() %></h3>
+		    </div>
+		  </div>
+        </div>
+        <%
+		}} /*}*/ else{
+			%>
+			<h3>No images yet...</h3>
+			<%
+		}
+		%>
+		</div>
+		
+		<%
+		Map<String, String> countrysidePhotosURLsAndCaptions = photosUrls.get(CommonsUtils.getCountryById(city.getCountryID(), countries).getName().toLowerCase());
+		if(countrysidePhotosURLsAndCaptions != null){
+		%>
+		
+		<div class="page-header">
+		<h1>Countryside Gallery</h1>
+	  </div>
+	  <div class="row">
+	  
+		<%
+		for(Map.Entry<String, String> entry: countrysidePhotosURLsAndCaptions.entrySet()){			
+ 		%>
+		<div class="col-sm-12 col-md-6">
+		  <div class="thumbnail shadow">
+            <img class="img-rounded" src="<%= entry.getKey() %>" alt="<%= entry.getValue() %>">
+            <div class="caption">
+		 	  <h3><%= entry.getValue() %></h3>
+		    </div>
+		  </div>
+        </div>
+        <%}	%>
+		</div>
+		<%} %>
+
+	  </section>
+	  
+      <!-- /END PICTURE GALLERY -->
+	  
 	  
 	  <%if(isLogged){ %>
         <hr>
