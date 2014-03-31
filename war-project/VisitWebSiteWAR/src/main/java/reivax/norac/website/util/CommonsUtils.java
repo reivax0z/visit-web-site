@@ -87,7 +87,7 @@ public class CommonsUtils {
 	}
 	
 	public static String getMonthAndYear(String month, String year){
-		return new DateFormatSymbols().getMonths()[Integer.parseInt(month)] + year;
+		return new DateFormatSymbols().getMonths()[Integer.parseInt(month)] + " "+ year;
 	}
 	
 	public static ArticleDTO getArticleById(Integer i, List<ArticleDTO> articles){

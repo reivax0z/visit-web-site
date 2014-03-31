@@ -31,7 +31,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<meta name="title" content="Visit with Me - "<%=city.getName() %>>
+<meta name="title" content="Visit with Me - <%=city.getName() %>">
 <meta name="description" content="<%=city.getInfo()%>">
 <meta name="keywords" content="Xavier CARON, travel, blog">
 <title>Visit with Me - <%=city.getName() %></title>
@@ -171,13 +171,13 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 		  <p class="lead"><%= top.getDescription() %></p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="<%=top.getName()%>">
         </div>
       <%
       }else{ 
       %>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="<%=top.getName()%>">
         </div>
         <div class="col-md-7">
           <h2 class="featurette-heading">Must-Do n&deg;<%=currIteration %>: <span class="text-muted"><%= top.getName() %></span></h2>

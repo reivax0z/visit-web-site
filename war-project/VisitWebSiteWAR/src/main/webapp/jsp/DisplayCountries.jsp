@@ -129,6 +129,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
               <div class="shadow">
           <div class="sidebar-nav padding20">
+           <h3>Travel Trips</h3>
             <ul class="nav">
             <%
             for(CountriesVisitedDTO country : countries){

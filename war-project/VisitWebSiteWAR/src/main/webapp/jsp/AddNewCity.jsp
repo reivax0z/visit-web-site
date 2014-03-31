@@ -91,7 +91,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 		  		<input type="text" name="city_long" class="form-control" id="exampleInputEmail1" placeholder="Longitude" value="<%=city!=null?city.getLongitude():"" %>">
 		  		<select class="form-control" name="country">
 		  			<%for(CountriesVisitedDTO country : countries){ %>
-					<option <% (city!=null && CommonsUtils.getCountryById(city.getCountryID(), countries).getName().equals(country.getName()))?"selected":"" %> value="<%=country.getName()%>"><%=country.getName() %></option>
+					<option <%= (city!=null && CommonsUtils.getCountryById(city.getCountryID(), countries).getName().equals(country.getName()))?"selected":"" %> value="<%=country.getName()%>"><%=country.getName() %></option>
 					<%} %>
 				</select>
 			  </div>
