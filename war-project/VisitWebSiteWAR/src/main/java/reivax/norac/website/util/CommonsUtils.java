@@ -1,6 +1,7 @@
 package reivax.norac.website.util;
 
 import java.io.IOException;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -83,6 +84,10 @@ public class CommonsUtils {
 			map.get(year).get(month).add(a);
 		}
 		return map;
+	}
+	
+	public static String getMonthAndYear(String month, String year){
+		return new DateFormatSymbols().getMonths()[Integer.parseInt(month)] + year;
 	}
 	
 	public static ArticleDTO getArticleById(Integer i, List<ArticleDTO> articles){

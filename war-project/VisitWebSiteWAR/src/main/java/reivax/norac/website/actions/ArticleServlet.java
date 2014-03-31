@@ -78,6 +78,7 @@ public class ArticleServlet extends HttpServlet {
 			}
 		} else{
 			request.setAttribute("articles", map.get(blogYear).get(blogMonth));
+			request.setAttribute("month", CommonsUtils.getMonthAndYear(blogMonth, blogYear));
 			request.getRequestDispatcher("jsp/BlogDisplayMonthArticles.jsp").forward(request, response);
 		}
 	}

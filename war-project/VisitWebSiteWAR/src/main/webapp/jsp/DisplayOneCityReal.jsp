@@ -31,7 +31,8 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<meta name="description" content="Visit with Me - Travel tips and a traveller blog">
+<meta name="title" content="Visit with Me - "<%=city.getName() %>>
+<meta name="description" content="<%=city.getInfo()%>">
 <meta name="keywords" content="Xavier CARON, travel, blog">
 <title>Visit with Me - <%=city.getName() %></title>
 
@@ -41,6 +42,8 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
     
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    
+    <link rel="shortcut icon" href="<%=Commons.IMG_ICON_ADDRESS%>">
 	
 	<script type="text/javascript">
 		// Global variable for Google Maps API

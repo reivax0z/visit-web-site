@@ -1,3 +1,4 @@
+<%@page import="reivax.norac.website.util.CommonsUtils"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -5,6 +6,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
 <%@ page import="reivax.norac.website.dto.*" %>
+<%@ page import="reivax.norac.website.util.*" %>
 
 <%
 // RETRIEVE THE MAIN OBJECT
@@ -31,6 +33,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 
 
     <script src="/jsp/bootstrap-3.0.0/js/cityhelper.js"></script>
+    
+    <link rel="shortcut icon" href="<%=Commons.IMG_ICON_ADDRESS%>">
 
 	<title>Add a new City</title>
 </head>
@@ -87,7 +91,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 		  		<input type="text" name="city_long" class="form-control" id="exampleInputEmail1" placeholder="Longitude" value="<%=city!=null?city.getLongitude():"" %>">
 		  		<select class="form-control" name="country">
 		  			<%for(CountriesVisitedDTO country : countries){ %>
-					<option value="<%=country.getName()%>"><%=country.getName() %></option>
+					<option <% (city!=null && CommonsUtils.getCountryById(city.getCountryID(), countries).getName().equals(country.getName()))?"selected":"" %> value="<%=country.getName()%>"><%=country.getName() %></option>
 					<%} %>
 				</select>
 			  </div>

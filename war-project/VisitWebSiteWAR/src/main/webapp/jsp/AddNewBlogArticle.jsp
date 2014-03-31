@@ -5,6 +5,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
 <%@ page import="reivax.norac.website.dto.*" %>
+<%@ page import="reivax.norac.website.util.*" %>
 
 <%
 // RETRIEVE THE MAIN OBJECT
@@ -36,6 +37,8 @@ ArticleDTO newArticle = (ArticleDTO)request.getSession().getAttribute("newArticl
 	</script>
 
     <script src="/jsp/bootstrap-3.0.0/js/bloghelper.js"></script>
+    
+    <link rel="shortcut icon" href="<%=Commons.IMG_ICON_ADDRESS%>">
 
 	<title>Add a new Blog Article</title>
 </head>

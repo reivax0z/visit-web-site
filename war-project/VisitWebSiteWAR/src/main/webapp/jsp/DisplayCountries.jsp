@@ -4,6 +4,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
 <%@ page import="reivax.norac.website.dto.*" %>
+<%@ page import="reivax.norac.website.util.*" %>
 
 <%
 // RETRIEVE THE MAIN OBJECT
@@ -15,6 +16,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="title" content="Visit with Me - Travels">
 <meta name="description" content="Visit with Me - Travel tips and a traveller blog">
 <meta name="keywords" content="Xavier CARON, travel, blog">
 <title>Visit with Me - Travels</title>
@@ -22,6 +24,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="<%=Commons.IMG_ICON_ADDRESS%>">
     
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 

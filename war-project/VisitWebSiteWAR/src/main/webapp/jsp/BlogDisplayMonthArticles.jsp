@@ -4,10 +4,12 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
 <%@ page import="reivax.norac.website.dto.*" %>
+<%@ page import="reivax.norac.website.util.*" %>
 
 <%
 // RETRIEVE THE MAIN OBJECT
 List<ArticleDTO> articles = (List<ArticleDTO>) request.getAttribute("articles");
+String month = (String)request.getAttribute("month");
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 %>
 
@@ -15,13 +17,16 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<meta name="description" content="Visit with Me - Travel tips and a traveller blog">
+<meta name="title" content="Travel Blog - <%=month%> - <%=articles.get(0).getTitle()%>">
+<meta name="description" content="<%=articles.get(0).getIntro()%>">
 <meta name="keywords" content="Xavier CARON, travel, blog">
 <title>Visit with Me - Blog</title>
 
 
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="<%=Commons.IMG_ICON_ADDRESS%>">
 
 </head>
 <body>
