@@ -38,8 +38,8 @@ public class SigninServlet extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		
-		if(login != null && login.equals("reivax0z")
-			&& password != null && password.equals("0ztraliA!")){
+		if(login != null && login.equals("login_master")
+			&& password != null && password.equals("Toto14")){
 				request.getSession().setAttribute("isLogged", Boolean.TRUE);
 		}
 		RequestDispatcher disp = request.getRequestDispatcher("Home");
