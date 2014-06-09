@@ -29,7 +29,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 		// Global variable for Google Maps API
 		var position = new google.maps.LatLng(-37.820698, 144.957393);
 	</script>
-
+	
+    <!-- Gravatar API -->
+    <script src="/jsp/bootstrap-3.0.0/js/gravatarhelper.js"></script>
+	
 </head>
 <body onload="initializeMapPosition(position, 3)">
 	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -76,14 +79,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">
               <div class="shadow padding20">
               <h2>About me</h2>
-              <p>Almost 3 years of experience as a software engineering consultant, 
-              implementing and maintaining solutions for banking and airline industries.</p>
-              <p> 
-              Challenging in terms of scalability, quick delivery and worldwide use, 
-              those experiences allowed me to gain more confidence on the project delivery 
-              cycle and its management.</p>
+              <p id="about_me_summary"></p>
               <p>You can find my detailed online resume here:
-              <a href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">My Resume</a></p>
+              <a id="about_me_website" href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">My Resume</a></p>
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">
@@ -136,9 +134,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               <div class="shadow">
           <div class="sidebar-nav padding10" style="text-align:center;">
           	<h3>Xavier CARON</h3>        	
-  			<img alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
+  			<img id="about_me_picture" alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
  			<hr> 
             <h3>Where am I now?</h3>
+            <p id="about_me_currentLocation"></p>
             <div id="map_position" style="height: 200px;"></div>
             </div>
           </div><!--/.well -->
@@ -146,6 +145,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
       </div><!--/row-->
 
      <jsp:include page="includes/footer.html"></jsp:include>
+     
+     <script src="http://en.gravatar.com/xavierwcaron.json?callback=getGravatar" type="text/javascript"></script>
     
   </body>
 </html>
