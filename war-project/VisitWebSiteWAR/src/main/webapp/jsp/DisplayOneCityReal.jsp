@@ -65,9 +65,9 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-                <li><a href="Home">Home</a></li>
-            	<li><a href="Blog">Travel Blog</a></li>
-                <li><a href="AboutMe">About Me</a></li>
+            <li><a href="Home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li><a href="Blog"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
+            <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
             	<li class="active"><a href="#"><%=city.getName() %></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
