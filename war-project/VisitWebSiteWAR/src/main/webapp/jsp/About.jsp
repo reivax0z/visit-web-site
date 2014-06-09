@@ -81,7 +81,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               <h2>About me</h2>
               <p id="about_me_summary"></p>
               <p>You can find my detailed online resume here:
-              <a id="about_me_website" href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">My Resume</a></p>
+              <a href="/Resume">My Resume</a></p>
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">
@@ -95,8 +95,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               <li>Guitar</li>
               <li>Software Engineering</li>
               <li>Big Data</li>
-              <li>Technology</li>
-              <li>Management</li>
+              <li>Knowledge Management</li>
               </ul>
             </div>
             </div>
@@ -111,10 +110,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               </p>
               <p>The website also uses Maven for compiling and dependencies, the 
               integration is done using Jenkins and the versioning is done via Git.
-              The deployment / hosting is on Cloudbees.com</p>
-              <p>The CSS design and responsiveness is based on Bootstrap framework.
+              The deployment / hosting is on <a href="http://www.cloudbees.com/">Cloudbees</a>.</p>
+              <p>The CSS design and responsiveness is based on <a href="http://getbootstrap.com/">Bootstrap</a> framework.
               I've also used the Google Maps API, following a workshop provided by Google 
-              in my university and the Flickr Rest API.</p>
+              in my university as well as the Flickr Rest API and Gravatar API.</p>
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">
