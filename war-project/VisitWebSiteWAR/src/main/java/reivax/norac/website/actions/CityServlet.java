@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.caches.CityCache;
+import reivax.norac.website.caches.CountryCache;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
@@ -21,9 +23,6 @@ import reivax.norac.website.utilities.FlickrHelper;
 @WebServlet(name="/CityDetails", urlPatterns={"/CityDetailsAction"})
 public class CityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@EJB
-	WebSiteEJB cityEJB;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,10 +52,10 @@ public class CityServlet extends HttpServlet {
 		String cityName = request.getParameter("city");
 		
 		// Get back the city details from the DB
-		List<CitiesVisitedDTO> cities = cityEJB.getAllCitiesFromDb();
+		List<CitiesVisitedDTO> cities = CityCache.getInstance().getAll();
 		
 		// Get back all the countries from DB
-		List<CountriesVisitedDTO> countries = cityEJB.getAllCountriesFromDb();
+		List<CountriesVisitedDTO> countries = CountryCache.getInstance().getAll();
 
 		// Forward the info to the appropriate JSP
 		request.setAttribute("countries", countries);

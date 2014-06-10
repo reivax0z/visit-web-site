@@ -10,6 +10,7 @@
 // RETRIEVE THE MAIN OBJECT
 List<ArticleDTO> articles = (List<ArticleDTO>) request.getAttribute("blogArticles");
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
+Integer nbMaxArticleDisplay = (Integer)request.getAttribute("nbMaxArticleDisplay");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -40,15 +41,15 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="Home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li><a href="Home"><span class="glyphicon glyphicon-globe"></span> Travel Tips</a></li>
             <li class="active"><a href="#"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
             <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <%if(isLogged){ %>
-            <li><a href="AddNewCountryFormAction">Add a Country</a></li>
-            <li><a href="AddNewCityFormAction">Add a City</a></li>
-            <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
+            <li><a href="AddNewCountryFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Country</a></li>
+            <li><a href="AddNewCityFormAction"><span class="glyphicon glyphicon-plus-sign"></span> City</a></li>
+            <li><a href="AddNewArticleFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Blog Article</a></li>
             <%} %>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -69,8 +70,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           </div>
           <div class="row">
           <%
-          for(int i=articles.size()-1; i>=0; i--){
-        	  ArticleDTO article = articles.get(i);
+          for(int i=0; i<nbMaxArticleDisplay; i++){
+        	  ArticleDTO article = articles.get(articles.size()-1-i);
           %>
             <div class="col-6 col-sm-12 col-lg-4">
               <div class="shadow padding20">

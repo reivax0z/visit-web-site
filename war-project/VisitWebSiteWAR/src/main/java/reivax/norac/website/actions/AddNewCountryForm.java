@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.caches.CountryCache;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
@@ -21,9 +22,6 @@ import reivax.norac.website.util.CommonsUtils;
 @WebServlet(name="/AddNewCountryForm", urlPatterns={"/AddNewCountryFormAction"})
 public class AddNewCountryForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@EJB 
-	WebSiteEJB countriesEJB;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,7 +47,7 @@ public class AddNewCountryForm extends HttpServlet {
 	
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get back all the countries from DB
-		List<CountriesVisitedDTO> countries = countriesEJB.getAllCountriesFromDb();
+		List<CountriesVisitedDTO> countries = CountryCache.getInstance().getAll();
 		
 		String id = request.getParameter("id");
 		if(id != null && request.getSession().getAttribute("editCountry") == null){

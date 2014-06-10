@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.caches.ArticleCache;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
@@ -57,7 +58,7 @@ public class AddArticleServlet extends HttpServlet {
 		if(dto.getId() != 0){
 			articleEJB.updateArticleToDb(dto);
 		} else{
-			articleEJB.addArticleToDb(dto);
+			ArticleCache.getInstance().add(dto);
 		}
 		
 		// Clean session attributes

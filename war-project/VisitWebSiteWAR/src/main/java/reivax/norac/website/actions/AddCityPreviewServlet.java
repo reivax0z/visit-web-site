@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.caches.CountryCache;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
@@ -30,9 +31,6 @@ import reivax.norac.website.utilities.Utils;
 @WebServlet(name="/AddCityPreviewServlet", urlPatterns={"/AddCityPreviewAction"})
 public class AddCityPreviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	@EJB
-	WebSiteEJB citiesEJB;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -101,7 +99,7 @@ public class AddCityPreviewServlet extends HttpServlet {
 
 		
 		// Get back all the countries from DB
-		List<CountriesVisitedDTO> countries = citiesEJB.getAllCountriesFromDb();
+		List<CountriesVisitedDTO> countries = CountryCache.getInstance().getAll();
 		Map<String, CountriesVisitedDTO> countriesMap = CommonsUtils.getCountriesMapByName(countries);
 
 		if(city_name != null){

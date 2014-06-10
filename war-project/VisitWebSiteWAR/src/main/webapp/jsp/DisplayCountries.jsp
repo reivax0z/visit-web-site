@@ -58,15 +58,15 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> Travel Tips</a></li>
             <li><a href="Blog"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
             <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <%if(isLogged){ %>
-            <li><a href="AddNewCountryFormAction">Add a Country</a></li>
-            <li><a href="AddNewCityFormAction">Add a City</a></li>
-            <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
+            <li><a href="AddNewCountryFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Country</a></li>
+            <li><a href="AddNewCityFormAction"><span class="glyphicon glyphicon-plus-sign"></span> City</a></li>
+            <li><a href="AddNewArticleFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Blog Article</a></li>
             <%} %>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -83,8 +83,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <div class="jumbotron shadow background-grey">
             <h1>Visit with me!</h1>
             <p>As I have come to travel to already multiple countries, I intend to show here what I've
-            liked / disliked about those places.</p>
-            <p>All the pictures and documents found on this website are my own property.</p>
+            liked about those places and provide you with some tips on what to do / see.</p>
+            <p>All the pictures found on this website are my own property.</p>
             <p>I hope you'll like travelling with me!</p>
           </div>
           <div class="row">
@@ -129,7 +129,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
               <div class="shadow">
           <div class="sidebar-nav padding20">
-           <h3>Travel Trips</h3>
+           <h3>Travel Tips</h3>
             <ul class="nav">
             <%
             for(CountriesVisitedDTO country : countries){

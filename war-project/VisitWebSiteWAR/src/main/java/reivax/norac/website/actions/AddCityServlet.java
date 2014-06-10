@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.caches.CityCache;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
@@ -58,7 +59,7 @@ public class AddCityServlet extends HttpServlet {
 		if(dto.getId() != 0){
 			cityEJB.updateCityToDb(dto);
 		} else{
-			cityEJB.addCityToDb(dto);
+			CityCache.getInstance().add(dto);
 		}
 		
 		// Clean session attributes

@@ -197,6 +197,28 @@ Le temps de Melbourne est bien ce que l''on entend : très variable ! La températ
 	);
 	
 	
+	
+	
+-- USERS Table
+
+CREATE TABLE USERS (
+    ID INTEGER NOT NULL AUTO_INCREMENT,
+    LOGIN VARCHAR(50),
+    PASSWORD VARCHAR(50),
+    IS_ADMIN TINYINT(1),
+	PRIMARY KEY (ID)
+);
+CREATE UNIQUE INDEX USERS_LOGIN_IDX ON USERS(LOGIN);
+	
+	
+INSERT INTO USERS (LOGIN, PASSWORD, IS_ADMIN)
+    VALUES (
+	'xcaron',
+	'Il0ve0z!',
+	1);
+	
+	select * from USERS;
+	
 	drop table ARTICLE_PART;
 	drop table ARTICLE;
 	

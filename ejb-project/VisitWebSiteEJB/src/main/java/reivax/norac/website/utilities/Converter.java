@@ -13,6 +13,7 @@ import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.dto.TopFiveDTO;
+import reivax.norac.website.dto.UsersDTO;
 import reivax.norac.website.dto.VideoDTO;
 import reivax.norac.website.model.*;
 import reivax.norac.website.service.WebSiteEJB;
@@ -148,6 +149,23 @@ public class Converter {
 		return toReturn;
 	}
 	
+	public static List<UsersDTO> getUsersDTOFromEntities(List<User> entities){
+		List<UsersDTO> toReturn = new ArrayList<UsersDTO>();
+		for(User u : entities){
+			toReturn.add(getUserDTOFromEntity(u));
+		}
+		return toReturn;
+	}
+	
+	public static UsersDTO getUserDTOFromEntity(User entity){
+		UsersDTO toReturn = new UsersDTO();
+		toReturn.setAdmin(entity.getIsAdmin() == 1);
+		toReturn.setLogin(entity.getLogin());
+		toReturn.setPassword(entity.getPassword());
+		toReturn.setId(entity.getId());
+		return toReturn;
+	}
+	
 	
 	/*
 	 * DTO --> Entities
@@ -257,5 +275,14 @@ public class Converter {
 		part.setBody(dto.getBody());
 		part.setTitle(dto.getTitle());
 		return part;
+	}
+	
+	public static User getUserFromDTO(UsersDTO dto){
+		User user = new User();
+		user.setId(dto.getId());
+		user.setIsAdmin(dto.isAdmin()?(byte)1:(byte)0);
+		user.setLogin(dto.getLogin());
+		user.setPassword(dto.getPassword());
+		return user;
 	}
 }

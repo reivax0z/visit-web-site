@@ -3,17 +3,16 @@ package reivax.norac.website.actions;
 import java.io.IOException;
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import reivax.norac.website.dto.ArticleDTO;
+import reivax.norac.website.caches.CityCache;
+import reivax.norac.website.caches.CountryCache;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
-import reivax.norac.website.service.WebSiteEJB;
 import reivax.norac.website.util.CommonsUtils;
 
 /**
@@ -22,9 +21,6 @@ import reivax.norac.website.util.CommonsUtils;
 @WebServlet(name="/AddNewCityForm", urlPatterns={"/AddNewCityFormAction"})
 public class AddNewCityForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@EJB 
-	WebSiteEJB countriesEJB;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,14 +46,14 @@ public class AddNewCityForm extends HttpServlet {
 	
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get back all the countries from DB
-		List<CountriesVisitedDTO> countries = countriesEJB.getAllCountriesFromDb();
+		List<CountriesVisitedDTO> countries = CountryCache.getInstance().getAll();
 		
 		
 		String id = request.getParameter("id");
 		if(id != null && request.getSession().getAttribute("newCity") == null){
 			// We edit an existing article
 			Integer i = Integer.parseInt(id);
-			CitiesVisitedDTO c = CommonsUtils.getCityById(i, countriesEJB.getAllCitiesFromDb());
+			CitiesVisitedDTO c = CommonsUtils.getCityById(i, CityCache.getInstance().getAll());
 			request.getSession().setAttribute("newCity", c);
 		}
 		

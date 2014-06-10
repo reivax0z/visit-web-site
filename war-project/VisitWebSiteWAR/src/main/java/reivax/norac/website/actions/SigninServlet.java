@@ -1,6 +1,8 @@
 package reivax.norac.website.actions;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import reivax.norac.website.caches.UserCache;
+import reivax.norac.website.dto.UsersDTO;
+import reivax.norac.website.util.CommonsUtils;
 
 /**
  * Servlet implementation class SigninServlet
@@ -38,9 +44,15 @@ public class SigninServlet extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		
-		if(login != null && login.equals("login_master")
-			&& password != null && password.equals("Toto14")){
+		List<UsersDTO> users = UserCache.getInstance().getAll();
+		Map<String, UsersDTO> usersMap = CommonsUtils.getUsersMapByLogin(users);
+		
+		if(login != null && password != null
+			&& usersMap.containsKey(login)){
+			UsersDTO u = usersMap.get(login);
+			if(u.getPassword().equals(password) && u.isAdmin()){
 				request.getSession().setAttribute("isLogged", Boolean.TRUE);
+			}
 		}
 		RequestDispatcher disp = request.getRequestDispatcher("Home");
 		disp.forward(request, response);

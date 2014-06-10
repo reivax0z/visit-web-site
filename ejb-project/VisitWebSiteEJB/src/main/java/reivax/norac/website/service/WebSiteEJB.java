@@ -11,9 +11,11 @@ import org.hibernate.Session;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
+import reivax.norac.website.dto.UsersDTO;
 import reivax.norac.website.model.Article;
 import reivax.norac.website.model.City;
 import reivax.norac.website.model.Country;
+import reivax.norac.website.model.User;
 import reivax.norac.website.utilities.Converter;
 import reivax.norac.website.utilities.HibernateUtil;
 
@@ -154,5 +156,14 @@ public class WebSiteEJB implements WebSiteEJBRemote, WebSiteEJBLocal, ServicesIn
 		session.getTransaction().commit();
 
 		HibernateUtil.shutdown();
+	}
+
+	@Override
+	public List<UsersDTO> getAllUsersFromDb() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<User> users = session.getNamedQuery("User.findAll").list();
+
+		HibernateUtil.shutdown();
+		return Converter.getUsersDTOFromEntities(users);
 	}
 }

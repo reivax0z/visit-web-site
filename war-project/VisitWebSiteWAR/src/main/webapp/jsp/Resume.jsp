@@ -47,15 +47,15 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="Home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li><a href="Home"><span class="glyphicon glyphicon-globe"></span> Travel Tips</a></li>
             <li><a href="Blog"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
             <li class="active"><a href="/About"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <%if(isLogged){ %>
-            <li><a href="AddNewCountryFormAction">Add a Country</a></li>
-            <li><a href="AddNewCityFormAction">Add a City</a></li>
-            <li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
+            <li><a href="AddNewCountryFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Country</a></li>
+            <li><a href="AddNewCityFormAction"><span class="glyphicon glyphicon-plus-sign"></span> City</a></li>
+            <li><a href="AddNewArticleFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Blog Article</a></li>
             <%} %>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -70,18 +70,18 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron shadow background-grey">
-            <h1>Resume</h1>
+            <h1>Resum&eacute;</h1>
             <p id="about_me_summary"></p>
 		  </div>
 		  
 		  <div class="page-header">
-	      	<h1>Work Experiences</h1>
+	      	<h1><span class="glyphicon glyphicon-tag"></span> Work Experiences</h1>
 		  </div>
 		  
           <div class="row">
             <div class="col-6 col-sm-12 col-lg-6">
               <div class="shadow padding20">
-              <h2>Software Engineering Consultant</h2>
+              <h2>Software Engineering Consultant </h2>
               <h3>Air France <small>Oct 2013 - Feb 2014</small></h3>
               <p>Working on the B2C (Business-to-Consumer) e-commerce internet site www.airfrance.com which allows users to book / cancel / modify their flights and membership information. The web site is developed in Java JEE and uses web services to call other third-party applications, such as Amadeus.</p>
 				<ul>
@@ -127,7 +127,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           </div><!--/row-->
 
 		  <div class="page-header">
-	      	<h1>Education</h1>
+	      	<h1><span class="glyphicon glyphicon-book"></span> Education</h1>
 		  </div>
 		  
 		  <div class="row">

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.caches.ArticleCache;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
@@ -27,10 +28,6 @@ import reivax.norac.website.utilities.Utils;
 @WebServlet(name="/ArticleServlet", urlPatterns={"/ArticleDetailsAction"})
 public class ArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
-	@EJB 
-	WebSiteEJB articlesEJB;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -62,7 +59,7 @@ public class ArticleServlet extends HttpServlet {
 		String blogMonth = request.getParameter("month");
 		
 		// Get back all the articles from DB
-		List<ArticleDTO> blogArticles = articlesEJB.getAllArticlesFromDb();
+		List<ArticleDTO> blogArticles = ArticleCache.getInstance().getAll();
 		
 		Map<String, Map<String, List<ArticleDTO>>> map = CommonsUtils.getArticlesMapByYearByMonth(blogArticles);
 		request.setAttribute("blogArticlesMapByDate", map);

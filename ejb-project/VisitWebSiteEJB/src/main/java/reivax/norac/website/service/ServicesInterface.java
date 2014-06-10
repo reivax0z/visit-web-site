@@ -5,6 +5,7 @@ import java.util.List;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
+import reivax.norac.website.dto.UsersDTO;
 
 public interface ServicesInterface {
 
@@ -23,4 +24,5 @@ public interface ServicesInterface {
 	public List<CountriesVisitedDTO> getAllCountriesFromDb();
 	public List<CitiesVisitedDTO> getAllCitiesFromDb();
 	public List<ArticleDTO> getAllArticlesFromDb();
+	public List<UsersDTO> getAllUsersFromDb();
 }

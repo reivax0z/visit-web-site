@@ -15,6 +15,7 @@
 		<mapping class="reivax.norac.website.model.City"></mapping>
 		<mapping class="reivax.norac.website.model.Country"></mapping>
 		<mapping class="reivax.norac.website.model.Topfive"></mapping>
+		<mapping class="reivax.norac.website.model.User"></mapping>
 		<mapping class="reivax.norac.website.model.Video"></mapping>
 	</session-factory>
 </hibernate-configuration>

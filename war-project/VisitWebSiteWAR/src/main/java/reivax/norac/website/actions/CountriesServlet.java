@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.caches.CountryCache;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
 import reivax.norac.website.util.CommonsUtils;
@@ -21,9 +22,6 @@ import reivax.norac.website.util.CommonsUtils;
 @WebServlet(name="/CountryList", urlPatterns={"/CountryListAction", "/Home"})
 public class CountriesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@EJB 
-	WebSiteEJB countriesEJB;
 
     /**
      * Default constructor. 
@@ -48,7 +46,7 @@ public class CountriesServlet extends HttpServlet {
 
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get back all the countries from DB
-		List<CountriesVisitedDTO> countries = countriesEJB.getAllCountriesFromDb();
+		List<CountriesVisitedDTO> countries = CountryCache.getInstance().getAll();
 		
 		CommonsUtils.cleanSession(request);
 		

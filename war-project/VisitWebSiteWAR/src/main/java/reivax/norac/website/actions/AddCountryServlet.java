@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.caches.CountryCache;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
 import reivax.norac.website.util.CommonsUtils;
@@ -61,7 +62,7 @@ public class AddCountryServlet extends HttpServlet {
 				dto.setId(editCountry.getId());
 				countriesEJB.updateCountryToDb(dto);
 			} else{
-				countriesEJB.addCountryToDb(dto);
+				CountryCache.getInstance().add(dto);
 			}
 		}
 		

@@ -65,16 +65,16 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="Home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li><a href="Home"><span class="glyphicon glyphicon-globe"></span> Travel Tips</a></li>
             <li><a href="Blog"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
             <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
             	<li class="active"><a href="#"><%=city.getName() %></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
                 <%if(isLogged){ %>
-	            <li><a href="AddNewCountryFormAction">Add a Country</a></li>
-	            <li><a href="AddNewCityFormAction">Add a City</a></li>
-            	<li><a href="AddNewArticleFormAction">Add a Blog Article</a></li>
+	            <li><a href="AddNewCountryFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Country</a></li>
+	            <li><a href="AddNewCityFormAction"><span class="glyphicon glyphicon-plus-sign"></span> City</a></li>
+            	<li><a href="AddNewArticleFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Blog Article</a></li>
 	            <%} %>
               </ul>
         </div><!-- /.nav-collapse -->
@@ -123,7 +123,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	      </div>
 	      
 	      <div class="page-header">
-	      	<h1>About <%=city.getName() %></h1>
+	      	<h1><span class="glyphicon glyphicon-info-sign"></span> About <%=city.getName() %></h1>
 		  </div>
 	          
           <div class="row">
@@ -151,7 +151,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  <section id="id_top_5">
 	  
 	  <div class="page-header">
-      	<h1>Top 5</h1>
+      	<h1><span class="glyphicon glyphicon-list"></span> Top 5</h1>
 	  </div>
 	  
 	  <div class="col-md-12">
@@ -204,7 +204,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  
 	  <section id="id_videos">
 	  <div class="page-header">
-		<h1>Video Gallery</h1>
+		<h1><span class="glyphicon glyphicon-film"></span> Video Gallery</h1>
 		</div>
 		
 		<div class="col-md-12">
@@ -238,7 +238,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  
 	  <section id="id_pictures">
 	  <div class="page-header">
-		<h1>Picture Gallery</h1>
+		<h1><span class="glyphicon glyphicon-picture"></span> Picture Gallery</h1>
 	  </div>
 	  <div class="row">
 	  
@@ -270,7 +270,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 		%>
 		
 		<div class="page-header">
-		<h1>Countryside Gallery</h1>
+		<h1><span class="glyphicon glyphicon-picture"></span> Countryside Gallery</h1>
 	  </div>
 	  <div class="row">
 	  

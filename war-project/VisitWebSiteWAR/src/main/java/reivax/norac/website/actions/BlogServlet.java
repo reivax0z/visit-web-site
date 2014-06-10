@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reivax.norac.website.caches.ArticleCache;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.service.WebSiteEJB;
 import reivax.norac.website.util.CommonsUtils;
@@ -26,9 +27,6 @@ import reivax.norac.website.utilities.Utils;
 @WebServlet(name="/BlogList", urlPatterns={"/Blog"})
 public class BlogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@EJB 
-	WebSiteEJB articlesEJB;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,12 +51,16 @@ public class BlogServlet extends HttpServlet {
 	}
 	
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Get properties
+		Integer nbMaxArticleDisplay = Integer.valueOf(CommonsUtils.getProperties(getServletContext()).getProperty("blog_article_nb"));
+		
 		// Get back all the articles from DB
-		List<ArticleDTO> blogArticles = articlesEJB.getAllArticlesFromDb();
+		List<ArticleDTO> blogArticles = ArticleCache.getInstance().getAll();
 
 		CommonsUtils.cleanSession(request);
 		
 		// Forward the info to the appropriate JSP
+		request.setAttribute("nbMaxArticleDisplay", nbMaxArticleDisplay);
 		request.setAttribute("blogArticles", blogArticles);
 		request.setAttribute("blogArticlesMapByDate", CommonsUtils.getArticlesMapByYearByMonth(blogArticles));
 		request.getRequestDispatcher("jsp/Blog.jsp").forward(request, response);
