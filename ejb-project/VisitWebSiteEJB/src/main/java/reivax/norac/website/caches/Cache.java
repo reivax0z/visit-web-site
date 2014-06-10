@@ -25,7 +25,8 @@ public abstract class Cache<T> {
 	
 	private WebSiteEJB getWebSiteEJB() throws NamingException{
 	  InitialContext ctx = new InitialContext();
-	  return (WebSiteEJB)ctx.lookup("java:global/VisitWebSiteWAR-0.0.1-SNAPSHOT/WebSiteEJB!reivax.norac.website.service.WebSiteEJB");
+	  // For local tests: java:global/VisitWebSiteWAR-0.0.1-SNAPSHOT/WebSiteEJB!reivax.norac.website.service.WebSiteEJB
+	  return (WebSiteEJB)ctx.lookup("java:global/app/WebSiteEJB!reivax.norac.website.service.WebSiteEJB");
 	}
 	
 	protected List<T> elements;
