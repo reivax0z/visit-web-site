@@ -17,7 +17,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 <meta name="keywords" content="Xavier CARON, travel, blog">
 <title>Visit with Me - About</title>
 
-	<link href='http://fonts.googleapis.com/css?family=UnifrakturMaguntia' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Yesteryear|UnifrakturMaguntia' rel='stylesheet' type='text/css'>
 
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
@@ -82,7 +82,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               <h2>About me</h2>
               <p id="about_me_summary"></p>
               <p>You can find my detailed online resume here:
-              <a href="/Resume">My Resume</a></p>
+              <a href="/Resume">My Resum&eacute;</a></p>
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-12 col-lg-6" style="text-align:justify;">
@@ -133,7 +133,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
               <div class="shadow">
           <div class="sidebar-nav padding10" style="text-align:center;">
-          	<h3>Xavier CARON</h3>        	
+          	<h3 style="font-family: 'Yesteryear', cursive;">Xavier Caron</h3>        	
   			<img id="about_me_picture" alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
  			<hr> 
             <h3>Where am I now?</h3>

@@ -14,10 +14,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 <head>
 <meta charset="ISO-8859-1">
 <meta name="description" content="Visit with Me - Travel tips and a traveller blog">
-<meta name="keywords" content="Xavier CARON, travel, blog">
-<title>Visit with Me - About</title>
+<meta name="keywords" content="Xavier CARON, travel, blog, resume">
+<title>Xavier CARON - Resum&eacute;</title>
 
-	<link href='http://fonts.googleapis.com/css?family=UnifrakturMaguntia' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Yesteryear|UnifrakturMaguntia' rel='stylesheet' type='text/css'>
 
 
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -166,7 +166,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
               <div class="shadow">
           <div class="sidebar-nav padding10">
-          	<h3 style="text-align:center;">Xavier CARON</h3>        	
+          	<h3 style="font-family: 'Yesteryear', cursive;">Xavier Caron</h3>        	
   			<img id="about_me_picture" alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
  			<p style="text-align:center;" ><a id="about_me_website" href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">LinkedIn</a></p>
  			<hr> 
