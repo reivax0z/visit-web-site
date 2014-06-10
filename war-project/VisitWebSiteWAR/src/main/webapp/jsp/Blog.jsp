@@ -70,7 +70,7 @@ Integer nbMaxArticleDisplay = (Integer)request.getAttribute("nbMaxArticleDisplay
           </div>
           <div class="row">
           <%
-          for(int i=0; i<nbMaxArticleDisplay; i++){
+          for(int i=0; i<Math.min(articles.size(), nbMaxArticleDisplay); i++){
         	  ArticleDTO article = articles.get(articles.size()-1-i);
           %>
             <div class="col-6 col-sm-12 col-lg-4">
