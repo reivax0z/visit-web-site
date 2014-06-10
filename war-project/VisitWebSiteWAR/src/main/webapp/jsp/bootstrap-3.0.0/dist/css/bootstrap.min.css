@@ -894,7 +894,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 .navbar-default .navbar-link{color: #1AC9F5;}
 .navbar-default .navbar-link:hover{color: #1AC9F5;}
 .navbar-inverse{background-color: #FFF;border-color: #C7C7C7;}
-.navbar-inverse .navbar-brand{color: #1A8CF5;}
+.navbar-inverse .navbar-brand{font-family: 'UnifrakturMaguntia', cursive;color: #1A8CF5;}
 .navbar-inverse .navbar-brand:hover,.navbar-inverse .navbar-brand:focus{color:#1AC9F5;background-color:transparent}
 .navbar-inverse .navbar-text{color: #1AC9F5;}
 .navbar-inverse .navbar-nav>li>a{color: #1AC9F5;}

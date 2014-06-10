@@ -17,6 +17,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 <meta name="keywords" content="Xavier CARON, travel, blog">
 <title>Visit with Me - About</title>
 
+	<link href='http://fonts.googleapis.com/css?family=UnifrakturMaguntia' rel='stylesheet' type='text/css'>
+
 
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
