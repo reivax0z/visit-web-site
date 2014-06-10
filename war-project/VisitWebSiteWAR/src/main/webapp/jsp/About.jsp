@@ -130,18 +130,22 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           </div><!--/row-->
         </div><!--/span-->
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-              <div class="shadow">
-          <div class="sidebar-nav padding10" style="text-align:center;">
-          	<h3 style="font-family: 'Yesteryear', cursive;">Xavier Caron</h3>        	
-  			<img id="about_me_picture" alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
- 			<hr> 
-            <h3>Where am I now?</h3>
-            <p id="about_me_currentLocation"></p>
-            <div id="map_position" style="height: 200px;"></div>
+		<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="shadow">
+          	<div class="sidebar-nav padding10" style="text-align:center;">
+          		<h3 style="font-family: 'Yesteryear', cursive;">Xavier Caron</h3>        	
+  				<img id="about_me_picture" alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
+ 			</div>
+		  </div>
+          <div class="shadow">
+          	<div class="sidebar-nav padding10" style="text-align:center;">	
+            	<h3>Where am I now?</h3>
+	            <p id="about_me_currentLocation"></p>
+	            <div id="map_position" style="height: 200px;"></div>
             </div>
-          </div><!--/.well -->
-        </div><!--/span-->
+          <!--/.well -->
+          </div>
+        </div>
       </div><!--/row-->
 
      <jsp:include page="includes/footer.html"></jsp:include>
