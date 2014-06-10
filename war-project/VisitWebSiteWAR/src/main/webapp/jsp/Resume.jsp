@@ -72,7 +72,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron shadow background-grey">
-            <h1>Resum&eacute;</h1>
+            <h1>Summary</h1>
             <p id="about_me_summary"></p>
 		  </div>
 		  
@@ -166,7 +166,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
               <div class="shadow">
           <div class="sidebar-nav padding10">
-          	<h3 style="font-family: 'Yesteryear', cursive;">Xavier Caron</h3>        	
+          	<h3 style="font-family: 'Yesteryear', cursive;text-align:center;">Xavier Caron</h3>        	
   			<img id="about_me_picture" alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
  			<p style="text-align:center;" ><a id="about_me_website" href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">LinkedIn</a></p>
  			<hr> 
