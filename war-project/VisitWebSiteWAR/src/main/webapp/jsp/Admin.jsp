@@ -1,3 +1,10 @@
+<%@page import="reivax.norac.website.caches.FlickrPhotoCache"%>
+<%@page import="reivax.norac.website.caches.UserCache"%>
+<%@page import="reivax.norac.website.caches.ArticleCache"%>
+<%@page import="reivax.norac.website.caches.CountryCache"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="reivax.norac.website.caches.CityCache"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -7,6 +14,8 @@
 <%
 // RETRIEVE THE MAIN OBJECT
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
+
+DateFormat df = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,7 +24,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 <meta charset="ISO-8859-1">
 <meta name="description" content="Visit with Me - Travel tips and a traveller blog">
 <meta name="keywords" content="Xavier CARON, travel, blog">
-<title>Visit with Me - Rest Services</title>
+<title>Visit with Me - Admin</title>
 
 	<link href='http://fonts.googleapis.com/css?family=Yesteryear|UnifrakturMaguntia' rel='stylesheet' type='text/css'>
 
@@ -54,6 +63,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <%if(isLogged){ %>
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-cog"></span> Admin</a></li>
             <li><a href="AddNewCountryFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Country</a></li>
             <li><a href="AddNewCityFormAction"><span class="glyphicon glyphicon-plus-sign"></span> City</a></li>
             <li><a href="AddNewArticleFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Blog Article</a></li>
@@ -71,18 +81,48 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron shadow background-grey">
-            <h1>Rest Services</h1>
-            <p>You can find here links to the Rest services available for this website.</p>
+            <h1>Admin Panel</h1>
+            <p>You can find here links to the website configuration.</p>
           </div>
           <div class="row">
             <div class="col-12 col-sm-12 col-lg-12" style="text-align:justify;">
               <div class="shadow padding20">
               <h2>Services available</h2>
-              <ul>
-              <li><a href="./rest/countries">List of Countries</a></li>
-              <li><a href="./rest/cities">List of Cities</a></li>
-              <li><a href="./rest/articles">List of Articles</a></li>
-              </ul>
+              <table class="table">
+              	<thead>
+              		<tr>
+              			<th>Cache</th><th>Nb Elements</th><th>Last Sync</th>
+              		</tr>
+           		</thead>
+              	<tbody>
+              		<tr>
+              			<td><%=CityCache.getInstance().getName()%></td>
+              			<td><%=CityCache.getInstance().getSize()%></td>
+              			<td><%=CityCache.getInstance().getLastSync()!=null?df.format(CityCache.getInstance().getLastSync()):"N/A"%></td>
+              		</tr>
+              		<tr>
+              			<td><%=CountryCache.getInstance().getName()%></td>
+              			<td><%=CountryCache.getInstance().getSize()%></td>
+              			<td><%=CountryCache.getInstance().getLastSync()!=null?df.format(CountryCache.getInstance().getLastSync()):"N/A"%></td>
+              		</tr>
+              		<tr>
+              			<td><%=ArticleCache.getInstance().getName()%></td>
+              			<td><%=ArticleCache.getInstance().getSize()%></td>
+              			<td><%=ArticleCache.getInstance().getLastSync()!=null?df.format(ArticleCache.getInstance().getLastSync()):"N/A"%></td>
+              		</tr>
+              		<tr>
+              			<td><%=UserCache.getInstance().getName()%></td>
+              			<td><%=UserCache.getInstance().getSize()%></td>
+              			<td><%=UserCache.getInstance().getLastSync()!=null?df.format(UserCache.getInstance().getLastSync()):"N/A"%></td>
+              		</tr>
+              		<tr>
+              			<td><%=FlickrPhotoCache.getInstance().getName()%></td>
+              			<td><%=FlickrPhotoCache.getInstance().getSize()%></td>
+              			<td><%=FlickrPhotoCache.getInstance().getLastSync()!=null?df.format(FlickrPhotoCache.getInstance().getLastSync()):"N/A"%></td>
+              		</tr>
+              	</tbody>
+              </table>
+        	  <a href="ReloadServerCachesAction"><button type="button" class="btn btn-primary">Reload Caches</button></a>
               </div>
             </div><!--/span-->
         </div><!--/span-->

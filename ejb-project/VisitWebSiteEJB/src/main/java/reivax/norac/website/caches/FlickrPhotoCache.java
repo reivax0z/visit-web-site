@@ -1,5 +1,6 @@
 package reivax.norac.website.caches;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -7,7 +8,9 @@ import reivax.norac.website.dto.FlickrPhotosDTO;
 import reivax.norac.website.utilities.FlickrHelper;
 
 public class FlickrPhotoCache {
-
+	
+	private Date lastSync = null;
+	private int size = 0;
 	
 	private static FlickrPhotoCache instance = new FlickrPhotoCache();
 	
@@ -26,5 +29,19 @@ public class FlickrPhotoCache {
 	
 	public void refreshAll(){
 		elements = FlickrHelper.getURLsFromFlickr();
+		size = elements.size();
+		lastSync = new Date();
+	}
+	
+	public Date getLastSync(){
+		return lastSync;
+	}
+	
+	public int getSize(){
+		return size;
+	}
+	
+	public String getName(){
+		return "Flickr Photo cache";
 	}
 }

@@ -1,5 +1,6 @@
 package reivax.norac.website.caches;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,9 +14,14 @@ import reivax.norac.website.service.WebSiteEJB;
 
 public abstract class Cache<T> {
 	
+	private Date lastSync = null;
+	private String cacheName = "";
+	private int size = 0;
+	
 	protected WebSiteEJB webSiteEJB;
 	
-	public Cache(){
+	public Cache(String name){
+		this.cacheName = name;
 		try {
 			webSiteEJB = getWebSiteEJB();
 		} catch (NamingException e) {
@@ -45,10 +51,26 @@ public abstract class Cache<T> {
 		}
 		addAction(element);
 		elements.add(element);
+		size = elements.size();
+		lastSync = new Date();
 	}
 	
 	public synchronized void refreshAll(){
 		elements = refreshAllAction();
+		size = elements.size();
+		lastSync = new Date();
+	}
+	
+	public Date getLastSync(){
+		return lastSync;
+	}
+	
+	public String getName(){
+		return cacheName;
+	}
+	
+	public int getSize(){
+		return size;
 	}
 	
 	protected abstract List<T> refreshAllAction();

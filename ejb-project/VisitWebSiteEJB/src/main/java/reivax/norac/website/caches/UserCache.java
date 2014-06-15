@@ -6,7 +6,11 @@ import reivax.norac.website.dto.UsersDTO;
 
 public class UserCache extends Cache<UsersDTO> {
 
-	private static UserCache instance = new UserCache();
+	public UserCache(String name) {
+		super(name);
+	}
+
+	private static UserCache instance = new UserCache("User cache");
 	
 	public static UserCache getInstance(){
 		return instance;

@@ -12,7 +12,11 @@ import reivax.norac.website.service.WebSiteEJB;
 
 public class CityCache extends Cache<CitiesVisitedDTO> {
 	
-	private static CityCache instance = new CityCache();
+	public CityCache(String name) {
+		super(name);
+	}
+
+	private static CityCache instance = new CityCache("City cache");
 	
 	public static CityCache getInstance(){
 		return instance;

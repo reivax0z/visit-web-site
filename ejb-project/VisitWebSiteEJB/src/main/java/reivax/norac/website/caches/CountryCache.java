@@ -12,7 +12,11 @@ import reivax.norac.website.service.WebSiteEJB;
 
 public class CountryCache extends Cache<CountriesVisitedDTO> {
 	
-	private static CountryCache instance = new CountryCache();
+	public CountryCache(String name) {
+		super(name);
+	}
+
+	private static CountryCache instance = new CountryCache("Country cache");
 	
 	public static CountryCache getInstance(){
 		return instance;
