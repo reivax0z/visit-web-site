@@ -1,5 +1,8 @@
 package reivax.norac.website.dto;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class VideoDTO {
 
 	private int id;

@@ -2,6 +2,9 @@ package reivax.norac.website.dto;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class CountriesVisitedDTO {
 
 	private int id;
@@ -11,6 +14,8 @@ public class CountriesVisitedDTO {
 	
 	private Double latitude;
 	private Double longitude;
+	
+	private List<FlickrPhotosDTO> photosList;
 	
 	public String getName() {
 		return name;
@@ -47,5 +52,11 @@ public class CountriesVisitedDTO {
 	}
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+	public List<FlickrPhotosDTO> getPhotosList() {
+		return photosList;
+	}
+	public void setPhotosList(List<FlickrPhotosDTO> photosList) {
+		this.photosList = photosList;
 	}
 }

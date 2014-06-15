@@ -1,7 +1,11 @@
 package reivax.norac.website.dto;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class CitiesVisitedDTO {
 
 	private int id;
@@ -23,6 +27,8 @@ public class CitiesVisitedDTO {
 	
 	private List<TopFiveDTO> topFives;
 	private List<VideoDTO> videos;
+	
+	private List<FlickrPhotosDTO> photosList;
 	
 	public String getName() {
 		return name;
@@ -113,5 +119,11 @@ public class CitiesVisitedDTO {
 	}
 	public void setTimezone(String timezone) {
 		this.timezone = timezone;
+	}
+	public List<FlickrPhotosDTO> getPhotosList() {
+		return photosList;
+	}
+	public void setPhotosList(List<FlickrPhotosDTO> photosList) {
+		this.photosList = photosList;
 	}
 }

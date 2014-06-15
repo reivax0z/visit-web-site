@@ -168,7 +168,11 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           	<div class="sidebar-nav padding10">
     	      	<h3 style="font-family: 'Yesteryear', cursive;text-align:center;">Xavier Caron</h3>        	
   				<img id="about_me_picture" alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
-	 			<p style="text-align:center;" ><a id="about_me_website" href="http://www.linkedin.com/in/xavierwilfriddimitrycaron/">LinkedIn</a></p>
+	 			<p style="text-align:center;" >
+	 				<a href="http://au.linkedin.com/in/xavierwilfriddimitrycaron">
+      		          <img src="http://s.c.lnkd.licdn.com/scds/common/u/img/webpromo/btn_liprofile_blue_80x15.png" width="80" height="15" border="0" alt="View Xavier CARON's profile on LinkedIn">
+        		    </a>
+   	   			</p>
  			</div>
 		  </div>
           <div class="shadow">

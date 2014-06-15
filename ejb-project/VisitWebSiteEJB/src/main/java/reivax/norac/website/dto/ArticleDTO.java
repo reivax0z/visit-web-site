@@ -2,6 +2,9 @@ package reivax.norac.website.dto;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class ArticleDTO {
 
 	private int id;

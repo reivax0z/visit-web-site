@@ -61,8 +61,6 @@ public class CityServlet extends HttpServlet {
 		request.setAttribute("countries", countries);
 		
 
-		request.setAttribute("photosURLs", FlickrHelper.getURLsFromFlickr());
-		
 		for(CitiesVisitedDTO c : cities){
 			if(c.getName().equals(cityName)){
 

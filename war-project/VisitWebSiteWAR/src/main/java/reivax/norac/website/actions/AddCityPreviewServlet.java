@@ -119,6 +119,7 @@ public class AddCityPreviewServlet extends HttpServlet {
 			dto.setTimezone(timezone);
 			dto.setTopFives(topFive);
 			dto.setVideos(videos);
+//			dto.setPhotosList(FlickrHelper.getURLsFromFlickr());
 
 			if(request.getSession().getAttribute("newCity") != null){
 				CitiesVisitedDTO preDto = (CitiesVisitedDTO) request.getSession().getAttribute("newCity");
@@ -128,8 +129,6 @@ public class AddCityPreviewServlet extends HttpServlet {
 			request.getSession().setAttribute("newCity", dto);
 			request.getSession().setAttribute("isEditMode", Boolean.TRUE);
 		}
-
-		request.setAttribute("photosURLs", FlickrHelper.getURLsFromFlickr());
 
 		// Forward the info to the appropriate JSP
 		request.setAttribute("countries", countries);

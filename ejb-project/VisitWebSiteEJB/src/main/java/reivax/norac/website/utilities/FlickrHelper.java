@@ -9,7 +9,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -21,6 +23,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import reivax.norac.website.dto.FlickrPhotosDTO;
 
 public class FlickrHelper {
 
@@ -86,8 +90,8 @@ public class FlickrHelper {
 		return setsCitiesByIds;
 	}
 
-	private static Map<String, Map<String, String>> getAllPhotosURLByCityFromFlickr(Map<String, String> sets){
-		Map<String, Map<String, String>> urlsByCityName = new HashMap<String, Map<String, String>>();
+	private static Map<String, List<FlickrPhotosDTO>> getAllPhotosURLByCityFromFlickr(Map<String, String> sets){
+		Map<String, List<FlickrPhotosDTO>> urlsByCityName = new HashMap<String, List<FlickrPhotosDTO>>();
 
 		String urlPhotosString = REST_URL + PHOTOS_LIST_METHOD + PARAM_API + KEY + PARAM_SET;
 
@@ -130,9 +134,12 @@ public class FlickrHelper {
 						String urlPhoto = getBackURL(server, photoId, secret);
 						
 						if(!urlsByCityName.containsKey(entry.getValue())){
-							urlsByCityName.put(entry.getValue(), new HashMap<String, String>());
+							urlsByCityName.put(entry.getValue(), new ArrayList<FlickrPhotosDTO>());
 						}
-						urlsByCityName.get(entry.getValue()).put(urlPhoto, caption);
+						FlickrPhotosDTO dto = new FlickrPhotosDTO();
+						dto.setUrl(urlPhoto);
+						dto.setCaption(caption);
+						urlsByCityName.get(entry.getValue()).add(dto);
 					}
 				}
 			} catch (IOException | ParserConfigurationException | SAXException e) {
@@ -142,13 +149,13 @@ public class FlickrHelper {
 		return urlsByCityName;
 	}
 	
-	public static Map<String, Map<String, String>> getURLsFromFlickr(){
+	public static Map<String, List<FlickrPhotosDTO>> getURLsFromFlickr(){
 		return getAllPhotosURLByCityFromFlickr(getAllPhotoSetsFromFlickr());
 	}
 
 	public static void main(String[] args){
 
-		Map<String, Map<String, String>> photos = getURLsFromFlickr();
+		Map<String, List<FlickrPhotosDTO>> photos = getURLsFromFlickr();
 
 		System.out.println(photos);
 	}

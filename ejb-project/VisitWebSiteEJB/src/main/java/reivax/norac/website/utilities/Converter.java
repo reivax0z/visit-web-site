@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import reivax.norac.website.caches.FlickrPhotoCache;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
@@ -44,6 +45,8 @@ public class Converter {
 		toReturn.setName(entity.getName());
 		toReturn.setLatitude(entity.getLatitude().doubleValue());
 		toReturn.setLongitude(entity.getLongitude().doubleValue());
+
+		toReturn.setPhotosList(FlickrPhotoCache.getInstance().getAll().get(toReturn.getName().toLowerCase()));
 		
 		toReturn.setCities(getCitiesDTOFromEntities(entity.getCities()));
 		return toReturn;
@@ -88,6 +91,8 @@ public class Converter {
 		toReturn.setName(entity.getName());
 		toReturn.setPopulation(entity.getPopulation());
 		toReturn.setTimezone(entity.getTimezone());
+		
+		toReturn.setPhotosList(FlickrPhotoCache.getInstance().getAll().get(toReturn.getName().toLowerCase()));
 		
 		return toReturn;
 	}

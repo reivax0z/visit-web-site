@@ -17,7 +17,7 @@ if(city == null){
 }
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (Boolean)request.getSession().getAttribute("isEditMode") : Boolean.FALSE;
-Map<String, Map<String, String>> photosUrls = (Map<String, Map<String, String>>) request.getAttribute("photosURLs");
+List<FlickrPhotosDTO> photosUrls = city.getPhotosList();
 
 CountriesVisitedDTO cityCountry = CommonsUtils.getCountryById(city.getCountryID(), countries);
 String folder = Commons.FTP_PATH_TO_IMG + Commons.SEPARATOR + cityCountry.getName().toLowerCase() + Commons.SEPARATOR + city.getName().toLowerCase() + Commons.SEPARATOR;
@@ -245,15 +245,14 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  <div class="row">
 	  
 		<%
-		Map<String, String> photosURLsAndCaptions = photosUrls.get(city.getName().toLowerCase());
-		if(photosURLsAndCaptions != null){
-			for(Map.Entry<String, String> entry: photosURLsAndCaptions.entrySet()){			
+		if(photosUrls != null){
+			for(FlickrPhotosDTO entry: photosUrls){			
  		%>
 		<div class="col-sm-12 col-md-6">
 		  <div class="thumbnail shadow">
-            <img class="img-rounded" src="<%= entry.getKey() %>" alt="<%= entry.getValue() %>">
+            <img class="img-rounded" src="<%= entry.getUrl() %>" alt="<%= entry.getCaption() %>">
             <div class="caption">
-		 	  <h3><%= entry.getValue() %></h3>
+		 	  <h3><%= entry.getCaption() %></h3>
 		    </div>
 		  </div>
         </div>
@@ -267,7 +266,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 		</div>
 		
 		<%
-		Map<String, String> countrysidePhotosURLsAndCaptions = photosUrls.get(CommonsUtils.getCountryById(city.getCountryID(), countries).getName().toLowerCase());
+		List<FlickrPhotosDTO> countrysidePhotosURLsAndCaptions = CommonsUtils.getCountryById(city.getCountryID(), countries).getPhotosList();
 		if(countrysidePhotosURLsAndCaptions != null){
 		%>
 		
@@ -277,13 +276,13 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  <div class="row">
 	  
 		<%
-		for(Map.Entry<String, String> entry: countrysidePhotosURLsAndCaptions.entrySet()){			
+		for(FlickrPhotosDTO entry: countrysidePhotosURLsAndCaptions){			
  		%>
 		<div class="col-sm-12 col-md-6">
 		  <div class="thumbnail shadow">
-            <img class="img-rounded" src="<%= entry.getKey() %>" alt="<%= entry.getValue() %>">
+            <img class="img-rounded" src="<%= entry.getUrl() %>" alt="<%= entry.getCaption() %>">
             <div class="caption">
-		 	  <h3><%= entry.getValue() %></h3>
+		 	  <h3><%= entry.getCaption() %></h3>
 		    </div>
 		  </div>
         </div>
