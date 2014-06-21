@@ -87,18 +87,32 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <%
           for(CountriesVisitedDTO country : countries){
           %>
-            <div class="col-6 col-sm-6 col-lg-4">
+            <div class="col-6 col-sm-6 col-lg-6">
               <div class="shadow padding20">
               <h2><%=country.getName() %></h2>
               <p><%=country.getInfo() %></p>
 	          <hr>
+              
+              
+            <div class="row">
               <%
               for(CitiesVisitedDTO city : country.getCities()){
               %>
-              <p><a class="btn btn-default" href="CityDetailsAction?city=<%= city.getName() %>"><%=city.getName() %></a></p>
+              
+             <div class="col-6 col-xs-6 col-sm-6 col-lg-6">
+              <a href="CityDetailsAction?city=<%= city.getName() %>">
+				<div class="thumbnail shadow" style="background-color:#ECECEC">
+				  <img src="http://xavier.w.caron.free.fr/website/resources/img/<%=country.getName().toLowerCase() %>/<%= city.getName().toLowerCase() %>/cover/cover.JPG" width="200" height="100">
+				  <div class="caption">
+				    <h4 style="text-align:center"><%= city.getName() %></h4>
+				  </div>
+				</div>
+			  </a>
+			  </div>
               <%
               }
               %>
+              </div>
 			<%if(isLogged){ %>
 	        <hr>
 	        <form action="AddNewCountryFormAction" method="post">
