@@ -72,13 +72,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
             <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
             	<li class="active"><a href="#"><%=city.getName() %></a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-                <%if(isLogged){ %>
-	            <li><a href="AddNewCountryFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Country</a></li>
-	            <li><a href="AddNewCityFormAction"><span class="glyphicon glyphicon-plus-sign"></span> City</a></li>
-            	<li><a href="AddNewArticleFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Blog Article</a></li>
-	            <%} %>
-              </ul>
+         <%@include file="includes/header_menu_admin.jsp" %>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </div><!-- /.navbar -->
@@ -313,24 +307,13 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
               <div class="shadow">
           <div class="sidebar-nav padding20">
-          	<h3><%=city.getName()%> overview</h3>
+          	<h3>Overview</h3>
             <div id="map_position" style="height: 200px;"></div>
             <hr>
             <h3>Check also</h3>
-            <ul class="nav">
-            <%
-            for(CountriesVisitedDTO country : countries){
-            %>
-              <li><%=country.getName() %></li>
-              <%
-              for(CitiesVisitedDTO cityC : country.getCities()){
-              %>
-              <li class="active"><a href="CityDetailsAction?city=<%= cityC.getName() %>"><%=cityC.getName() %></a></li>
-              <%
-              }
-            }
-            %>
-            </ul>
+            
+            <%@include file="includes/right_block_cities.jsp" %>
+            
           </div><!--/.well -->
         </div><!--/span-->
         </div>

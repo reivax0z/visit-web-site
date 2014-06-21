@@ -47,13 +47,7 @@ Integer nbMaxArticleDisplay = (Integer)request.getAttribute("nbMaxArticleDisplay
             <li class="active"><a href="#"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
             <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <%if(isLogged){ %>
-            <li><a href="AddNewCountryFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Country</a></li>
-            <li><a href="AddNewCityFormAction"><span class="glyphicon glyphicon-plus-sign"></span> City</a></li>
-            <li><a href="AddNewArticleFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Blog Article</a></li>
-            <%} %>
-          </ul>
+         <%@include file="includes/header_menu_admin.jsp" %>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </div><!-- /.navbar -->

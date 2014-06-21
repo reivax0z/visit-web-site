@@ -31,4 +31,9 @@ public class CountryCache extends Cache<CountriesVisitedDTO> {
 	protected void addAction(CountriesVisitedDTO element) {
 		webSiteEJB.addCountryToDb(element);
 	}
+
+	@Override
+	protected void updateAction(CountriesVisitedDTO element) {
+		webSiteEJB.updateCountryToDb(element);
+	}
 }

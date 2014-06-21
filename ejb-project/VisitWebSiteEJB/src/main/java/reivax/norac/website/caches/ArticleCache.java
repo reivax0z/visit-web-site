@@ -32,4 +32,9 @@ public class ArticleCache extends Cache<ArticleDTO> {
 		webSiteEJB.addArticleToDb(element);
 	}
 
+	@Override
+	protected void updateAction(ArticleDTO element) {
+		webSiteEJB.updateArticleToDb(element);
+	}
+
 }

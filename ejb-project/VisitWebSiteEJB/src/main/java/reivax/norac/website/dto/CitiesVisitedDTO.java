@@ -126,4 +126,14 @@ public class CitiesVisitedDTO {
 	public void setPhotosList(List<FlickrPhotosDTO> photosList) {
 		this.photosList = photosList;
 	}
+	
+	@Override
+	public int hashCode(){
+		return id;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		return o instanceof CitiesVisitedDTO && ((CitiesVisitedDTO)o).getId() == id;
+	}
 }

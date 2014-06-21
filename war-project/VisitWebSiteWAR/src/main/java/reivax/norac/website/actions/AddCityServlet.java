@@ -57,7 +57,7 @@ public class AddCityServlet extends HttpServlet {
 		CitiesVisitedDTO dto = (CitiesVisitedDTO) request.getSession().getAttribute("newCity");
 		
 		if(dto.getId() != 0){
-			cityEJB.updateCityToDb(dto);
+			CityCache.getInstance().update(dto);
 		} else{
 			CityCache.getInstance().add(dto);
 		}

@@ -16,7 +16,6 @@ public abstract class Cache<T> {
 	
 	private Date lastSync = null;
 	private String cacheName = "";
-	private int size = 0;
 	
 	protected WebSiteEJB webSiteEJB;
 	
@@ -51,13 +50,21 @@ public abstract class Cache<T> {
 		}
 		addAction(element);
 		elements.add(element);
-		size = elements.size();
+		lastSync = new Date();
+	}
+	
+	public void update(T element){
+		if(elements == null || elements.isEmpty()){
+			refreshAll();
+		}
+		updateAction(element);
+		elements.remove(element);
+		elements.add(element);
 		lastSync = new Date();
 	}
 	
 	public synchronized void refreshAll(){
 		elements = refreshAllAction();
-		size = elements.size();
 		lastSync = new Date();
 	}
 	
@@ -70,9 +77,10 @@ public abstract class Cache<T> {
 	}
 	
 	public int getSize(){
-		return size;
+		return elements == null? 0:elements.size();
 	}
 	
 	protected abstract List<T> refreshAllAction();
 	protected abstract void addAction(T element);
+	protected abstract void updateAction(T element);
 }

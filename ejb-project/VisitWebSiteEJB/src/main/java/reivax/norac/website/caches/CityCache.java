@@ -32,4 +32,9 @@ public class CityCache extends Cache<CitiesVisitedDTO> {
 		webSiteEJB.addCityToDb(element);
 	}
 
+	@Override
+	protected void updateAction(CitiesVisitedDTO element) {
+		webSiteEJB.updateCityToDb(element);
+	}
+
 }

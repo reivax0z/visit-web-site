@@ -66,4 +66,14 @@ public class ArticleDTO {
 	public void setArticleParts(List<ArticlePartDTO> articleParts) {
 		this.articleParts = articleParts;
 	}
+	
+	@Override
+	public int hashCode(){
+		return id;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		return o instanceof ArticleDTO && ((ArticleDTO)o).getId() == id;
+	}
 }

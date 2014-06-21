@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import reivax.norac.website.caches.CountryCache;
+import reivax.norac.website.caches.FlickrPhotoCache;
 import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
@@ -119,7 +120,7 @@ public class AddCityPreviewServlet extends HttpServlet {
 			dto.setTimezone(timezone);
 			dto.setTopFives(topFive);
 			dto.setVideos(videos);
-//			dto.setPhotosList(FlickrHelper.getURLsFromFlickr());
+			dto.setPhotosList(FlickrPhotoCache.getInstance().getAll().get(dto.getName().toLowerCase()));
 
 			if(request.getSession().getAttribute("newCity") != null){
 				CitiesVisitedDTO preDto = (CitiesVisitedDTO) request.getSession().getAttribute("newCity");

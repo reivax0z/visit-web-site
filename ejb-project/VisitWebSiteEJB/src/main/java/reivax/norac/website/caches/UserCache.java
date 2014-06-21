@@ -24,6 +24,13 @@ public class UserCache extends Cache<UsersDTO> {
 	@Override
 	protected void addAction(UsersDTO element) {
 		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected void updateAction(UsersDTO element) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 
 }

@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.TreeMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -75,14 +76,14 @@ public class CommonsUtils {
 	}
 	
 	public static Map<String, Map<String, List<ArticleDTO>>> getArticlesMapByYearByMonth(List<ArticleDTO> blogArticles){
-		Map<String, Map<String, List<ArticleDTO>>> map = new HashMap<String, Map<String, List<ArticleDTO>>>();
+		Map<String, Map<String, List<ArticleDTO>>> map = new TreeMap<String, Map<String, List<ArticleDTO>>>();
 		for(ArticleDTO a : blogArticles){
 			Date date = Utils.getDateFromStringDate(a.getDate());
 			Calendar c = Calendar.getInstance();
 			c.setTime(date);
 			String year = Integer.toString(c.get(Calendar.YEAR));
 			if(!map.containsKey(year)){
-				map.put(year, new HashMap<String, List<ArticleDTO>>());
+				map.put(year, new TreeMap<String, List<ArticleDTO>>());
 			}
 			String month = Integer.toString(c.get(Calendar.MONTH));
 			if(!map.get(year).containsKey(month)){

@@ -10,7 +10,6 @@ import reivax.norac.website.utilities.FlickrHelper;
 public class FlickrPhotoCache {
 	
 	private Date lastSync = null;
-	private int size = 0;
 	
 	private static FlickrPhotoCache instance = new FlickrPhotoCache();
 	
@@ -29,7 +28,6 @@ public class FlickrPhotoCache {
 	
 	public void refreshAll(){
 		elements = FlickrHelper.getURLsFromFlickr();
-		size = elements.size();
 		lastSync = new Date();
 	}
 	
@@ -38,7 +36,7 @@ public class FlickrPhotoCache {
 	}
 	
 	public int getSize(){
-		return size;
+		return elements == null?0:elements.size();
 	}
 	
 	public String getName(){

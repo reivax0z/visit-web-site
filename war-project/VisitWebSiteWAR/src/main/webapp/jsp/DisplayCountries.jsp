@@ -64,13 +64,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <li><a href="Blog"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
             <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <%if(isLogged){ %>
-            <li><a href="AddNewCountryFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Country</a></li>
-            <li><a href="AddNewCityFormAction"><span class="glyphicon glyphicon-plus-sign"></span> City</a></li>
-            <li><a href="AddNewArticleFormAction"><span class="glyphicon glyphicon-plus-sign"></span> Blog Article</a></li>
-            <%} %>
-          </ul>
+         <%@include file="includes/header_menu_admin.jsp" %>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </div><!-- /.navbar -->
@@ -132,20 +126,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               <div class="shadow">
           <div class="sidebar-nav padding20">
            <h3>Travel Tips</h3>
-            <ul class="nav">
-            <%
-            for(CountriesVisitedDTO country : countries){
-            %>
-              <li><%=country.getName() %></li>
-              <%
-              for(CitiesVisitedDTO city : country.getCities()){
-              %>
-              <li class="active"><a href="CityDetailsAction?city=<%= city.getName() %>"><%=city.getName() %></a></li>
-              <%
-              }
-            }
-            %>
-            </ul>
+            
+             <%@include file="includes/right_block_cities.jsp" %>
+            
           </div><!--/.well -->
           </div>
         </div><!--/span-->

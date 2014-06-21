@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import reivax.norac.website.caches.CountryCache;
+import reivax.norac.website.caches.FlickrPhotoCache;
 import reivax.norac.website.dto.CountriesVisitedDTO;
 import reivax.norac.website.service.WebSiteEJB;
 import reivax.norac.website.util.CommonsUtils;
@@ -57,10 +58,11 @@ public class AddCountryServlet extends HttpServlet {
 			dto.setName(name);
 			dto.setLatitude(Double.valueOf(lat));
 			dto.setLongitude(Double.valueOf(lon));
+			dto.setPhotosList(FlickrPhotoCache.getInstance().getAll().get(dto.getName().toLowerCase()));
 
 			if(editCountry != null){
 				dto.setId(editCountry.getId());
-				countriesEJB.updateCountryToDb(dto);
+				CountryCache.getInstance().update(dto);
 			} else{
 				CountryCache.getInstance().add(dto);
 			}

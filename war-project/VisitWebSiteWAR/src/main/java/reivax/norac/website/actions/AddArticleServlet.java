@@ -56,7 +56,7 @@ public class AddArticleServlet extends HttpServlet {
 		ArticleDTO dto = (ArticleDTO) request.getSession().getAttribute("newArticle");
 		
 		if(dto.getId() != 0){
-			articleEJB.updateArticleToDb(dto);
+			ArticleCache.getInstance().update(dto);
 		} else{
 			ArticleCache.getInstance().add(dto);
 		}
