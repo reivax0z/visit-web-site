@@ -94,10 +94,12 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 		  <li class="active"><%=city.getName() %></li>
 		</ol>
 		
-        <div class="jumbotron shadow background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;">
-	  		<div class="row" style="text-align:center">
-            	<h1 class="padding-bottom-big"><%=city.getName() %></h1>
-	  		</div>
+        <div class="shadow">
+	        <div class="background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;height: 400px;">
+		  	</div>
+		    <div class="jumbotron background-grey" style="margin-bottom:0px">
+		  		<h1 style="text-align:center"><%=city.getName() %></h1>
+		  	</div>
 	  	</div>
 	  </section>
 	  
@@ -105,7 +107,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	  
 	  <section id="id_intro">
 	      <div class="row">
-	        <div class="col-md-6 col-sm-12">
+	        <div class="col-md-6 col-sm-6 col-xs-6">
 	        <div class="shadow padding20" style="text-align:center">
 	          <h2>By the numbers</h2>
 			  <p>Established in <%= city.getEstablished() %></p>
@@ -114,7 +116,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 	        </div><!-- /.col-lg-4 -->
 	        </div>
 	
-	        <div class="col-md-6 col-sm-12">
+	        <div class="col-md-6 col-sm-6 col-xs-6">
 	        <div class="shadow padding20" style="text-align:center">
 	           <h2>By the facts</h2>
 			  <p>Currency: <%= city.getCurrency() %></p>
@@ -265,31 +267,6 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 		%>
 		</div>
 		
-		<%
-		List<FlickrPhotosDTO> countrysidePhotosURLsAndCaptions = parentCountry.getPhotosList();
-		if(countrysidePhotosURLsAndCaptions != null){
-		%>
-		
-		<div class="page-header">
-		<h1><span class="glyphicon glyphicon-picture"></span> Countryside Gallery</h1>
-	  </div>
-	  <div class="row">
-	  
-		<%
-		for(FlickrPhotosDTO entry: countrysidePhotosURLsAndCaptions){			
- 		%>
-		<div class="col-sm-12 col-md-6">
-		  <div class="thumbnail shadow">
-            <img class="img-rounded" src="<%= entry.getUrl() %>" alt="<%= entry.getCaption() %>">
-            <div class="caption">
-		 	  <h3><%= entry.getCaption() %></h3>
-		    </div>
-		  </div>
-        </div>
-        <%}	%>
-		</div>
-		<%} %>
-
 	  </section>
 	  
       <!-- /END PICTURE GALLERY -->

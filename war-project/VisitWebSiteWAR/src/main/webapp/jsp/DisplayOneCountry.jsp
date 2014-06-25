@@ -86,11 +86,13 @@ String backgroundImg = "http://flagpedia.net/data/flags/normal/"+country.getIso(
 		  <li><a href="Home">Travel Tips</a></li>
 		  <li class="active"><%=country.getName() %></li>
 		</ol>
-      
-        <div class="jumbotron shadow background-grey black" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;">
-	  		<div class="row" style="text-align:center">
-            	<h1 class="padding-top-big"><%=country.getName() %></h1>
-	  		</div>
+		
+		<div class="shadow">
+	        <div class="background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;height: 400px;">
+		  	</div>
+		    <div class="jumbotron background-grey" style="margin-bottom:0px">
+		  		<h1 style="text-align:center"><%=country.getName() %></h1>
+		  	</div>
 	  	</div>
 	  </section>
 	  
@@ -126,7 +128,7 @@ String backgroundImg = "http://flagpedia.net/data/flags/normal/"+country.getIso(
 	  <section id="id_top_5">
 	  
 	  <div class="page-header">
-      	<h1><span class="glyphicon glyphicon-list"></span> Must See</h1>
+      	<h1><span class="glyphicon glyphicon-eye-open"></span> Must See</h1>
 	  </div>
 	  
 	  <div class="col-md-12">
@@ -179,7 +181,7 @@ String backgroundImg = "http://flagpedia.net/data/flags/normal/"+country.getIso(
 	  
 	  <section id="id_videos">
 	  <div class="page-header">
-		<h1><span class="glyphicon glyphicon-film"></span> City Focus</h1>
+		<h1><span class="glyphicon glyphicon-map-marker"></span> City Focus</h1>
 		</div>
 		
 		<div class="col-md-12">
