@@ -6,7 +6,11 @@ import java.math.BigDecimal;
 import javax.persistence.*;
 
 import java.util.List;
+
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 
 /**
@@ -36,6 +40,11 @@ public class Country implements Serializable {
 	@OneToMany(mappedBy="country")
 	private List<City> cities;
 
+	//bi-directional many-to-one association to Mustsee
+	@OneToMany(mappedBy="country")
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE, CascadeType.MERGE, CascadeType.DELETE_ORPHAN})
+	private List<Mustsee> mustsees;
+	
 	public Country() {
 	}
 
@@ -83,6 +92,28 @@ public class Country implements Serializable {
 		city.setCountry(null);
 
 		return city;
+	}
+	
+	public List<Mustsee> getMustsees() {
+		return this.mustsees;
+	}
+
+	public void setMustsees(List<Mustsee> mustsees) {
+		this.mustsees = mustsees;
+	}
+
+	public Mustsee addMustsees(Mustsee mustsee) {
+		getMustsees().add(mustsee);
+		mustsee.setCountry(this);
+
+		return mustsee;
+	}
+
+	public Mustsee removeMustsees(Mustsee mustsee) {
+		getMustsees().remove(mustsee);
+		mustsee.setCountry(null);
+
+		return mustsee;
 	}
 
 	public BigDecimal getLatitude() {

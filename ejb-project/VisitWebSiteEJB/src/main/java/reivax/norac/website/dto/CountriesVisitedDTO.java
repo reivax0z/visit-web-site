@@ -12,6 +12,7 @@ public class CountriesVisitedDTO {
 	private String info;
 	private String iso;
 	private List<CitiesVisitedDTO> cities;
+	private List<MustSeeDTO> mustSees;
 	
 	private Double latitude;
 	private Double longitude;
@@ -67,6 +68,12 @@ public class CountriesVisitedDTO {
 		this.iso = iso;
 	}
 	
+	public List<MustSeeDTO> getMustSees() {
+		return mustSees;
+	}
+	public void setMustSees(List<MustSeeDTO> mustSees) {
+		this.mustSees = mustSees;
+	}
 	@Override
 	public int hashCode(){
 		return id;

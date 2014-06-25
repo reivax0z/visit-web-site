@@ -13,6 +13,7 @@ import reivax.norac.website.dto.ArticleDTO;
 import reivax.norac.website.dto.ArticlePartDTO;
 import reivax.norac.website.dto.CitiesVisitedDTO;
 import reivax.norac.website.dto.CountriesVisitedDTO;
+import reivax.norac.website.dto.MustSeeDTO;
 import reivax.norac.website.dto.TopFiveDTO;
 import reivax.norac.website.dto.UsersDTO;
 import reivax.norac.website.dto.VideoDTO;
@@ -46,6 +47,12 @@ public class Converter {
 		toReturn.setLatitude(entity.getLatitude().doubleValue());
 		toReturn.setLongitude(entity.getLongitude().doubleValue());
 		toReturn.setIso(entity.getIso());
+		
+		List<MustSeeDTO> mustSees = new ArrayList<MustSeeDTO>();
+		for(Mustsee mustSee : entity.getMustsees()){
+			mustSees.add(getMustSeeDTOFromEntity(mustSee));
+		}
+		toReturn.setMustSees(mustSees);
 
 		toReturn.setPhotosList(FlickrPhotoCache.getInstance().getAll().get(toReturn.getName().toLowerCase()));
 		
@@ -113,6 +120,15 @@ public class Converter {
 		toReturn.setName(entity.getName());
 		toReturn.setDescription(entity.getDescription());
 		toReturn.setLink(entity.getLink());
+		toReturn.setId(entity.getId());
+		return toReturn;
+	}
+	
+	public static MustSeeDTO getMustSeeDTOFromEntity(Mustsee entity){
+		MustSeeDTO toReturn = new MustSeeDTO();
+		toReturn.setName(entity.getName());
+		toReturn.setDescription(entity.getDescription());
+		toReturn.setInbrief(entity.getInbrief());
 		toReturn.setId(entity.getId());
 		return toReturn;
 	}
@@ -188,6 +204,11 @@ public class Converter {
 		toReturn.setLongitude(BigDecimal.valueOf(dto.getLongitude()));
 		toReturn.setInfo(dto.getInfo());
 		toReturn.setIso(dto.getIso());
+
+		toReturn.setMustsees(getMustseeFromDTO(dto.getMustSees()));
+		for(Mustsee m : toReturn.getMustsees()){
+			m.setCountry(toReturn);
+		}
 		
 		return toReturn;
 	}
@@ -255,6 +276,21 @@ public class Converter {
 			topfives.add(toReturn);
 		}
 		return topfives;
+	}
+	
+	public static List<Mustsee> getMustseeFromDTO(List<MustSeeDTO> dtos){
+		ArrayList<Mustsee> mustsees = new ArrayList<Mustsee>();
+		for(MustSeeDTO dto : dtos){
+			Mustsee toReturn = new Mustsee();
+
+			// Possible modifications
+			toReturn.setDescription(dto.getDescription());
+			toReturn.setName(dto.getName());
+			toReturn.setInbrief(dto.getInbrief());
+			toReturn.setId(dto.getId());
+			mustsees.add(toReturn);
+		}
+		return mustsees;
 	}
 	
 	public static Article getArticleFromDTO(ArticleDTO articleDTO){

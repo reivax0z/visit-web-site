@@ -16,6 +16,17 @@ CREATE TABLE COUNTRY (
 ALTER TABLE COUNTRY ADD COLUMN ISO VARCHAR(3);
 
 CREATE UNIQUE INDEX COUNTRY_NAME_IDX ON COUNTRY(NAME);
+CREATE TABLE MUSTSEE (
+        ID INTEGER NOT NULL AUTO_INCREMENT,
+        COUNTRY_ID INTEGER NOT NULL,
+        NAME VARCHAR(50),
+        INBRIEF VARCHAR(150),
+        DESCRIPTION VARCHAR(500),
+		PRIMARY KEY (ID)
+    );
+ALTER TABLE MUSTSEE ADD CONSTRAINT MUSTSEE_FOREIGNKEY_COUNTRY_ID FOREIGN KEY (COUNTRY_ID)
+    REFERENCES COUNTRY (ID);
+CREATE UNIQUE INDEX MUSTSEE_NAME_IDX ON MUSTSEE(NAME);
 
 CREATE TABLE CITY (
         ID INTEGER NOT NULL AUTO_INCREMENT,
@@ -62,6 +73,36 @@ CREATE UNIQUE INDEX VIDEOS_NAME_IDX ON VIDEOS(NAME);
 
 INSERT INTO COUNTRY (NAME, LATITUDE, LONGITUDE, INFO) VALUES ('Australia', -25.136856, 133.281323, 'A continent and a country, as big as Europe and with only 22 million inhabitants!');
 INSERT INTO COUNTRY (NAME, LATITUDE, LONGITUDE, INFO) VALUES ('France', 46.688486, 2.422229, 'The country of baguette, red wine, romance... and some other normal stuff too');
+INSERT INTO MUSTSEE (COUNTRY_ID, NAME, INBRIEF, DESCRIPTION)
+    VALUES ((SELECT ID FROM COUNTRY WHERE NAME = 'France'), 
+    'Biarritz', 
+    'The best spot in France to surf!',
+    'Situated on the west coast, the place is famous for its surfing facilites and international competition.');
+    INSERT INTO MUSTSEE (COUNTRY_ID, NAME, INBRIEF, DESCRIPTION)
+    VALUES ((SELECT ID FROM COUNTRY WHERE NAME = 'France'), 
+    'Nimes', 
+    'No need to go to Italy to see the colosseum!',
+    'Situated on the southern part of France, the place is a small replica of the original colosseum you can find in Italy.');
+    INSERT INTO MUSTSEE (COUNTRY_ID, NAME, INBRIEF, DESCRIPTION)
+    VALUES ((SELECT ID FROM COUNTRY WHERE NAME = 'France'), 
+    'Corsica', 
+    'This island is known as the "Island of Beauty"',
+    'Situated on the southern coast, this place is famous for its sandbeaches landscapes.');
+    INSERT INTO MUSTSEE (COUNTRY_ID, NAME, INBRIEF, DESCRIPTION)
+    VALUES ((SELECT ID FROM COUNTRY WHERE NAME = 'France'), 
+    'Nice', 
+    'An Italian city turned French over a century ago.',
+    'Situated on the south east coast, this city is the most famous on the French Riviera.');
+    INSERT INTO MUSTSEE (COUNTRY_ID, NAME, INBRIEF, DESCRIPTION)
+    VALUES ((SELECT ID FROM COUNTRY WHERE NAME = 'France'), 
+    'Deauville', 
+    'Ever heard of the Deauville American Film Festival?',
+    '');
+    INSERT INTO MUSTSEE (COUNTRY_ID, NAME, INBRIEF, DESCRIPTION)
+    VALUES ((SELECT ID FROM COUNTRY WHERE NAME = 'France'), 
+    'Strasbourg', 
+    'The European capital of Christmas!',
+    'Situated on the border of France and Germany, this city is famous for its Christmas market at the end of each year.');
 INSERT INTO COUNTRY (NAME, LATITUDE, LONGITUDE, INFO) VALUES ('Italy', 43.010873, 12.551638, 'A country known for its cuisine, culture and love for coffee');
 INSERT INTO CITY (COUNTRY_ID, NAME, LATITUDE, LONGITUDE, INFO, DIDYOUKNOW,
         ESTABLISHED, AREA, TIMEZONE, CURRENCY, POPULATION, LANGUAGES)

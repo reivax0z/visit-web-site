@@ -9,6 +9,7 @@
 		<class>reivax.norac.website.model.Article</class>
 		<class>reivax.norac.website.model.ArticlePart</class>
 		<class>reivax.norac.website.model.User</class>
+		<class>reivax.norac.website.model.Mustsee</class>
         <properties>
 	      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 	      <property name="javax.persistence.jdbc.url"

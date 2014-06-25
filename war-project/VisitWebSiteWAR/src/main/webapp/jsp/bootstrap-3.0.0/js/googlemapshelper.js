@@ -4,7 +4,6 @@
 
 //Global variables
 var map;
-var marker;
 
 function initializeMapPosition(position, zoomVal) {
 	// Init the map
@@ -18,7 +17,7 @@ function initializeMapPosition(position, zoomVal) {
 	addLocation(position);
 }
 
-function initializeMapCountries(positions, zoomVal) {
+function initializeMapCountries(positions, countries, zoomVal) {
 	var sumLat = 0;
 	var sumLong = 0;
 	for (var i = 0; i < positions.length; i++) {
@@ -40,8 +39,24 @@ function initializeMapCountries(positions, zoomVal) {
 	
 	// delegate it with a parameter containing all the positions
 	for (var i = 0; i < positions.length; i++) {
-		addLocation(positions[i]);
+		addLocationAndLink(positions[i], countries[i]);
 	}
+}
+
+function addLocationAndLink(pos, link){
+	// Get coordinates
+	var options = {
+			position: pos,
+			title: link
+	};
+	var marker = new google.maps.Marker(options);
+	
+	google.maps.event.addListener(marker, 'click', function() {
+      window.location.href = "CountryDetailsAction?country="+marker.title;
+    });
+
+	// Show marker on map
+	marker.setMap(map);
 }
 
 function addLocation(pos){
@@ -49,14 +64,14 @@ function addLocation(pos){
 	var options = {
 			position: pos
 	};
-	marker = new google.maps.Marker(options);
+	var marker = new google.maps.Marker(options);
 
 	// Show marker on map
 	marker.setMap(map);
-	bounce();
+	bounce(marker);
 }
 
-function bounce() {
+function bounce(marker) {
 	// Is the marker already animating?
 	if (marker.getAnimation()) {
 		marker.setAnimation(null);

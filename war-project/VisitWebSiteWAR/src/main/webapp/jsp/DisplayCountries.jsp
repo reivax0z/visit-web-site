@@ -34,20 +34,23 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	<script type="text/javascript">
 		// Global variable for Google Maps API
 		var positions = new Array();
+		var countriesArray = new Array();
 		
 	</script>
 	
 	<%
 		for(CountriesVisitedDTO c: countries){
 			double lat = c.getLatitude();
-			double lon = c.getLongitude();%>
+			double lon = c.getLongitude();
+			String name = c.getName();%>
 			<script type="text/javascript">positions.push(new google.maps.LatLng(<%=lat%>, <%=lon%>));</script>
+			<script type="text/javascript">countriesArray.push('<%=name%>');</script>
 		<%
 		}
 	%>
 
 </head>
-<body onload="initializeMapCountries(positions, 2)">
+<body onload="initializeMapCountries(positions, countriesArray, 2)">
 	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -76,13 +79,22 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron shadow background-grey">
-            <h1>Visit with me!</h1>
-            <p>As I have come to travel to already multiple countries, I intend to show here what I've
-            liked about those places and provide you with some tips on what to do / see.</p>
-            <p>All the pictures found on this website are my own property.</p>
-            <p>I hope you'll like travelling with me!</p>
+<!--           <div class="jumbotron shadow background-grey"> -->
+<!--             <h1>Visit with me!</h1> -->
+<!--             <p>As I have come to travel to already multiple countries, I intend to show here what I've -->
+<!--             liked about those places and provide you with some tips on what to do / see.</p> -->
+<!--             <p>All the pictures found on this website are my own property.</p> -->
+<!--             <p>I hope you'll like travelling with me!</p> -->
+<!--           </div> -->
+
+		  <div class="row">
+            <div class="col-lg-12">
+              <div class="shadow padding10">
+                <div id="map_countries" style="height:500px;"></div>
+              </div>
+            </div>
           </div>
+          
           <div class="row">
           <%
           for(CountriesVisitedDTO country : countries){
@@ -137,13 +149,6 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           %>
           </div><!--/row-->
           
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="shadow padding10">
-                <div id="map_countries" style="height:500px;"></div>
-              </div>
-            </div>
-          </div>
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">

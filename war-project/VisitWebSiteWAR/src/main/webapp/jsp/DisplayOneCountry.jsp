@@ -19,6 +19,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (Boolean)request.getSession().getAttribute("isEditMode") : Boolean.FALSE;
 List<FlickrPhotosDTO> photosUrls = country.getPhotosList();
 
+String folder = Commons.FTP_PATH_TO_IMG + Commons.SEPARATOR + country.getName().toLowerCase() + Commons.SEPARATOR;
+String webLink = Commons.SITE_ADDRESS + folder;
+String folderTop = folder + Commons.PATH_TOP;
+String webLinkTop = Commons.SITE_ADDRESS + folderTop;
 String backgroundImg = "http://flagpedia.net/data/flags/normal/"+country.getIso().toLowerCase()+".png";
 %>
 
@@ -133,43 +137,52 @@ String backgroundImg = "http://flagpedia.net/data/flags/normal/"+country.getIso(
 	  
 	  <div class="col-md-12">
 	  
-<%-- 	  <%  --%>
-<!-- // 	  int currIteration = 1; -->
-<!-- // 	  for(TopFiveDTO top : city.getTopFives()){ -->
-<%-- 	  %> --%>
+ 	  <% 
+	  int currIteration = 1;
+ 	  
+ 	  if(country.getMustSees() != null && !country.getMustSees().isEmpty()){
 	  
-<!--       <div class="row shadow padding20"> -->
-<%--       <%  --%>
-<!-- //       if(currIteration%2 == 0){  -->
-<%--       %> --%>
-<!--         <div class="col-md-7"> -->
-<%--           <h2 class="featurette-heading">Must-Do n&deg;<%=currIteration %>: <span class="text-muted"><%= top.getName() %></span></h2> --%>
-<%--           <p class="lead"><%= top.getInbrief() %></p> --%>
-<%-- 		  <p class="lead"><%= top.getDescription() %></p> --%>
-<!--         </div> -->
-<!--         <div class="col-md-5"> -->
-<%--           <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="<%=top.getName()%>"> --%>
-<!--         </div> -->
-<%--       <% --%>
-<!-- //       }else{  -->
-<%--       %> --%>
-<!--         <div class="col-md-5"> -->
-<%--           <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="<%=top.getName()%>"> --%>
-<!--         </div> -->
-<!--         <div class="col-md-7"> -->
-<%--           <h2 class="featurette-heading">Must-Do n&deg;<%=currIteration %>: <span class="text-muted"><%= top.getName() %></span></h2> --%>
-<%--           <p class="lead"><%= top.getInbrief() %></p> --%>
-<%-- 		  <p class="lead"><%= top.getDescription() %></p> --%>
-<!--         </div> -->
-<%--         <% --%>
-<!-- //         } // close else -->
-<%--         %> --%>
-<!--       </div> -->
+ 		  for(MustSeeDTO mustSee : country.getMustSees()){
+	  %>
+	  
+      <div class="row shadow padding20">
+      <% 
+      if(currIteration%2 == 0){ 
+      %>
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Must-Do n&deg;<%=currIteration %>: <span class="text-muted"><%= mustSee.getName() %></span></h2>
+          <p class="lead"><%= mustSee.getInbrief() %></p>
+		  <p class="lead"><%= mustSee.getDescription() %></p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="<%=mustSee.getName()%>">
+        </div>
+      <%
+      }else{ 
+      %>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="<%=webLinkTop + currIteration + Commons.IMG_EXTENSION %>" alt="<%=mustSee.getName()%>">
+        </div>
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Must-Do n&deg;<%=currIteration %>: <span class="text-muted"><%= mustSee.getName() %></span></h2>
+          <p class="lead"><%= mustSee.getInbrief() %></p>
+		  <p class="lead"><%= mustSee.getDescription() %></p>
+        </div>
+        <%
+        } // close else
+        %>
+      </div>
 
-<%--       <% --%>
-<!-- //       currIteration++; -->
-<!-- //       } // close for -->
-<%--       %> --%>
+      <%
+      currIteration++;
+      } // close for
+ 	  }else{
+      %>
+      
+      <div class="row shadow padding20">
+      <p>Coming soon...</p>
+      </div>
+      <%} %>
       </div>
 
 	</section>
@@ -216,16 +229,15 @@ String backgroundImg = "http://flagpedia.net/data/flags/normal/"+country.getIso(
 	  
 	  <section id="id_pictures">
 		
-		<%
-		if(photosUrls != null){
-		%>
-		
 		<div class="page-header">
 		<h1><span class="glyphicon glyphicon-picture"></span> Countryside Gallery</h1>
 	  </div>
-	  <div class="row">
 	  
-		<%
+	  <%
+		if(photosUrls != null){%>
+		
+	    <div class="row">
+		<%	
 		for(FlickrPhotosDTO entry: photosUrls){			
  		%>
 		<div class="col-sm-12 col-md-6">
@@ -238,6 +250,13 @@ String backgroundImg = "http://flagpedia.net/data/flags/normal/"+country.getIso(
         </div>
         <%}	%>
 		</div>
+		<%} else{%>
+		
+		<div class="col-md-12">
+	      <div class="row shadow padding20">
+	      <p>Coming soon...</p>
+	      </div>
+        </div>
 		<%} %>
 
 	  </section>
