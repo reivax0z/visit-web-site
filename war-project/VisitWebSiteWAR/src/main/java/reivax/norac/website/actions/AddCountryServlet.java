@@ -47,6 +47,7 @@ public class AddCountryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String info = request.getParameter("info");
+		String iso = request.getParameter("iso");
 		String lat = request.getParameter("latitude");
 		String lon = request.getParameter("longitude");
 
@@ -56,6 +57,7 @@ public class AddCountryServlet extends HttpServlet {
 			CountriesVisitedDTO dto = new CountriesVisitedDTO();
 			dto.setInfo(info);
 			dto.setName(name);
+			dto.setInfo(iso);
 			dto.setLatitude(Double.valueOf(lat));
 			dto.setLongitude(Double.valueOf(lon));
 			dto.setPhotosList(FlickrPhotoCache.getInstance().getAll().get(dto.getName().toLowerCase()));

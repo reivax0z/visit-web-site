@@ -29,6 +29,8 @@ public class Country implements Serializable {
 	private BigDecimal latitude;
 	
 	private BigDecimal longitude;
+	
+	private String iso;
 
 	//bi-directional many-to-one association to City
 	@OneToMany(mappedBy="country")
@@ -97,6 +99,14 @@ public class Country implements Serializable {
 
 	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
+	}
+
+	public String getIso() {
+		return iso;
+	}
+
+	public void setIso(String iso) {
+		this.iso = iso;
 	}
 
 }

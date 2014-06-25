@@ -10,6 +10,7 @@ public class CountriesVisitedDTO {
 	private int id;
 	private String name;
 	private String info;
+	private String iso;
 	private List<CitiesVisitedDTO> cities;
 	
 	private Double latitude;
@@ -58,6 +59,12 @@ public class CountriesVisitedDTO {
 	}
 	public void setPhotosList(List<FlickrPhotosDTO> photosList) {
 		this.photosList = photosList;
+	}
+	public String getIso() {
+		return iso;
+	}
+	public void setIso(String iso) {
+		this.iso = iso;
 	}
 	
 	@Override

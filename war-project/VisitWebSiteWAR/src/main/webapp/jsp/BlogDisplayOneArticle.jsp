@@ -43,7 +43,7 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Visit with Me</a>
+          <a class="navbar-brand" href="Home">Visit with Me</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -60,10 +60,18 @@ Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (
 
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
-         <div class="shadow">
+        
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
+          
+          <ol class="breadcrumb">
+		  <li><a href="Blog">Travel Blog</a></li>
+		  <li class="active"><%=article.getDate() %></li>
+		  </ol>
+		  
+         <div class="shadow">
+          
           <div class="jumbotron shadow background-grey">
             <h1><%=article.getTitle() %></h1>
             <h2><%=article.getDate() %></h2>

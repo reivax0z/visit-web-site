@@ -40,7 +40,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Visit with Me</a>
+          <a class="navbar-brand" href="Home">Visit with Me</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -60,6 +60,11 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
+          
+          <ol class="breadcrumb">
+		  <li><a href="Blog">Travel Blog</a></li>
+		  <li class="active"><%=articles.get(0).getDate() %></li>
+		  </ol>
           
           <%
           for(ArticleDTO article : articles){

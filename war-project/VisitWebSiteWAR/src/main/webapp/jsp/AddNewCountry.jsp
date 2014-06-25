@@ -71,10 +71,11 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			<form role="form" action="AddCountryAction" method="post" class="shadow padding20">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Country Details</label>
-			    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Country name" value="<%=editCountry!=null?editCountry.getName():""%>">
+			    <input type="text" name="name" class="form-control" id="countryName" placeholder="Country name" value="<%=editCountry!=null?editCountry.getName():""%>">
+			    <input type="text" name="iso" class="form-control" id="isoCode" placeholder="ISO code" value="<%=editCountry!=null?editCountry.getIso():""%>">
 			  	<textarea name="info" class="form-control" rows="5" placeholder="Info"><%=editCountry!=null?editCountry.getInfo():""%></textarea>
-			  	<input type="text" name="latitude" class="form-control" id="exampleInputEmail1" placeholder="Latitude" value="<%=editCountry!=null?editCountry.getLatitude():""%>">
-			  	<input type="text" name="longitude" class="form-control" id="exampleInputEmail1" placeholder="Longitude" value="<%=editCountry!=null?editCountry.getLongitude():""%>">
+			  	<input type="text" name="latitude" class="form-control" id="latitude" placeholder="Latitude" value="<%=editCountry!=null?editCountry.getLatitude():""%>">
+			  	<input type="text" name="longitude" class="form-control" id="longitude" placeholder="Longitude" value="<%=editCountry!=null?editCountry.getLongitude():""%>">
 			  </div>
 			  <hr>
 			  <button type="submit" class="btn btn-primary" style="float: right;">Submit New Country</button>

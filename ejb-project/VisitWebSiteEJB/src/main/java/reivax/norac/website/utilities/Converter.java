@@ -45,6 +45,7 @@ public class Converter {
 		toReturn.setName(entity.getName());
 		toReturn.setLatitude(entity.getLatitude().doubleValue());
 		toReturn.setLongitude(entity.getLongitude().doubleValue());
+		toReturn.setIso(entity.getIso());
 
 		toReturn.setPhotosList(FlickrPhotoCache.getInstance().getAll().get(toReturn.getName().toLowerCase()));
 		
@@ -186,6 +187,7 @@ public class Converter {
 		toReturn.setLatitude(BigDecimal.valueOf(dto.getLatitude()));
 		toReturn.setLongitude(BigDecimal.valueOf(dto.getLongitude()));
 		toReturn.setInfo(dto.getInfo());
+		toReturn.setIso(dto.getIso());
 		
 		return toReturn;
 	}

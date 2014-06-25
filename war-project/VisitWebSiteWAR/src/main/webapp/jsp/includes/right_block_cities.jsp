@@ -1,17 +1,17 @@
 <%@ page import="java.util.*" %>
 <%@ page import="reivax.norac.website.dto.*" %>
 
-<ul class="nav">
+<div class="list-group">
 <%
-for(CountriesVisitedDTO country : countries){
+for(CountriesVisitedDTO country_it : countries){
 %>
-  <li><%=country.getName() %></li>
+  <a class="list-group-item active" href="CountryDetailsAction?country=<%=country_it.getName() %>"><%=country_it.getName() %></a></li>
   <%
-  for(CitiesVisitedDTO city_it : country.getCities()){
+  for(CitiesVisitedDTO city_it : country_it.getCities()){
   %>
-  <li class="active"><a href="CityDetailsAction?city=<%= city_it.getName() %>"><%=city_it.getName() %></a></li>
+  <a class="list-group-item" href="CityDetailsAction?city=<%= city_it.getName() %>"><%=city_it.getName() %></a></li>
   <%
   }
 }
 %>
-</ul>
+</div>

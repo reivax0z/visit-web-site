@@ -15,6 +15,7 @@ CitiesVisitedDTO city = (CitiesVisitedDTO) request.getSession().getAttribute("ne
 if(city == null){
 	city = (CitiesVisitedDTO) request.getAttribute("city");
 }
+CountriesVisitedDTO parentCountry = CommonsUtils.getCountryById(city.getCountryID(), countries);
 Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Boolean)request.getSession().getAttribute("isLogged") : Boolean.FALSE;
 Boolean isEditMode = request.getSession().getAttribute("isEditMode") != null ? (Boolean)request.getSession().getAttribute("isEditMode") : Boolean.FALSE;
 List<FlickrPhotosDTO> photosUrls = city.getPhotosList();
@@ -63,14 +64,13 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Visit with Me</a>
+          <a class="navbar-brand" href="Home">Visit with Me</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="Home"><span class="glyphicon glyphicon-globe"></span> Travel Tips</a></li>
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> Travel Tips</a></li>
             <li><a href="Blog"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
             <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
-            	<li class="active"><a href="#"><%=city.getName() %></a></li>
           </ul>
          <%@include file="includes/header_menu_admin.jsp" %>
         </div><!-- /.nav-collapse -->
@@ -88,6 +88,12 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
           <!-- TOP CONTENT -->
           
       <section id="id_top">
+      	<ol class="breadcrumb">
+		  <li><a href="Home">Travel Tips</a></li>
+		  <li><a href="CountryDetailsAction?country=<%=parentCountry.getName() %>"><%=parentCountry.getName() %></a></li>
+		  <li class="active"><%=city.getName() %></li>
+		</ol>
+		
         <div class="jumbotron shadow background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;">
 	  		<div class="row" style="text-align:center">
             	<h1 class="padding-bottom-big"><%=city.getName() %></h1>
@@ -260,7 +266,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 		</div>
 		
 		<%
-		List<FlickrPhotosDTO> countrysidePhotosURLsAndCaptions = CommonsUtils.getCountryById(city.getCountryID(), countries).getPhotosList();
+		List<FlickrPhotosDTO> countrysidePhotosURLsAndCaptions = parentCountry.getPhotosList();
 		if(countrysidePhotosURLsAndCaptions != null){
 		%>
 		
