@@ -44,7 +44,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <ul class="nav navbar-nav">
        		<li><a href="Home"><span class="glyphicon glyphicon-globe"></span> Travel Tips</a></li>
             <li><a href="Blog"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
-            <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
+            <li><a href="AboutMe"><span class="glyphicon glyphicon-question-sign"></span> About</a></li>
           </ul>
          <%@include file="includes/header_menu_admin.jsp" %>
         </div><!-- /.nav-collapse -->

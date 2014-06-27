@@ -967,13 +967,19 @@ a.badge:hover,a.badge:focus{color:#fff;text-decoration:none;cursor:pointer}
 .btn .badge{position:relative;top:-1px}
 a.list-group-item.active>.badge,.nav-pills>.active>a>.badge{color:#428bca;background-color:#fff}
 .nav-pills>li>a>.badge{margin-left:3px}
-.jumbotron{padding:30px;margin-bottom:30px;font-size:21px;font-weight:200;line-height:2.1428571435;color:inherit;background-color:#eee}
+.headline_title{padding:20px;font-size:40px;font-weight:200;line-height:2.1428571435;color:white;position:absolute;bottom:1px;}
+.headline_title h1{line-height:1;color:inherit;}
+.jumbotron{padding:20px;margin-bottom:30px;font-size:21px;font-weight:200;line-height:2.1428571435;color:inherit;background-color:#eee}
 .jumbotron h1{line-height:1;color:inherit;}
 .jumbotron p{line-height:1.4}
 /* .container .jumbotron{border-radius:6px} */
 @media screen and (min-width:768px){.jumbotron{padding-top:48px;padding-bottom:48px}
 .container .jumbotron{padding-right:60px;padding-left:60px}
 .jumbotron h1{font-size:63px}
+}
+@media screen and (min-width:768px){
+.container .headline_title{padding-right:40px;padding-left:40px}
+.headline_title h1{font-size:63px}
 }
 .thumbnail{display:inline-block;display:block;height:auto;max-width:100%;padding:4px;line-height:1.428571429;background-color:#fff;/*border:1px solid #ddd;border-radius:4px;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out*/}
 .thumbnail>img{display:block;height:auto;max-width:100%}

@@ -70,7 +70,7 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
           <ul class="nav navbar-nav">
             <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> Travel Tips</a></li>
             <li><a href="Blog"><span class="glyphicon glyphicon-comment"></span> Travel Blog</a></li>
-            <li><a href="AboutMe"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
+            <li><a href="AboutMe"><span class="glyphicon glyphicon-question-sign"></span> About</a></li>
           </ul>
          <%@include file="includes/header_menu_admin.jsp" %>
         </div><!-- /.nav-collapse -->
@@ -94,11 +94,11 @@ String backgroundImg = Commons.SITE_ADDRESS + folder + Commons.PATH_COVER;
 		  <li class="active"><%=city.getName() %></li>
 		</ol>
 		
-        <div class="shadow">
-	        <div class="background-grey white" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;height: 400px;">
+        <div style="position:relative;">
+	        <div class="shadow" style="background: url('<%=backgroundImg %>') no-repeat center;background-size: cover;height: 400px;">
 		  	</div>
-		    <div class="jumbotron background-grey" style="margin-bottom:0px">
-		  		<h1 style="text-align:center"><%=city.getName() %></h1>
+		    <div class="headline_title">
+		  		<h1><%=city.getName() %></h1>
 		  	</div>
 	  	</div>
 	  </section>
