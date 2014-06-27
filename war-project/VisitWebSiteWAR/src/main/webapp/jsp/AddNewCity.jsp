@@ -82,9 +82,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			<form role="form" action="AddCityPreviewAction" method="post" class="shadow padding20">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">City Name</label>
-			    <input type="text" name="city_name" class="form-control" id="exampleInputEmail1" placeholder="City name" value="<%=city!=null?city.getName():"" %>">
-		  		<input type="text" name="city_lat" class="form-control" id="exampleInputEmail1" placeholder="Latitude" value="<%=city!=null?city.getLatitude():"" %>">
-		  		<input type="text" name="city_long" class="form-control" id="exampleInputEmail1" placeholder="Longitude" value="<%=city!=null?city.getLongitude():"" %>">
+			    <input type="text" name="city_name" class="form-control" id="city_name" placeholder="City name" value="<%=city!=null?city.getName():"" %>">
+		  		<input type="text" name="city_lat" class="form-control" id="city_lat" placeholder="Latitude" value="<%=city!=null?city.getLatitude():"" %>">
+		  		<input type="text" name="city_long" class="form-control" id="city_long" placeholder="Longitude" value="<%=city!=null?city.getLongitude():"" %>">
 		  		<select class="form-control" name="country">
 		  			<%for(CountriesVisitedDTO country : countries){ %>
 					<option <%= (city!=null && CommonsUtils.getCountryById(city.getCountryID(), countries).getName().equals(country.getName()))?"selected":"" %> value="<%=country.getName()%>"><%=country.getName() %></option>
@@ -98,12 +98,12 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">Facts</label>
-			    <input type="text" name="area" class="form-control" id="exampleInputPassword1" placeholder="Area" value="<%=city!=null?city.getArea():"" %>">
-			  	<input type="text" name="currency" class="form-control" id="exampleInputPassword1" placeholder="Currency" value="<%=city!=null?city.getCurrency():"" %>">
-			    <input type="text" name="established" class="form-control" id="exampleInputPassword1" placeholder="Established" value="<%=city!=null?city.getEstablished():"" %>">
-			  	<input type="text" name="languages" class="form-control" id="exampleInputPassword1" placeholder="Languages" value="<%=city!=null?city.getLanguages():"" %>">
-			    <input type="text" name="population" class="form-control" id="exampleInputPassword1" placeholder="Population" value="<%=city!=null?city.getPopulation():"" %>">
-			  	<input type="text" name="timezone" class="form-control" id="exampleInputPassword1" placeholder="Timezone" value="<%=city!=null?city.getTimezone():"" %>">
+			    <input type="text" name="area" class="form-control" id="area" placeholder="Area" value="<%=city!=null?city.getArea():"" %>">
+			  	<input type="text" name="currency" class="form-control" id="currency" placeholder="Currency" value="<%=city!=null?city.getCurrency():"" %>">
+			    <input type="text" name="established" class="form-control" id="established" placeholder="Established" value="<%=city!=null?city.getEstablished():"" %>">
+			  	<input type="text" name="languages" class="form-control" id="languages" placeholder="Languages" value="<%=city!=null?city.getLanguages():"" %>">
+			    <input type="text" name="population" class="form-control" id="population" placeholder="Population" value="<%=city!=null?city.getPopulation():"" %>">
+			  	<input type="text" name="timezone" class="form-control" id="timezone" placeholder="Timezone" value="<%=city!=null?city.getTimezone():"" %>">
 			  </div>
 			  <%for(int i=0; i<5; i++){ 
 			  TopFiveDTO top = (city!=null && (city.getTopFives()!=null && city.getTopFives().size()>i))?city.getTopFives().get(i):null;
@@ -111,8 +111,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">Top Five nb <%=i+1 %></label>
 			    <input type="text" name="top_id_<%=i %>" value="<%=top!=null?top.getId():0%>" style="display:none">
-			    <input name="top_name_<%=i %>" type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" value="<%=top!=null?top.getName():"" %>">
-			  	<input name="top_brief_<%=i %>" type="text" class="form-control" id="exampleInputPassword1" placeholder="In brief" value="<%=top!=null?top.getInbrief():"" %>">
+			    <input name="top_name_<%=i %>" type="text" class="form-control"  placeholder="Name" value="<%=top!=null?top.getName():"" %>">
+			  	<input name="top_brief_<%=i %>" type="text" class="form-control" placeholder="In brief" value="<%=top!=null?top.getInbrief():"" %>">
 			  	<textarea name="top_info_<%=i %>" class="form-control" rows="5" placeholder="Description"><%=top!=null?top.getDescription():"" %></textarea>
 			  </div>
 			  <%} %>

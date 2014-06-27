@@ -158,7 +158,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         </div><!--/span-->
 		
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="shadow">
+          <div>
           	<div class="sidebar-nav padding10">
     	      	<h3 style="font-family: 'Yesteryear', cursive;text-align:center;">Xavier Caron</h3>        	
   				<img id="about_me_picture" alt="Profile Picture" src="<%= Commons.IMG_PROFILE_ADDRESS %>" width="100px" height="100px" style="margin:auto" class="img-responsive img-circle">
@@ -169,16 +169,16 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
    	   			</p>
  			</div>
 		  </div>
-          <div class="shadow">
+          <div>
           	<div class="sidebar-nav padding10">	
-            	<h3 style="text-align:center;">Languages</h3>
+            	<h3 style="text-align:center"><span class="glyphicon glyphicon-bullhorn"></span> Languages</h3>
 	            <ul>
 	            <li>French: Mother tongue</li>
 				<li>English: Fluent - IELTS 8</li>
 				<li>German: Limited working proficiency</li>
 				</ul>
 				<hr>
-				<h3 style="text-align:center;">Programming Skills</h3>
+				<h3 style="text-align:center"><span class="glyphicon glyphicon-flash"></span> Programming Skills</h3>
 				<ul>
 				<li>Oracle Certified Java SE 6 Programmer</li>
 				<li>Web (HTML 5, CSS 3, Javascript, jQuery)</li>

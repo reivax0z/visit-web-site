@@ -1,6 +1,7 @@
 package reivax.norac.website.actions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import reivax.norac.website.caches.CountryCache;
 import reivax.norac.website.caches.FlickrPhotoCache;
 import reivax.norac.website.dto.CountriesVisitedDTO;
+import reivax.norac.website.dto.MustSeeDTO;
+import reivax.norac.website.dto.TopFiveDTO;
 import reivax.norac.website.service.WebSiteEJB;
 import reivax.norac.website.util.CommonsUtils;
 
@@ -50,6 +53,22 @@ public class AddCountryServlet extends HttpServlet {
 		String iso = request.getParameter("iso");
 		String lat = request.getParameter("latitude");
 		String lon = request.getParameter("longitude");
+		
+		ArrayList<MustSeeDTO> topSee = new ArrayList<MustSeeDTO>();
+		for(int i=0; i<5; i++){
+			String topName = request.getParameter("top_name_"+i);
+			String inBrief = request.getParameter("top_brief_"+i);
+			String topInfo = request.getParameter("top_info_"+i);
+			String id = request.getParameter("top_id_"+i);
+			if(topName != null && !topName.isEmpty()){
+				MustSeeDTO dto = new MustSeeDTO();
+				dto.setName(topName);
+				dto.setInbrief(inBrief);
+				dto.setDescription(topInfo);
+				dto.setId(Integer.parseInt(id));
+				topSee.add(dto);
+			}
+		}
 
 		CountriesVisitedDTO editCountry = (CountriesVisitedDTO) request.getSession().getAttribute("editCountry");
 		
@@ -60,6 +79,7 @@ public class AddCountryServlet extends HttpServlet {
 			dto.setInfo(iso);
 			dto.setLatitude(Double.valueOf(lat));
 			dto.setLongitude(Double.valueOf(lon));
+			dto.setMustSees(topSee);
 			dto.setPhotosList(FlickrPhotoCache.getInstance().getAll().get(dto.getName().toLowerCase()));
 
 			if(editCountry != null){

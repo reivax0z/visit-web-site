@@ -77,8 +77,21 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			  	<input type="text" name="latitude" class="form-control" id="latitude" placeholder="Latitude" value="<%=editCountry!=null?editCountry.getLatitude():""%>">
 			  	<input type="text" name="longitude" class="form-control" id="longitude" placeholder="Longitude" value="<%=editCountry!=null?editCountry.getLongitude():""%>">
 			  </div>
+			  
+			   <%for(int i=0; i<10; i++){ 
+			  MustSeeDTO top = (editCountry!=null && (editCountry.getMustSees()!=null && editCountry.getMustSees().size()>i))?editCountry.getMustSees().get(i):null;
+			  %>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Must See nb <%=i+1 %></label>
+			    <input type="text" name="top_id_<%=i %>" value="<%=top!=null?top.getId():0%>" style="display:none">
+			    <input name="top_name_<%=i %>" type="text" class="form-control"  placeholder="Name" value="<%=top!=null?top.getName():"" %>">
+			  	<input name="top_brief_<%=i %>" type="text" class="form-control" placeholder="In brief" value="<%=top!=null?top.getInbrief():"" %>">
+			  	<textarea name="top_info_<%=i %>" class="form-control" rows="5" placeholder="Description"><%=top!=null?top.getDescription():"" %></textarea>
+			  </div>
+			  <%} %>
+			  
 			  <hr>
-			  <button type="submit" class="btn btn-primary" style="float: right;">Submit New Country</button>
+			  <button type="submit" class="btn btn-primary" style="float: right;">Save Country</button>
 			  <br>
 			</form>
 			

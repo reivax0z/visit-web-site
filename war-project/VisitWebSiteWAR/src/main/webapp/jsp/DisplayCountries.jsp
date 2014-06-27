@@ -79,14 +79,6 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-<!--           <div class="jumbotron shadow background-grey"> -->
-<!--             <h1>Visit with me!</h1> -->
-<!--             <p>As I have come to travel to already multiple countries, I intend to show here what I've -->
-<!--             liked about those places and provide you with some tips on what to do / see.</p> -->
-<!--             <p>All the pictures found on this website are my own property.</p> -->
-<!--             <p>I hope you'll like travelling with me!</p> -->
-<!--           </div> -->
-
 		  <div class="row">
             <div class="col-lg-12">
               <div class="shadow padding10">
@@ -120,10 +112,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
               for(CitiesVisitedDTO city : country.getCities()){
               %>
               
-             <div class="col-6 col-xs-6 col-sm-6 col-lg-6">
+             <div class="col-6 col-xs-12 col-sm-6 col-lg-6">
               <a href="CityDetailsAction?city=<%= city.getName() %>">
 				<div class="thumbnail shadow" style="background-color:#ECECEC">
-				  <img src="http://xavier.w.caron.free.fr/website/resources/img/<%=country.getName().toLowerCase() %>/<%= city.getName().toLowerCase() %>/cover/cover.JPG" width="200" height="100">
+				  <img src="http://xavier.w.caron.free.fr/website/resources/img/<%=country.getName().toLowerCase() %>/<%= city.getName().toLowerCase() %>/cover/cover.JPG">
 				  <div class="caption">
 				    <h4 style="text-align:center"><%= city.getName() %></h4>
 				  </div>
@@ -152,8 +144,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-              <div class="shadow">
-          <div class="sidebar-nav padding20">
+              <div>
+          <div class="sidebar-nav padding10">
            <h3>Travel Tips</h3>
             
              <%@include file="includes/right_block_cities.jsp" %>

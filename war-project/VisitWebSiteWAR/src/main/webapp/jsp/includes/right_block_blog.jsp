@@ -10,8 +10,8 @@
  %>
  
  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-              <div class="shadow">
-          <div class="sidebar-nav padding20">
+              <div>
+          <div class="sidebar-nav padding10">
           <h3>All articles</h3>
 <!--             <ul class="nav"> -->
               <%
