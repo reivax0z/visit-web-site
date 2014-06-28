@@ -2,6 +2,7 @@ package reivax.norac.website.actions;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -91,6 +92,10 @@ public class AddCountryServlet extends HttpServlet {
 		}
 		
 		CommonsUtils.cleanSession(request);
+		
+//		List<CountriesVisitedDTO> countries = CountryCache.getInstance().getAll();
+//		// Forward the info to the appropriate JSP
+//		request.setAttribute("countries", countries);
 		
 		request.getRequestDispatcher("Home").forward(request, response);
 	}

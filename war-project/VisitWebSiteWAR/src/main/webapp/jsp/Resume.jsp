@@ -169,11 +169,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 				<p>German: Limited working proficiency</p>
 				<hr>
 				<h3><span class="glyphicon glyphicon-flash"></span> Programming Skills</h3>
-				<ul>
 				<p>Oracle Certified Java SE 6 Programmer</p>
 				<p>Web (HTML 5, CSS 3, Javascript, jQuery)</p>
 				<p>Android, SQL, C++, C#, PHP, Unix</p>
-				</ul>
             </div>
           <!--/.well -->
           </div>

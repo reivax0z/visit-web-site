@@ -17,6 +17,43 @@ function initializeMapPosition(position, zoomVal) {
 	addLocation(position);
 }
 
+function initializeEditMapPosition(position, zoomVal) {
+	// Init the map
+	var myOptions = {
+			zoom: zoomVal,
+			center: position,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	map = new google.maps.Map(document.getElementById('map_position'), myOptions);
+	addEditLocation(position);
+}
+
+function addEditLocation(position){
+	// Get coordinates
+	var options = {
+			position: position
+	};
+	var marker = new google.maps.Marker(options);
+	
+	google.maps.event.addListener(map, 'click', function(event) {
+      document.getElementById('latitude').value = event.latLng.lat();
+      document.getElementById('longitude').value = event.latLng.lng();
+      
+      var pos = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+      
+      options = {
+  			position: pos
+  	  };
+	  marker.setMap(null);
+  	  marker = new google.maps.Marker(options);
+  	  marker.setMap(map);
+    });
+
+	// Show marker on map
+	marker.setMap(map);
+}
+
 function initializeMapCountries(positions, countries, zoomVal) {
 	var sumLat = 0;
 	var sumLong = 0;

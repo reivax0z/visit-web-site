@@ -39,8 +39,19 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
     <link rel="shortcut icon" href="<%=Commons.IMG_ICON_ADDRESS%>">
 
 	<title>Add a new City</title>
+ 
+ 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	
+	<script type="text/javascript">
+		// Global variable for Google Maps API
+		var position = position = new google.maps.LatLng(0, 0);
+		<%if(city != null){%>
+		position = new google.maps.LatLng(<%=city.getLatitude()%>, <%=city.getLongitude()%>);
+		<%}%>
+	</script>
+
 </head>
-<body>
+<body onload="initializeEditMapPosition(position, 8)">
 
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
@@ -83,8 +94,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">City Name</label>
 			    <input type="text" name="city_name" class="form-control" id="city_name" placeholder="City name" value="<%=city!=null?city.getName():"" %>">
-		  		<input type="text" name="city_lat" class="form-control" id="city_lat" placeholder="Latitude" value="<%=city!=null?city.getLatitude():"" %>">
-		  		<input type="text" name="city_long" class="form-control" id="city_long" placeholder="Longitude" value="<%=city!=null?city.getLongitude():"" %>">
+			    <div id="map_position" style="height: 200px;"></div>
+		  		<input type="text" name="city_lat" class="form-control" id="latitude" placeholder="Latitude" value="<%=city!=null?city.getLatitude():"" %>" readonly>
+		  		<input type="text" name="city_long" class="form-control" id="longitude" placeholder="Longitude" value="<%=city!=null?city.getLongitude():"" %>" readonly>
 		  		<select class="form-control" name="country">
 		  			<%for(CountriesVisitedDTO country : countries){ %>
 					<option <%= (city!=null && CommonsUtils.getCountryById(city.getCountryID(), countries).getName().equals(country.getName()))?"selected":"" %> value="<%=country.getName()%>"><%=country.getName() %></option>

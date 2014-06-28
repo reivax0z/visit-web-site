@@ -1,14 +1,8 @@
 package reivax.norac.website.utilities;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +25,7 @@ public class FlickrHelper {
 
 	private static final String KEY = "b9a23c77afdb6c9392bf22d1ec0ed16f";
 	private static final String SECRET = "e76ca57df1b50821";
-	private static final String REST_URL = "http://api.flickr.com/services/rest/?method=";
+	private static final String REST_URL = "https://api.flickr.com/services/rest/?method=";
 	private static final String SETS_LIST_METHOD = "flickr.photosets.getList";
 	private static final String PHOTOS_LIST_METHOD = "flickr.photosets.getPhotos";
 	private static final String PARAM_API = "&api_key=";

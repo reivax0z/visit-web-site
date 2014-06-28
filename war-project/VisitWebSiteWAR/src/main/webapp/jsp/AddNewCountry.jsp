@@ -24,11 +24,22 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
     <link href="/jsp/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/jsp/bootstrap-3.0.0/examples/offcanvas/offcanvas.css" rel="stylesheet">
     
+	<title>Add a new Country</title>
+	
     <link rel="shortcut icon" href="<%=Commons.IMG_ICON_ADDRESS%>">
 
-	<title>Add a new Country</title>
+ 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	
+	<script type="text/javascript">
+		// Global variable for Google Maps API
+		var position = position = new google.maps.LatLng(0, 0);
+		<%if(editCountry != null){%>
+		position = new google.maps.LatLng(<%=editCountry.getLatitude()%>, <%=editCountry.getLongitude()%>);
+		<%}%>
+	</script>
+
 </head>
-<body>
+<body onload="initializeEditMapPosition(position, 8)">
 
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
@@ -74,8 +85,9 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			    <input type="text" name="name" class="form-control" id="countryName" placeholder="Country name" value="<%=editCountry!=null?editCountry.getName():""%>">
 			    <input type="text" name="iso" class="form-control" id="isoCode" placeholder="ISO code" value="<%=editCountry!=null?editCountry.getIso():""%>">
 			  	<textarea name="info" class="form-control" rows="5" placeholder="Info"><%=editCountry!=null?editCountry.getInfo():""%></textarea>
-			  	<input type="text" name="latitude" class="form-control" id="latitude" placeholder="Latitude" value="<%=editCountry!=null?editCountry.getLatitude():""%>">
-			  	<input type="text" name="longitude" class="form-control" id="longitude" placeholder="Longitude" value="<%=editCountry!=null?editCountry.getLongitude():""%>">
+			  	<div id="map_position" style="height: 200px;"></div>
+			  	<input type="text" name="latitude" class="form-control" id="latitude" placeholder="Latitude" value="<%=editCountry!=null?editCountry.getLatitude():""%>" readonly>
+			  	<input type="text" name="longitude" class="form-control" id="longitude" placeholder="Longitude" value="<%=editCountry!=null?editCountry.getLongitude():""%>" readonly>
 			  </div>
 			  
 			   <%for(int i=0; i<10; i++){ 
