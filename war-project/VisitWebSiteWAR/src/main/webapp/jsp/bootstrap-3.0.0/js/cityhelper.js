@@ -35,3 +35,10 @@ function removeVideo(id){
 	document.getElementById('buttonAddInit').innerHTML = 'Add Video Link ('+nbRemain+' remaining)';
 	document.getElementById('buttonAddInit').style.display = 'block';
 }
+
+function displayCounter(input, display, limit){
+	if(input.value.length>limit){
+		input.value = input.value.substring(0, limit);
+	}
+	display.value = limit - input.value.length;
+}

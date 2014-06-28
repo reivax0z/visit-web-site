@@ -29,17 +29,20 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
     <link rel="shortcut icon" href="<%=Commons.IMG_ICON_ADDRESS%>">
 
  	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="/jsp/bootstrap-3.0.0/js/cityhelper.js"></script>
 	
 	<script type="text/javascript">
 		// Global variable for Google Maps API
-		var position = position = new google.maps.LatLng(0, 0);
+		var position = position = new google.maps.LatLng(47, 9);
+		var zoom = 3;
 		<%if(editCountry != null){%>
 		position = new google.maps.LatLng(<%=editCountry.getLatitude()%>, <%=editCountry.getLongitude()%>);
+		zoom = 5;
 		<%}%>
 	</script>
 
 </head>
-<body onload="initializeEditMapPosition(position, 8)">
+<body onload="initializeEditMapPosition(position, zoom);displayCounter(info, country_info_max, 500)">
 
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
@@ -84,9 +87,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			    <label for="exampleInputEmail1">Country Details</label>
 			    <input type="text" name="name" class="form-control" id="countryName" placeholder="Country name" value="<%=editCountry!=null?editCountry.getName():""%>">
 			    <input type="text" name="iso" class="form-control" id="isoCode" placeholder="ISO code" value="<%=editCountry!=null?editCountry.getIso():""%>">
-			  	<textarea name="info" class="form-control" rows="5" placeholder="Info"><%=editCountry!=null?editCountry.getInfo():""%></textarea>
+			  	<textarea id="info" name="info" class="form-control" rows="5" placeholder="Info" onKeyUp="displayCounter(this, country_info_max, 500)"><%=editCountry!=null?editCountry.getInfo():""%></textarea>
+			  	<input style="text-align:right;color:red;" readonly type="text" class="form-control" id="country_info_max" name="country_info_max" value="500" >
 			  	<div id="map_position" style="height: 200px;"></div>
-			  	<input type="text" name="latitude" class="form-control" id="latitude" placeholder="Latitude" value="<%=editCountry!=null?editCountry.getLatitude():""%>" readonly>
+			  	<input type="text" name="latitude" class="form-control" id="latitude" placeholder="Latitude" value="<%=editCountry!=null?editCountry.getLatitude():""%>" readonly >
 			  	<input type="text" name="longitude" class="form-control" id="longitude" placeholder="Longitude" value="<%=editCountry!=null?editCountry.getLongitude():""%>" readonly>
 			  </div>
 			  
@@ -97,8 +101,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			    <label for="exampleInputPassword1">Must See nb <%=i+1 %></label>
 			    <input type="text" name="top_id_<%=i %>" value="<%=top!=null?top.getId():0%>" style="display:none">
 			    <input name="top_name_<%=i %>" type="text" class="form-control"  placeholder="Name" value="<%=top!=null?top.getName():"" %>">
-			  	<input name="top_brief_<%=i %>" type="text" class="form-control" placeholder="In brief" value="<%=top!=null?top.getInbrief():"" %>">
-			  	<textarea name="top_info_<%=i %>" class="form-control" rows="5" placeholder="Description"><%=top!=null?top.getDescription():"" %></textarea>
+			  	<input name="top_brief_<%=i %>" type="text" class="form-control" placeholder="In brief" onKeyUp="displayCounter(this, top_brief_<%=i %>_max, 150)" value="<%=top!=null?top.getInbrief():"" %>">
+			  	<input style="text-align:right;color:red;" readonly type="text" class="form-control" id="top_brief_<%=i %>_max" name="top_brief_<%=i %>_max" value="150" >
+			  	<textarea name="top_info_<%=i %>" class="form-control" rows="5" placeholder="Description" onKeyUp="displayCounter(this, top_info_<%=i %>_max, 500)"><%=top!=null?top.getDescription():"" %></textarea>
+			    <input style="text-align:right;color:red;" readonly type="text" class="form-control" id="top_info_<%=i %>_max" name="top_info_<%=i %>_max" value="500" >
 			  </div>
 			  <%} %>
 			  

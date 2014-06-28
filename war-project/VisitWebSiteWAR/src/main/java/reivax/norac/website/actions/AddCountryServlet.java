@@ -77,7 +77,7 @@ public class AddCountryServlet extends HttpServlet {
 			CountriesVisitedDTO dto = new CountriesVisitedDTO();
 			dto.setInfo(info);
 			dto.setName(name);
-			dto.setInfo(iso);
+			dto.setIso(iso);
 			dto.setLatitude(Double.valueOf(lat));
 			dto.setLongitude(Double.valueOf(lon));
 			dto.setMustSees(topSee);
@@ -85,6 +85,7 @@ public class AddCountryServlet extends HttpServlet {
 
 			if(editCountry != null){
 				dto.setId(editCountry.getId());
+				dto.setCities(editCountry.getCities());
 				CountryCache.getInstance().update(dto);
 			} else{
 				CountryCache.getInstance().add(dto);
@@ -92,10 +93,6 @@ public class AddCountryServlet extends HttpServlet {
 		}
 		
 		CommonsUtils.cleanSession(request);
-		
-//		List<CountriesVisitedDTO> countries = CountryCache.getInstance().getAll();
-//		// Forward the info to the appropriate JSP
-//		request.setAttribute("countries", countries);
 		
 		request.getRequestDispatcher("Home").forward(request, response);
 	}

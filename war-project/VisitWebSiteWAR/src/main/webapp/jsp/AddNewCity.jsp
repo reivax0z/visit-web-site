@@ -44,14 +44,16 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 	
 	<script type="text/javascript">
 		// Global variable for Google Maps API
-		var position = position = new google.maps.LatLng(0, 0);
+		var position = position = new google.maps.LatLng(47, 9);
+		var zoom = 3;
 		<%if(city != null){%>
 		position = new google.maps.LatLng(<%=city.getLatitude()%>, <%=city.getLongitude()%>);
+		zoom = 8;
 		<%}%>
 	</script>
 
 </head>
-<body onload="initializeEditMapPosition(position, 8)">
+<body onload="initializeEditMapPosition(position, zoom);displayCounter(info, info_max, 500);displayCounter(did_you_know, did_you_know_max, 500);">
 
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
@@ -105,8 +107,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">About</label>
-			    <textarea name="did_you_know" class="form-control" rows="5" placeholder="Did you know?"><%=city!=null?city.getDidYouKnow():"" %></textarea>
-			  	<textarea name="info" class="form-control" rows="5" placeholder="Info"><%=city!=null?city.getInfo():"" %></textarea>
+			    <textarea id="did_you_know" name="did_you_know" class="form-control" rows="5" placeholder="Did you know?" onKeyUp="displayCounter(this, did_you_know_max, 500)"><%=city!=null?city.getDidYouKnow():"" %></textarea>
+			  	<input style="text-align:right;color:red;" readonly type="text" class="form-control" id="did_you_know_max" name="did_you_know_max" value="500" >
+			  	<textarea id="info" name="info" class="form-control" rows="5" placeholder="Info" onKeyUp="displayCounter(this, info_max, 500)"><%=city!=null?city.getInfo():"" %></textarea>
+			    <input style="text-align:right;color:red;" readonly type="text" class="form-control" id="info_max" name="info_max" value="500" >
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">Facts</label>
@@ -124,8 +128,10 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			    <label for="exampleInputPassword1">Top Five nb <%=i+1 %></label>
 			    <input type="text" name="top_id_<%=i %>" value="<%=top!=null?top.getId():0%>" style="display:none">
 			    <input name="top_name_<%=i %>" type="text" class="form-control"  placeholder="Name" value="<%=top!=null?top.getName():"" %>">
-			  	<input name="top_brief_<%=i %>" type="text" class="form-control" placeholder="In brief" value="<%=top!=null?top.getInbrief():"" %>">
-			  	<textarea name="top_info_<%=i %>" class="form-control" rows="5" placeholder="Description"><%=top!=null?top.getDescription():"" %></textarea>
+			  	<input name="top_brief_<%=i %>" type="text" class="form-control" placeholder="In brief" onKeyUp="displayCounter(this, top_brief_<%=i %>_max, 150)" value="<%=top!=null?top.getInbrief():"" %>">
+			  	<input style="text-align:right;color:red;" readonly type="text" class="form-control" id="top_brief_<%=i %>_max" name="top_brief_<%=i %>_max" value="150" >
+			  	<textarea name="top_info_<%=i %>" class="form-control" rows="5" placeholder="Description" onKeyUp="displayCounter(this, top_info_<%=i %>_max, 500)"><%=top!=null?top.getDescription():"" %></textarea>
+			    <input style="text-align:right;color:red;" readonly type="text" class="form-control" id="top_info_<%=i %>_max" name="top_info_<%=i %>_max" value="500" >
 			  </div>
 			  <%} %>
 			  <%for(int i=0; i<2; i++){ 
@@ -135,7 +141,8 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
 			    <label for="exampleInputPassword1">Video nb <%=i+1 %></label>
 			    <input type="text" name="video_id_<%=i %>" value="<%=video!=null?video.getId():0%>" style="display:none">
 			    <input type="text" name="video_name_<%=i %>" class="form-control" id="video_name_<%=i %>" placeholder="Name" value="<%=video!=null?video.getName():"" %>">
-			  	<textarea name="video_desc_<%=i %>" class="form-control" rows="5" id="video_desc_<%=i %>" placeholder="Description"><%=video!=null?video.getDescription():"" %></textarea>
+			  	<textarea name="video_desc_<%=i %>" class="form-control" rows="5" id="video_desc_<%=i %>" placeholder="Description" onKeyUp="displayCounter(this, video_desc_<%=i %>_max, 500)"><%=video!=null?video.getDescription():"" %></textarea>
+			  	<input style="text-align:right;color:red;" readonly type="text" class="form-control" id="video_desc_<%=i %>_max" name="video_desc_<%=i %>_max" value="500" >
 			  	<input type="url" name="video_url_<%=i %>" class="form-control" id="video_url_<%=i %>" placeholder="URL" value="<%=video!=null?video.getLink():"" %>">
 			  	<button type="button" class="btn btn-default" onclick="removeVideo('<%=i%>')">Remove Video Link</button>
 			  </div>

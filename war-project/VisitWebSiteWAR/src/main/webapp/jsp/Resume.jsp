@@ -38,7 +38,7 @@ Boolean isLogged = request.getSession().getAttribute("isLogged") != null ? (Bool
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="font-family: 'Yesteryear', cursive;font-size: 25px;" href="Home">Xavier Caron</a>
+          <a class="navbar-brand" href="Home">Xavier Caron</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
