@@ -56,7 +56,7 @@ public class AddCountryServlet extends HttpServlet {
 		String lon = request.getParameter("longitude");
 		
 		ArrayList<MustSeeDTO> topSee = new ArrayList<MustSeeDTO>();
-		for(int i=0; i<5; i++){
+		for(int i=0; i<10; i++){
 			String topName = request.getParameter("top_name_"+i);
 			String inBrief = request.getParameter("top_brief_"+i);
 			String topInfo = request.getParameter("top_info_"+i);
